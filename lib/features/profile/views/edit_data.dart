@@ -162,7 +162,7 @@ class EditData extends StatelessWidget {
             ),
 
             Padding(
-              padding: EdgeInsets.only(left: 40.w, right: 40.w),
+              padding: EdgeInsets.only(left: 40.w, right: 40.w, bottom: 239.h),
               child: SizedBox(
                 width: 347.w,
                 height: 51.h,

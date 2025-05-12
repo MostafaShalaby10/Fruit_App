@@ -6,6 +6,7 @@ import 'package:task_one/core/colors/colors.dart';
 import 'package:task_one/core/widgets/custom_text_form_field.dart';
 import 'package:task_one/core/widgets/custom_text_widget.dart';
 import 'package:task_one/core/widgets/nav_bar_widget.dart';
+import 'package:task_one/features/home/views/home_two.dart';
 
 import 'filter_dialog.dart';
 
@@ -29,6 +30,7 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: Colors.white,
         title: const CustomTextWidget(
           text: "Fruit Market",
@@ -63,6 +65,7 @@ class _HomeViewState extends State<HomeView> {
       ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (searchClicked)
               Padding(
@@ -81,7 +84,7 @@ class _HomeViewState extends State<HomeView> {
                     ),
                     prefixIcon: const Icon(Icons.search),
 
-                    border: OutlineInputBorder(
+                    border: const OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.black),
                     ),
                   ),
@@ -113,15 +116,17 @@ class _HomeViewState extends State<HomeView> {
                     );
                   }).toList(),
             ),
-            SmoothIndicator(
-              offset: _index.toDouble(),
-              count: 4,
-              size: const Size(49, 7),
-              effect: WormEffect(
-                activeDotColor: const Color(0xff707070),
-                dotColor: Colors.black12,
-                dotWidth: 10.w,
-                dotHeight: 10.h,
+            Center(
+              child: SmoothIndicator(
+                offset: _index.toDouble(),
+                count: 4,
+                size: const Size(49, 7),
+                effect: WormEffect(
+                  activeDotColor: const Color(0xff707070),
+                  dotColor: Colors.black12,
+                  dotWidth: 10.w,
+                  dotHeight: 10.h,
+                ),
               ),
             ),
             Padding(
@@ -135,15 +140,15 @@ class _HomeViewState extends State<HomeView> {
                 height: 80.h,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: 4,
+                  itemCount: cards.length,
                   itemBuilder:
                       (context, index) => Container(
                         width: 80.w,
                         height: 80.h,
                         padding: const EdgeInsets.all(10),
                         margin: EdgeInsets.only(
-                          right: index == 3 ? 0.w : 19.w,
-                          left: index == 0 ? 0.w : 19.w,
+                          right: index == 3 ? 0.w : 10.w,
+                          left: index == 0 ? 0.w : 10.w,
                         ),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(25.r),
@@ -180,7 +185,54 @@ class _HomeViewState extends State<HomeView> {
               itemBuilder:
                   (context, index) => Padding(
                     padding: EdgeInsets.only(bottom: 8.h),
-                    child: const SellersItem(),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const HomeTwo(),
+                          ),
+                        );
+                      },
+                      child: const SellersItem(),
+                    ),
+                  ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 21.w, top: 1.5.h, bottom: 8.h),
+              child: const CustomTextWidget(
+                text: "Categories ",
+                textAlign: TextAlign.start,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const CategoryList(),
+            Padding(
+              padding: EdgeInsets.only(left: 21.w, top: 1.h, bottom: 7.h),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const CustomTextWidget(
+                    text: "Products",
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Image.asset("assets/format.png", width: 17.w),
+                  ),
+                ],
+              ),
+            ),
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: 2,
+              itemBuilder:
+                  (context, index) => Padding(
+                    padding: EdgeInsets.only(bottom: 18.h),
+                    child: const ProductsItem(),
                   ),
             ),
           ],
