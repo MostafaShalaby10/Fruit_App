@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinput/pinput.dart';
+import 'package:task_one/core/widgets/nav_bar_widget.dart';
 
 import '../../../core/colors/colors.dart';
 import '../../../core/widgets/custom_button_widget.dart';
@@ -112,7 +113,9 @@ class _VerificationState extends State<Verification> {
                 function: () {
                   Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (context) => const HomeView()),
+                    MaterialPageRoute(
+                      builder: (context) => const NavigationBarWidget(),
+                    ),
                     (route) => false,
                   );
                 },

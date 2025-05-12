@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             home: child,
           ),
-      child: const NavigationBarWidget(),
+      child: const OnBoardingView(),
     );
   }
 }

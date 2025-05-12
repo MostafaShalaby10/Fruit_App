@@ -61,119 +61,121 @@ class _HomeViewState extends State<HomeView> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          if (searchClicked)
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            if (searchClicked)
+              Padding(
+                padding: EdgeInsets.only(
+                  left: 18.w,
+                  right: 25.w,
+                  top: 22.h,
+                  bottom: 11.h,
+                ),
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: "What are you looking for?",
+                    hintStyle: TextStyle(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w400,
+                    ),
+                    prefixIcon: const Icon(Icons.search),
+
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black),
+                    ),
+                  ),
+                ),
+              ),
+            CarouselSlider(
+              options: CarouselOptions(
+                height: 130.h,
+                autoPlay: true,
+                onPageChanged: (index, reason) {
+                  setState(() {
+                    _index = index;
+                  });
+                },
+              ),
+              items:
+                  [1, 2, 3, 4].map((i) {
+                    return Builder(
+                      builder: (BuildContext context) {
+                        return Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Image.asset(
+                            fit: BoxFit.fill,
+                            width: 400.w,
+                            "assets/home.png",
+                          ),
+                        );
+                      },
+                    );
+                  }).toList(),
+            ),
+            SmoothIndicator(
+              offset: _index.toDouble(),
+              count: 4,
+              size: const Size(49, 7),
+              effect: WormEffect(
+                activeDotColor: const Color(0xff707070),
+                dotColor: Colors.black12,
+                dotWidth: 10.w,
+                dotHeight: 10.h,
+              ),
+            ),
             Padding(
               padding: EdgeInsets.only(
-                left: 18.w,
-                right: 25.w,
-                top: 22.h,
+                left: 27.w,
+                right: 26.w,
                 bottom: 11.h,
+                top: 15.h,
               ),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: "What are you looking for?",
-                  hintStyle: TextStyle(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w400,
-                  ),
-                  prefixIcon: const Icon(Icons.search),
-
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black),
-                  ),
-                ),
-              ),
-            ),
-          CarouselSlider(
-            options: CarouselOptions(
-              height: 130.h,
-              autoPlay: true,
-              onPageChanged: (index, reason) {
-                setState(() {
-                  _index = index;
-                });
-              },
-            ),
-            items:
-                [1, 2, 3, 4].map((i) {
-                  return Builder(
-                    builder: (BuildContext context) {
-                      return Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Image.asset(
-                          fit: BoxFit.fill,
-                          width: 400.w,
-                          "assets/home.png",
+              child: SizedBox(
+                height: 80.h,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 4,
+                  itemBuilder:
+                      (context, index) => Container(
+                        width: 80.w,
+                        height: 80.h,
+                        padding: const EdgeInsets.all(10),
+                        margin: EdgeInsets.only(
+                          right: index == 3 ? 0.w : 19.w,
+                          left: index == 0 ? 0.w : 19.w,
                         ),
-                      );
-                    },
-                  );
-                }).toList(),
-          ),
-          SmoothIndicator(
-            offset: _index.toDouble(),
-            count: 4,
-            size: const Size(49, 7),
-            effect: WormEffect(
-              activeDotColor: const Color(0xff707070),
-              dotColor: Colors.black12,
-              dotWidth: 10.w,
-              dotHeight: 10.h,
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(
-              left: 27.w,
-              right: 26.w,
-              bottom: 11.h,
-              top: 15.h,
-            ),
-            child: SizedBox(
-              height: 80.h,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 4,
-                itemBuilder:
-                    (context, index) => Container(
-                      width: 80.w,
-                      height: 80.h,
-                      padding: const EdgeInsets.all(10),
-                      margin: EdgeInsets.only(
-                        right: index == 3 ? 0.w : 19.w,
-                        left: index == 0 ? 0.w : 19.w,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25.r),
+                          border: Border.all(color: Colors.black12),
+                        ),
+                        child: Image.asset(cards[index], fit: BoxFit.fill),
                       ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25.r),
-                        border: Border.all(color: Colors.black12),
-                      ),
-                      child: Image.asset(cards[index], fit: BoxFit.fill),
-                    ),
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 13.w, right: 9.w, bottom: 10.h),
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                CustomTextWidget(
-                  text: "Sellers",
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-                CustomTextWidget(
-                  text: "Show all",
-                  fontSize: 18,
-                  fontWeight: FontWeight.normal,
-                  color: Color(0xff235C95),
-                ),
-              ],
+            Padding(
+              padding: EdgeInsets.only(left: 13.w, right: 9.w, bottom: 10.h),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CustomTextWidget(
+                    text: "Sellers",
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  CustomTextWidget(
+                    text: "Show all",
+                    fontSize: 18,
+                    fontWeight: FontWeight.normal,
+                    color: Color(0xff235C95),
+                  ),
+                ],
+              ),
             ),
-          ),
-          Expanded(
-            child: ListView.builder(
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: 3,
               itemBuilder:
                   (context, index) => Padding(
@@ -181,8 +183,8 @@ class _HomeViewState extends State<HomeView> {
                     child: const SellersItem(),
                   ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

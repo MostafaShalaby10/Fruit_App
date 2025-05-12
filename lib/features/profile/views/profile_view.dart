@@ -42,46 +42,48 @@ class ProfileView extends StatelessWidget {
           icon: const Icon(Icons.arrow_back_ios_new),
         ),
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.only(
-              top: 40.h,
-              bottom: 16.h,
-              left: 165.w,
-              right: 175.w,
-            ),
-            child: Container(
-              width: 90.w,
-              height: 90.h,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(color: Colors.black),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(
+                top: 40.h,
+                bottom: 16.h,
+                left: 165.w,
+                right: 175.w,
               ),
+              child: Container(
+                width: 90.w,
+                height: 90.h,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(color: Colors.black),
+                ),
 
-              child: const Icon(Icons.person_outline_rounded, size: 35),
-            ),
-          ),
-          const CustomTextWidget(
-            text: "Welcome, Fruit Market",
-            fontSize: 24,
-            fontWeight: FontWeight.w400,
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 28.h, bottom: 18.h),
-            child: SizedBox(
-              width: 347.w,
-              height: 51.h,
-              child: CustomButtonWidget(
-                text: "Login",
-                function: () {},
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+                child: const Icon(Icons.person_outline_rounded, size: 35),
               ),
             ),
-          ),
-          Expanded(
-            child: ListView.builder(
+            const CustomTextWidget(
+              text: "Welcome, Fruit Market",
+              fontSize: 24,
+              fontWeight: FontWeight.w400,
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 28.h, bottom: 18.h),
+              child: SizedBox(
+                width: 347.w,
+                height: 51.h,
+                child: CustomButtonWidget(
+                  text: "Login",
+                  function: () {},
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: titles.length,
               itemBuilder:
                   (context, index) => Padding(
@@ -135,8 +137,8 @@ class ProfileView extends StatelessWidget {
                     ),
                   ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
