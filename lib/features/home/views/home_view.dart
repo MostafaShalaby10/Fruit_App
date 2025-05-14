@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:task_one/core/colors/colors.dart';
-import 'package:task_one/core/widgets/custom_text_form_field.dart';
 import 'package:task_one/core/widgets/custom_text_widget.dart';
-import 'package:task_one/core/widgets/nav_bar_widget.dart';
 import 'package:task_one/features/home/views/home_two.dart';
+import 'package:task_one/features/product/view/product_view.dart';
 
 import 'filter_dialog.dart';
 
@@ -142,19 +141,29 @@ class _HomeViewState extends State<HomeView> {
                   scrollDirection: Axis.horizontal,
                   itemCount: cards.length,
                   itemBuilder:
-                      (context, index) => Container(
-                        width: 80.w,
-                        height: 80.h,
-                        padding: const EdgeInsets.all(10),
-                        margin: EdgeInsets.only(
-                          right: index == 3 ? 0.w : 10.w,
-                          left: index == 0 ? 0.w : 10.w,
+                      (context, index) => InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ProductView(),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          width: 80.w,
+                          height: 80.h,
+                          padding: const EdgeInsets.all(10),
+                          margin: EdgeInsets.only(
+                            right: index == 3 ? 0.w : 10.w,
+                            left: index == 0 ? 0.w : 10.w,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25.r),
+                            border: Border.all(color: Colors.black12),
+                          ),
+                          child: Image.asset(cards[index], fit: BoxFit.fill),
                         ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25.r),
-                          border: Border.all(color: Colors.black12),
-                        ),
-                        child: Image.asset(cards[index], fit: BoxFit.fill),
                       ),
                 ),
               ),

@@ -13,25 +13,7 @@ class VerifyView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Container(
-        width: 430.w,
-        height: 64.h,
-        padding: EdgeInsets.symmetric(horizontal: 10.w),
-        decoration: BoxDecoration(
-          color: primaryColor,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(25.r)),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Image.asset("assets/home_icon.png"),
-            Image.asset("assets/category_icon.png"),
-            Image.asset("assets/cart_icon.png"),
-            Image.asset("assets/favorite_icon.png"),
-            Image.asset("assets/more_icon.png"),
-          ],
-        ),
-      ),
+      // bottomNavigationBar: NavigationBarWidget(),
       body: Column(
         children: [
           Padding(
@@ -88,10 +70,16 @@ class VerifyView extends StatelessWidget {
                   ],
                 ),
 
-                Material(
-                  borderRadius: BorderRadius.circular(25.r),
-                  elevation: 5.0,
-
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25.r),
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 4,
+                        color: Colors.black.withOpacity(.25),
+                      ),
+                    ],
+                  ),
                   child: const PhoneField(hintText: "Mobile Number"),
                 ),
               ],

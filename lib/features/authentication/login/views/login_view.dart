@@ -74,10 +74,16 @@ class LoginView extends StatelessWidget {
                     ],
                   ),
 
-                  Material(
-                    borderRadius: BorderRadius.circular(25.r),
-                    elevation: 5.0,
-
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(25.r),
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 4,
+                          color: Colors.black.withOpacity(.25),
+                        ),
+                      ],
+                    ),
                     child: const PhoneField(hintText: "Mobile Number"),
                   ),
                 ],
@@ -105,10 +111,16 @@ class LoginView extends StatelessWidget {
                     ],
                   ),
 
-                  Material(
-                    borderRadius: BorderRadius.circular(25.r),
-                    elevation: 5.0,
-
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(25.r),
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 4,
+                          color: Colors.black.withOpacity(.25),
+                        ),
+                      ],
+                    ),
                     child: const CustomTextFormField(hintText: "Password"),
                   ),
                 ],

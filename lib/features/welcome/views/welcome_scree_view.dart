@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task_one/core/colors/colors.dart';
 import 'package:task_one/core/widgets/custom_text_widget.dart';
 import 'package:task_one/features/authentication/login/views/login_view.dart';
+import 'package:task_one/features/contact_us/view/terms_view.dart';
 
 class WelcomeScreeView extends StatelessWidget {
   const WelcomeScreeView({super.key});
@@ -95,20 +96,30 @@ class WelcomeScreeView extends StatelessWidget {
                   ],
                 ),
               ),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CustomTextWidget(
+                  const CustomTextWidget(
                     text: "By continue you agree to our",
                     fontSize: 15,
                     fontWeight: FontWeight.normal,
                     color: Color(0xff88909C),
                   ),
-                  CustomTextWidget(
-                    text: "Terms of service",
-                    fontSize: 15,
-                    fontWeight: FontWeight.normal,
-                    color: Color(0xff004D8E),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const TermsView(),
+                        ),
+                      );
+                    },
+                    child: const CustomTextWidget(
+                      text: "Terms of service",
+                      fontSize: 15,
+                      fontWeight: FontWeight.normal,
+                      color: Color(0xff004D8E),
+                    ),
                   ),
                 ],
               ),
@@ -129,6 +140,7 @@ class WelcomeScreeView extends StatelessWidget {
                   ),
                 ],
               ),
+              SizedBox(height: 15.h),
             ],
           ),
         ),

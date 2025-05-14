@@ -3,12 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:task_one/features/home/views/home_view.dart';
 import 'package:task_one/features/onboarding/views/onboarding.dart';
-import 'package:task_one/test.dart';
 
-import 'core/widgets/nav_bar_widget.dart';
-import 'features/profile/views/profile_view.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

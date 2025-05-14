@@ -8,7 +8,8 @@ class CustomTextWidget extends StatelessWidget {
     required this.fontSize,
     required this.fontWeight,
     this.color,
-    this.textAlign, this.textDecoration,
+    this.textAlign,
+    this.textDecoration,
   });
 
   final String text;
@@ -23,8 +24,9 @@ class CustomTextWidget extends StatelessWidget {
     return Text(
       textAlign: textAlign ?? TextAlign.center,
       text,
+      softWrap: true,
       style: TextStyle(
-        decoration:textDecoration?? TextDecoration.none,
+        decoration: textDecoration ?? TextDecoration.none,
         fontSize: fontSize.sp,
         fontWeight: fontWeight,
         color: color ?? Colors.black,

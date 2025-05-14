@@ -8,7 +8,6 @@ import 'package:task_one/core/widgets/nav_bar_widget.dart';
 import '../../../core/colors/colors.dart';
 import '../../../core/widgets/custom_button_widget.dart';
 import '../../../core/widgets/custom_text_widget.dart';
-import '../../home/views/home_view.dart';
 
 class Verification extends StatefulWidget {
   const Verification({super.key});

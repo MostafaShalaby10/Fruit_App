@@ -153,6 +153,7 @@ class _RadioButtonState extends State<RadioButton> {
 
       children: [
         ListTile(
+          horizontalTitleGap: 0,
           contentPadding: const EdgeInsets.all(0),
           title: const CustomTextWidget(
             textAlign: TextAlign.start,
@@ -172,6 +173,8 @@ class _RadioButtonState extends State<RadioButton> {
         ),
         ListTile(
           contentPadding: const EdgeInsets.all(0),
+          horizontalTitleGap: 0,
+
           title: const CustomTextWidget(
             textAlign: TextAlign.start,
 

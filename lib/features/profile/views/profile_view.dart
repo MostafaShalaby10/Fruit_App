@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task_one/core/widgets/custom_button_widget.dart';
 import 'package:task_one/core/widgets/custom_text_widget.dart';
 import 'package:task_one/features/profile/views/edit_data.dart';
+import '../../home/views/home_view.dart';
 import 'language_dialog.dart';
 
 class ProfileView extends StatelessWidget {
@@ -38,7 +39,13 @@ class ProfileView extends StatelessWidget {
           color: Color(0xff204F38),
         ),
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+              Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) =>const HomeView()),
+              (route) => false,
+            );
+          },
           icon: const Icon(Icons.arrow_back_ios_new),
         ),
       ),
