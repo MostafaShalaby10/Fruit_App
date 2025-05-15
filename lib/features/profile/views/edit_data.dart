@@ -165,7 +165,10 @@ class EditData extends StatelessWidget {
               padding: EdgeInsets.only(left: 40.w, right: 40.w, bottom: 15.h),
               child: SizedBox(
                 width: 347.w,
-                height: 51.h,
+                height:
+                    MediaQuery.of(context).orientation == Orientation.portrait
+                        ? 51.h
+                        : 80.h,
                 child: CustomButtonWidget(
                   function: () {},
 

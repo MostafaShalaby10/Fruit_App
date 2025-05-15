@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
-import 'features/orders/views/cancel_dialog.dart';
+import 'features/orders/views/cancel_dialog_portreit.dart';
 
 class Test extends StatefulWidget {
   const Test({super.key});
@@ -90,7 +90,7 @@ class _TestState extends State<Test> {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  cancelDialog(context);
+                  cancelDialogPortreit(context);
                 },
                 child: const Text("dawdasd"),
               ),

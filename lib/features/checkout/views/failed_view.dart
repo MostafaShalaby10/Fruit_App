@@ -26,51 +26,57 @@ class FailedView extends StatelessWidget {
         ),
       ),
       body: Center(
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(top: 156.h, bottom: 46.h),
-              child: Image.asset("assets/fail.png"),
-            ),
-            const CustomTextWidget(
-              text: "OPS",
-              fontSize: 26,
-              fontWeight: FontWeight.bold,
-              color: Color(0xffFF4A4A),
-            ),
-            SizedBox(height: 11.h),
-            const CustomTextWidget(
-              text: "Error while confirming your payment/order",
-              fontSize: 18,
-              fontWeight: FontWeight.w400,
-              color: Color(0xff656565),
-            ),
-            SizedBox(height: 78.h),
-            Container(
-              // padding: EdgeInsets.all(10),
-              width: 347.w,
-              height: 51.h,
-              decoration: BoxDecoration(
-                color: const Color(0xffFF4A4A),
-                borderRadius: BorderRadius.circular(25.r),
-                boxShadow: [
-                  BoxShadow(
-                    blurRadius: 4,
-                    color: Colors.black.withOpacity(.25),
-                  ),
-                ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(top: 156.h, bottom: 46.h),
+                child: Image.asset("assets/fail.png"),
               ),
-              child: CustomButtonWidget(
-                color: const Color(0xffFF4A4A),
-                text: "Back",
-                function: () {
-                  Navigator.pop(context);
-                },
-                fontSize: 18,
+              const CustomTextWidget(
+                text: "OPS",
+                fontSize: 26,
                 fontWeight: FontWeight.bold,
+                color: Color(0xffFF4A4A),
               ),
-            ),
-          ],
+              SizedBox(height: 11.h),
+              const CustomTextWidget(
+                text: "Error while confirming your payment/order",
+                fontSize: 18,
+                fontWeight: FontWeight.w400,
+                color: Color(0xff656565),
+              ),
+              SizedBox(height: 78.h),
+              Container(
+                // padding: EdgeInsets.all(10),
+                width: 347.w,
+                height:
+                    MediaQuery.of(context).orientation == Orientation.portrait
+                        ? 51.h
+                        : 80.h,
+                decoration: BoxDecoration(
+                  color: const Color(0xffFF4A4A),
+                  borderRadius: BorderRadius.circular(25.r),
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 4,
+                      color: Colors.black.withOpacity(.25),
+                    ),
+                  ],
+                ),
+                child: CustomButtonWidget(
+                  color: const Color(0xffFF4A4A),
+                  text: "Back",
+                  function: () {
+                    Navigator.pop(context);
+                  },
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 15.h),
+            ],
+          ),
         ),
       ),
     );

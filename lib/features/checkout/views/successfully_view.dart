@@ -59,7 +59,10 @@ class SuccessfullyView extends StatelessWidget {
               Container(
                 // padding: EdgeInsets.all(10),
                 width: 347.w,
-                height: 51.h,
+                height:
+                    MediaQuery.of(context).orientation == Orientation.portrait
+                        ? 51.h
+                        : 80.h,
                 decoration: BoxDecoration(
                   color: const Color(0xff204F38),
                   borderRadius: BorderRadius.circular(25.r),
@@ -75,7 +78,9 @@ class SuccessfullyView extends StatelessWidget {
                   function: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const OrderTracking()),
+                      MaterialPageRoute(
+                        builder: (context) => const OrderTracking(),
+                      ),
                     );
                   },
                   fontSize: 18,
@@ -87,7 +92,10 @@ class SuccessfullyView extends StatelessWidget {
               Container(
                 // padding: EdgeInsets.all(10),
                 width: 347.w,
-                height: 51.h,
+                height:
+                    MediaQuery.of(context).orientation == Orientation.portrait
+                        ? 51.h
+                        : 80.h,
                 decoration: BoxDecoration(
                   color: Colors.transparent,
                   borderRadius: BorderRadius.circular(25.r),
@@ -106,7 +114,9 @@ class SuccessfullyView extends StatelessWidget {
                   function: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const FailedView()),
+                      MaterialPageRoute(
+                        builder: (context) => const FailedView(),
+                      ),
                     );
                   },
                   fontSize: 18,

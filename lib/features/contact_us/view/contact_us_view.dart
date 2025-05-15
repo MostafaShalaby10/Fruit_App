@@ -32,16 +32,37 @@ class ContactUsView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CustomTextField(label: "Name"),
+              CustomTextField(
+                label: "Name",
+                height:
+                    MediaQuery.of(context).orientation == Orientation.portrait
+                        ? 51.h
+                        : 100.h,
+              ),
               SizedBox(height: 16.h),
-              const CustomTextField(label: "Mobile Number"),
+              CustomTextField(
+                label: "Mobile Number",
+                height:
+                    MediaQuery.of(context).orientation == Orientation.portrait
+                        ? 51.h
+                        : 100.h,
+              ),
               SizedBox(height: 15.h),
-              CustomTextField(label: "Message", height: 110.h),
+              CustomTextField(
+                label: "Message",
+                height:
+                    MediaQuery.of(context).orientation == Orientation.portrait
+                        ? 110.h
+                        : 200.h,
+              ),
 
               SizedBox(height: 21.h),
               SizedBox(
                 width: 347.w,
-                height: 51.h,
+                height:
+                    MediaQuery.of(context).orientation == Orientation.portrait
+                        ? 51.h
+                        : 80.h,
                 child: CustomButtonWidget(
                   text: "Submit",
                   function: () {},
@@ -59,6 +80,7 @@ class ContactUsView extends StatelessWidget {
                   ContactIcon(image: "assets/youtube.png"),
                 ],
               ),
+              SizedBox(height: 15.h),
             ],
           ),
         ),
@@ -68,9 +90,9 @@ class ContactUsView extends StatelessWidget {
 }
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField({super.key, required this.label, this.height});
+  const CustomTextField({super.key, required this.label, required this.height});
   final String label;
-  final double? height;
+  final double height;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -84,7 +106,7 @@ class CustomTextField extends StatelessWidget {
         ),
         SizedBox(height: 16.h),
         Container(
-          height: height ?? 51.h,
+          height: height,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(25.r),
@@ -117,7 +139,10 @@ class ContactIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 48.w,
-      height: 48.w,
+      height:
+          MediaQuery.of(context).orientation == Orientation.portrait
+              ? 51.h
+              : 80.h,
       padding: EdgeInsets.symmetric(horizontal: 10.w),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
