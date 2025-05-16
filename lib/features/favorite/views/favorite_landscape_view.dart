@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/widgets/custom_text_widget.dart';
-import '../../home/views/home_view.dart';
 
 class LandScapeView extends StatelessWidget {
   const LandScapeView({super.key});
@@ -127,7 +126,7 @@ class ProductsItem extends StatelessWidget {
                   ),
                 ],
               ),
-              child: Icon(Icons.delete),
+              child: const Icon(Icons.delete),
             ),
           ),
         ],

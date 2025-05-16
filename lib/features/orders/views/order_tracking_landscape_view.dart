@@ -2,7 +2,6 @@ import 'package:easy_stepper/easy_stepper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task_one/features/orders/views/cancel_dialog_landscape.dart';
-import 'package:task_one/features/orders/views/cancel_dialog_portreit.dart';
 
 import '../../../core/widgets/custom_button_widget.dart';
 import '../../../core/widgets/custom_text_widget.dart';

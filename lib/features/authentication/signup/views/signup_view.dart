@@ -17,7 +17,7 @@ class SignupView extends StatelessWidget {
     resizeToAvoidBottomInset: false,
 
       body: SingleChildScrollView(
-  child:   MediaQuery.of(context).orientation == Orientation.portrait?PortreitView():LandScapeView()
+  child:   MediaQuery.of(context).orientation == Orientation.portrait?const PortreitView():const LandScapeView()
       ),
     );
   }

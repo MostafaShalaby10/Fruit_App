@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:task_one/features/checkout/views/checkout_view.dart';
-import 'package:task_one/features/home/views/home_view.dart';
 
 import '../../../core/widgets/custom_text_widget.dart';
-import '../../../core/widgets/nav_bar_widget.dart';
 
 class LandScapeView extends StatelessWidget {
   const LandScapeView({super.key, required this.status});

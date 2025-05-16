@@ -1,103 +1,113 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 
-import 'features/orders/views/cancel_dialog_portreit.dart';
-
-class Test extends StatefulWidget {
-  const Test({super.key});
-
-  @override
-  State<Test> createState() => _TestState();
+void main() {
+  runApp(const MyApp());
 }
 
-class _TestState extends State<Test> {
-  int index = 0;
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: MainScreen(),
+    );
+  }
+}
+
+class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
+
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  int _currentIndex = 0;
+
+  final List<Widget> _pages = [
+    const HomePage(),
+    const SearchPage(),
+    const ProfilePage(),
+  ];
+
+  void _navigateToNextPage() {
+    setState(() {
+      if (_currentIndex < _pages.length - 1) {
+        _currentIndex++;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: GNav(
-        selectedIndex: index,
-        onTabChange: (value) {
+      appBar: AppBar(title: const Text('Fixed Navigation Bar')),
+      body: IndexedStack(
+        index: _currentIndex, // Keeps all pages alive
+        children: _pages,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
           setState(() {
-            index = value;
+            _currentIndex = index;
           });
         },
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        haptic: true,
-        tabBorderRadius: 25,
-        tabActiveBorder: Border.all(color: const Color(0xff204F38), width: 6.w),
-        backgroundColor: const Color(0xff204F38),
-        tabBackgroundColor: Colors.white,
-        color: Colors.white,
-        activeColor: const Color(0xff204F38),
-        iconSize: 24,
-        padding: EdgeInsets.only(
-          left: 2.w,
-          right: 0.w,
-          top: 0.h,
-          bottom: 0.h,
-        ), // navigation bar padding
-        tabs: [
-          GButton(
-            leading: Image.asset(
-              "assets/home_icon.png",
-              color: index == 0 ? const Color(0xff204F38) : Colors.white,
-            ),
-            icon: Icons.home,
-            iconColor: const Color(0xff204F38),
-            text: 'Home',
-          ),
-          GButton(
-            leading: Image.asset(
-              "assets/category_icon.png",
-              color: index == 1 ? const Color(0xff204F38) : Colors.white,
-            ),
-            icon: Icons.home,
-            text: 'Orders',
-          ),
-          GButton(
-            leading: Image.asset(
-              "assets/cart_icon.png",
-              color: index == 2 ? const Color(0xff204F38) : Colors.white,
-            ),
-            icon: Icons.home,
-            text: 'Basket',
-          ),
-          GButton(
-            leading: Image.asset(
-              "assets/favorite_icon.png",
-              color: index == 3 ? const Color(0xff204F38) : Colors.white,
-            ),
-            icon: Icons.home,
-            text: 'Favorite',
-          ),
-          GButton(
-            leading: Image.asset(
-              "assets/more_icon.png",
-              color: index == 4 ? const Color(0xff204F38) : Colors.white,
-            ),
-            icon: Icons.home,
-            text: 'More',
-          ),
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
       ),
-      appBar: AppBar(),
-
-      body: Center(
-        child: SizedBox(
-          child: Column(
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  cancelDialogPortreit(context);
-                },
-                child: const Text("dawdasd"),
-              ),
-            ],
-          ),
-        ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _navigateToNextPage,
+        child: const Icon(Icons.arrow_forward),
       ),
     );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ElevatedButton(
+        onPressed: () {
+          var state = context.findAncestorStateOfType<_MainScreenState>();
+          state?._navigateToNextPage();
+        },
+        child: const Text('Go to Search'),
+      ),
+    );
+  }
+}
+
+class SearchPage extends StatelessWidget {
+  const SearchPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ElevatedButton(
+        onPressed: () {
+          var state = context.findAncestorStateOfType<_MainScreenState>();
+          state?._navigateToNextPage();
+        },
+        child: const Text('Go to Profile'),
+      ),
+    );
+  }
+}
+
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(child: Text('👤 Profile Page'));
   }
 }

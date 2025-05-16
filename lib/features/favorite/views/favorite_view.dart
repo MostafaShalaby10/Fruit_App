@@ -26,9 +26,12 @@ class FavoriteView extends StatelessWidget {
         ),
       ),
       body: Padding(
-                padding: EdgeInsets.symmetric(horizontal:isLandscape? 25.w:18.w, vertical: 20.h),
+        padding: EdgeInsets.symmetric(
+          horizontal: isLandscape ? 25.w : 18.w,
+          vertical: 20.h,
+        ),
 
-        child:isLandscape?PortreitView():LandScapeView(),
+        child: isLandscape ? const LandScapeView() : const PortreitView(),
       ),
     );
   }

@@ -44,7 +44,7 @@ class _ProductViewState extends State<ProductView> {
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 21.w),
 child: SingleChildScrollView(
-  child:  MediaQuery.of(context).orientation == Orientation.portrait?PortreitView():LandScapeView(),
+  child:  MediaQuery.of(context).orientation == Orientation.portrait?const PortreitView():const LandScapeView(),
 ),
       ),
     );

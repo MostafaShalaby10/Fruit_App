@@ -23,6 +23,13 @@ class _NavigationBarWidgetState extends State<NavigationBarWidget> {
     const FavoriteView(),
     const ProfileView(),
   ];
+   void _navigateToNextPage() {
+    setState(() {
+      if (index < pages.length - 1) {
+        index++;
+      }
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,7 +99,10 @@ class _NavigationBarWidgetState extends State<NavigationBarWidget> {
           ),
         ],
       ),
-      body: pages[index],
+      body: IndexedStack(
+        index: index, // Keeps all pages alive
+        children: pages,
+      ),
     );
   }
 }

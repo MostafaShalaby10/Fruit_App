@@ -25,7 +25,7 @@ class OrderTracking extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        child: MediaQuery.of(context).orientation == Orientation.portrait?OrderTrackingPortraitView():OrderTrackingLandScapeView(),
+        child: MediaQuery.of(context).orientation == Orientation.portrait?const OrderTrackingPortraitView():const OrderTrackingLandScapeView(),
       ),
     );
   }

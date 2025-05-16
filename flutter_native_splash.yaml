@@ -68,9 +68,10 @@ flutter_native_splash:
     image: assets/image.png
     # background_image_android: "assets/splash.png"
     # background_image_dark_android: "assets/splash.png"
-    branding_android: assets/brand.png
-    branding_dark_android: assets/brand.png
-
+    branding: assets/brand.png
+    branding_dark: assets/brand.png
+    branding_bottom_padding : 20
+    branding_mode: bottom
     # Splash screen background color.
     color: "#003602"
     color_dark: "#003602"

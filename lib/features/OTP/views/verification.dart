@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinput/pinput.dart';
 import 'package:task_one/core/widgets/nav_bar_widget.dart';
-import 'package:task_one/features/home/views/home_view.dart';
 
 import '../../../core/colors/colors.dart';
 import '../../../core/widgets/custom_button_widget.dart';

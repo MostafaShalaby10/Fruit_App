@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task_one/core/widgets/custom_text_widget.dart';
 
-import '../../home/views/home_view.dart';
 
 class LandScapeView extends StatelessWidget {
   const LandScapeView({super.key});

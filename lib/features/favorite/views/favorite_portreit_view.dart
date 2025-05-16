@@ -126,7 +126,7 @@ class ProductsItem extends StatelessWidget {
                   ),
                 ],
               ),
-              child: Icon(Icons.delete),
+              child: const Icon(Icons.delete),
             ),
           ),
         ],

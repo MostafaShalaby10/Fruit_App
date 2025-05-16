@@ -99,12 +99,18 @@ class _PortreitViewState extends State<PortreitView> {
               itemBuilder:
                   (context, index) => InkWell(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const ProductView(),
-                        ),
-                      );
+
+Navigator.of(context).push(
+  MaterialPageRoute(
+    builder: (context) => const ProductView(),
+  ),
+);
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) => const ProductView(),
+                      //   ),
+                      // );
                     },
                     child: Container(
                       width: 80.w,

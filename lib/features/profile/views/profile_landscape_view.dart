@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task_one/core/widgets/custom_button_widget.dart';
 import 'package:task_one/core/widgets/custom_text_widget.dart';
 import 'package:task_one/features/profile/views/edit_data.dart';
-import '../../home/views/home_view.dart';
 import 'language_dialog.dart';
 
 class LandScapeView extends StatelessWidget {

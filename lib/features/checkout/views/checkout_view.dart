@@ -25,7 +25,7 @@ class CheckoutView extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        child: MediaQuery.of(context).orientation == Orientation.portrait?PortreitView():LandScapeView(),
+        child: MediaQuery.of(context).orientation == Orientation.portrait?const PortreitView():const LandScapeView(),
       ),
     );
   }
