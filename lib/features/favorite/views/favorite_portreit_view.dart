@@ -2,38 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/widgets/custom_text_widget.dart';
-import '../../home/views/home_view.dart';
 
 class PortreitView extends StatelessWidget {
   const PortreitView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.arrow_back_ios_new_outlined),
-        ),
-        centerTitle: true,
-        title: const CustomTextWidget(
-          text: "Favorite",
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-          color: Color(0xff204F38),
-        ),
-      ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 20.h),
-        child: ListView.builder(
-          itemCount: 3,
-          itemBuilder:
-              (context, index) => Padding(
-                padding: EdgeInsets.only(bottom: 16.h),
-                child: const ProductsItem(),
-              ),
-        ),
-      ),
+    return ListView.builder(
+      itemCount: 3,
+      itemBuilder:
+          (context, index) => Padding(
+            padding: EdgeInsets.only(bottom: 16.h),
+            child: const ProductsItem(),
+          ),
     );
   }
 }

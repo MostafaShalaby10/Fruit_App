@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../core/widgets/custom_text_widget.dart';
 import 'favorite_landscape_view.dart';
 import 'favorite_portreit_view.dart';
 
@@ -7,10 +9,27 @@ class FavoriteView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (MediaQuery.of(context).orientation == Orientation.portrait) {
-      return const PortreitView();
-    } else {
-      return const LandScapeView();
-    }
+    bool isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.arrow_back_ios_new_outlined),
+        ),
+        centerTitle: true,
+        title: const CustomTextWidget(
+          text: "Favorite",
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+          color: Color(0xff204F38),
+        ),
+      ),
+      body: Padding(
+                padding: EdgeInsets.symmetric(horizontal:isLandscape? 25.w:18.w, vertical: 20.h),
+
+        child:isLandscape?PortreitView():LandScapeView(),
+      ),
+    );
   }
 }

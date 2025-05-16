@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  const CustomTextFormField({super.key, required this.hintText});
+  const CustomTextFormField({super.key, required this.hintText, this.fontSize});
   final String hintText;
+  final double? fontSize; 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -13,7 +14,7 @@ class CustomTextFormField extends StatelessWidget {
         hintText: hintText,
         hintStyle: TextStyle(
           color: Colors.black,
-          fontSize: 14.sp,
+          fontSize: fontSize?? 14.sp,
           fontWeight: FontWeight.normal,
         ),
         border: OutlineInputBorder(

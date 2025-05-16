@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../core/widgets/custom_text_widget.dart';
 import 'product_landscape_view.dart';
 import 'product_portreit_view.dart';
+
 class ProductView extends StatefulWidget {
   const ProductView({super.key});
 
@@ -9,16 +12,41 @@ class ProductView extends StatefulWidget {
 }
 
 class _ProductViewState extends State<ProductView> {
- 
   @override
   Widget build(BuildContext context) {
-    if (MediaQuery.of(context).orientation == Orientation.portrait) {
-      return const PortreitView();
-    } else {
-      return const LandScapeView();
-    }
-  
+    return Scaffold(
+       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back_ios_new_outlined),
+        ),
+        centerTitle: true,
+        title: const CustomTextWidget(
+          text: "Product Name",
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+          color: Color(0xff204F38),
+        ),
 
-     }
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.favorite_border_outlined, size: 27),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.ios_share_outlined, size: 27),
+          ),
+        ],
+      ),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 21.w),
+child: SingleChildScrollView(
+  child:  MediaQuery.of(context).orientation == Orientation.portrait?PortreitView():LandScapeView(),
+),
+      ),
+    );
+  }
 }
-

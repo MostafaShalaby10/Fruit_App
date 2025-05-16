@@ -12,11 +12,11 @@ class VerifyView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (MediaQuery.of(context).orientation == Orientation.portrait) {
-      return const PortreitView();
-    } else {
-      return const LandScapeView();
-    }
+   return Scaffold(
+    resizeToAvoidBottomInset: false,
+    body: SingleChildScrollView(
+      child: MediaQuery.of(context).orientation == Orientation.portrait?PortreitView():LandScapeView(),
+   ));
   }
 }
 
@@ -25,103 +25,97 @@ class PortreitView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // bottomNavigationBar: NavigationBarWidget(),
-      resizeToAvoidBottomInset: false,
-      body: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.only(top: 86.h, left: 49.w, bottom: 51.h),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.arrow_back_ios),
-              ),
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.only(top: 86.h, left: 49.w, bottom: 51.h),
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.arrow_back_ios),
             ),
           ),
-          const CustomTextWidget(
+        ),
+        const CustomTextWidget(
+          textAlign: TextAlign.center,
+          text: "Fruit Market",
+          fontSize: 35,
+          fontWeight: FontWeight.bold,
+          color: primaryColor,
+        ),
+        Padding(
+          padding: EdgeInsets.only(
+            top: 21.h,
+            bottom: 28.h,
+            right: 99.w,
+            left: 78.w,
+          ),
+          child: const CustomTextWidget(
             textAlign: TextAlign.center,
-            text: "Fruit Market",
-            fontSize: 35,
+            text: "Enter your Number",
+            fontSize: 28,
             fontWeight: FontWeight.bold,
-            color: primaryColor,
+            color: Colors.black,
           ),
-          Padding(
-            padding: EdgeInsets.only(
-              top: 21.h,
-              bottom: 28.h,
-              right: 99.w,
-              left: 78.w,
-            ),
-            child: const CustomTextWidget(
-              textAlign: TextAlign.center,
-              text: "Enter your Number",
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            ),
-          ),
+        ),
 
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 40.w),
-            child: Column(
-              children: [
-                const Row(
-                  children: [
-                    CustomTextWidget(
-                      text: "Phone Number with Whatsapp",
-                      fontSize: 14,
-                      color: Color(0xff858D9A),
-                      fontWeight: FontWeight.normal,
-                    ),
-                    CustomTextWidget(
-                      text: " *",
-                      fontSize: 14,
-                      color: Color(0xffED692E),
-                      fontWeight: FontWeight.normal,
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 40.w),
+          child: Column(
+            children: [
+              const Row(
+                children: [
+                  CustomTextWidget(
+                    text: "Phone Number with Whatsapp",
+                    fontSize: 14,
+                    color: Color(0xff858D9A),
+                    fontWeight: FontWeight.normal,
+                  ),
+                  CustomTextWidget(
+                    text: " *",
+                    fontSize: 14,
+                    color: Color(0xffED692E),
+                    fontWeight: FontWeight.normal,
+                  ),
+                ],
+              ),
+
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25.r),
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 4,
+                      color: Colors.black.withOpacity(.25),
                     ),
                   ],
                 ),
-
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(25.r),
-                    boxShadow: [
-                      BoxShadow(
-                        blurRadius: 4,
-                        color: Colors.black.withOpacity(.25),
-                      ),
-                    ],
-                  ),
-                  child: const PhoneField(hintText: "Mobile Number"),
-                ),
-              ],
-            ),
-          ),
-
-          Padding(
-            padding: EdgeInsets.only(top: 48.h, right: 41.w, left: 42.w),
-            child: SizedBox(
-              width: 347.w,
-              height: 51.h,
-              child: CustomButtonWidget(
-                function: () {
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const Verification(),
-                    ),
-                    (route) => false,
-                  );
-                },
-                text: "Submit",
-                fontWeight: FontWeight.bold,
+                child: const PhoneField(hintText: "Mobile Number"),
               ),
+            ],
+          ),
+        ),
+
+        Padding(
+          padding: EdgeInsets.only(top: 48.h, right: 41.w, left: 42.w),
+          child: SizedBox(
+            width: 347.w,
+            height: 51.h,
+            child: CustomButtonWidget(
+              function: () {
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Verification()),
+                  (route) => false,
+                );
+              },
+              text: "Submit",
+              fontWeight: FontWeight.bold,
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
@@ -131,110 +125,106 @@ class LandScapeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // bottomNavigationBar: NavigationBarWidget(),
-      resizeToAvoidBottomInset: false,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(top: 86.h, left: 49.w, bottom: 51.h),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.arrow_back_ios),
-                ),
-              ),
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.only(top: 86.h, left: 49.w),
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.arrow_back_ios),
             ),
-            const CustomTextWidget(
-              textAlign: TextAlign.center,
-              text: "Fruit Market",
-              fontSize: 35,
-              fontWeight: FontWeight.bold,
-              color: primaryColor,
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                top: 21.h,
-                bottom: 28.h,
-                right: 99.w,
-                left: 78.w,
-              ),
-              child: const CustomTextWidget(
-                textAlign: TextAlign.center,
-                text: "Enter your Number",
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
-            ),
+          ),
+        ),
 
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 40.w),
-              child: Column(
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 15.w),
+          child: Row(
+            children: [
+              Column(
                 children: [
-                  const Row(
-                    children: [
-                      CustomTextWidget(
-                        text: "Phone Number with Whatsapp",
-                        fontSize: 14,
-                        color: Color(0xff858D9A),
-                        fontWeight: FontWeight.normal,
-                      ),
-                      CustomTextWidget(
-                        text: " *",
-                        fontSize: 14,
-                        color: Color(0xffED692E),
-                        fontWeight: FontWeight.normal,
-                      ),
-                    ],
+                  const CustomTextWidget(
+                    textAlign: TextAlign.center,
+                    text: "Fruit Market",
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: primaryColor,
                   ),
-
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25.r),
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 4,
-                          color: Colors.black.withOpacity(.25),
-                        ),
-                      ],
+                  Padding(
+                    padding: EdgeInsets.only(top: 21.h, bottom: 28.h),
+                    child: const CustomTextWidget(
+                      textAlign: TextAlign.center,
+                      text: "Enter your Number",
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
                     ),
-                    child: const PhoneField(hintText: "Mobile Number"),
                   ),
                 ],
               ),
-            ),
+              Expanded(
+                child: Column(
+                  spacing: 20.h,
 
-            Padding(
-              padding: EdgeInsets.only(
-                top: 48.h,
-                right: 41.w,
-                left: 42.w,
-                bottom: 15.h,
-              ),
-              child: SizedBox(
-                width: 347.w,
-                height: 80.h,
-                child: CustomButtonWidget(
-                  function: () {
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const Verification(),
+                  children: [
+                    const Row(
+                      children: [
+                        CustomTextWidget(
+                          text: "Phone Number",
+                          fontSize: 11,
+                          color: Color(0xff858D9A),
+                          fontWeight: FontWeight.normal,
+                        ),
+                        CustomTextWidget(
+                          text: " *",
+                          fontSize: 11,
+                          color: Color(0xffED692E),
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ],
+                    ),
+
+                    Container(
+                      height: 80.h,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25.r),
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 4,
+                            color: Colors.black.withOpacity(.25),
+                          ),
+                        ],
                       ),
-                      (route) => false,
-                    );
-                  },
-                  text: "Submit",
-                  fontWeight: FontWeight.bold,
+                      child: PhoneField(
+                        hintText: "Mobile Number",
+                        fontSize: 11.sp,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 347.w,
+                      height: 80.h,
+                      child: CustomButtonWidget(
+                        function: () {
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Verification(),
+                            ),
+                            (route) => false,
+                          );
+                        },
+                        text: "Submit",
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }

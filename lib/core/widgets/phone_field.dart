@@ -3,9 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
 class PhoneField extends StatelessWidget {
-  const PhoneField({super.key, required this.hintText});
+  const PhoneField({super.key, required this.hintText, this.fontSize});
   final String hintText;
-
+  final double? fontSize; 
   @override
   Widget build(BuildContext context) {
     return IntlPhoneField(
@@ -17,7 +17,7 @@ class PhoneField extends StatelessWidget {
         hintText: hintText,
         hintStyle: TextStyle(
           color: Colors.black,
-          fontSize: 14.sp,
+          fontSize: fontSize?? 14.sp,
           fontWeight: FontWeight.normal,
         ),
         border: OutlineInputBorder(

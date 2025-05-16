@@ -11,11 +11,14 @@ class OnBoardingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (MediaQuery.of(context).orientation == Orientation.portrait) {
-      return const PortreitView();
-    } else {
-      return const LandScapeView();
-    }
+    return Scaffold(
+      body: SingleChildScrollView(
+        child:
+            MediaQuery.of(context).orientation == Orientation.portrait
+                ? const PortreitView()
+                : const LandScapeView(),
+      ),
+    );
   }
 }
 
@@ -31,95 +34,16 @@ class _PortreitViewState extends State<PortreitView> {
   PageController pageController = PageController();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if (!isLastPage)
-              Align(
-                alignment: Alignment.topRight,
-                child: Padding(
-                  padding: EdgeInsets.only(top: 76.h, right: 37.w),
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const WelcomeScreeView(),
-                        ),
-                        (route) => false,
-                      );
-                    },
-                    child: const CustomTextWidget(
-                      textAlign: TextAlign.right,
-                      text: "Skip",
-                      fontSize: 15,
-                      fontWeight: FontWeight.normal,
-                      color: Color(0xff656565),
-                    ),
-                  ),
-                ),
-              ),
-            SizedBox(height: isLastPage ? 190.h : 61.h),
-            Padding(
-              padding: EdgeInsets.only(right: 80.w, left: 64.w),
-              child: SizedBox(
-                height: 442.h,
-                width: 285.11.w,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 393.h,
-                      child: PageView.builder(
-                        onPageChanged:
-                            (index) => setState(() {
-                              if (index == 2) {
-                                isLastPage = true;
-                              } else {
-                                isLastPage = false;
-                              }
-                            }),
-                        controller: pageController,
-                        itemCount: 3,
-                        itemBuilder:
-                            (context, index) => Column(
-                              children: [
-                                Image.asset("assets/onboarding.png"),
-                                const CustomTextWidget(
-                                  text: "E Shopping",
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                const CustomTextWidget(
-                                  text: "Explore op organic fruits & grab them",
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.normal,
-                                  color: Color(0xff78787C),
-                                ),
-                              ],
-                            ),
-                      ),
-                    ),
-                    SmoothPageIndicator(
-                      controller: pageController, // PageController
-                      count: 3,
-                      effect: const WormEffect(
-                        activeDotColor: primaryColor,
-                        dotColor: Colors.black12,
-                        dotWidth: 10,
-                        dotHeight: 10,
-                      ), // your preferred effect
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(height: 98.h),
-            CustomButtonWidget(
-              text: isLastPage ? "Get Started" : "Next",
-              function: () {
-                if (isLastPage) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        if (!isLastPage)
+          Align(
+            alignment: Alignment.topRight,
+            child: Padding(
+              padding: EdgeInsets.only(top: 76.h, right: 37.w),
+              child: TextButton(
+                onPressed: () {
                   Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
@@ -127,17 +51,92 @@ class _PortreitViewState extends State<PortreitView> {
                     ),
                     (route) => false,
                   );
-                } else {
-                  pageController.nextPage(
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.easeIn,
-                  );
-                }
-              },
+                },
+                child: const CustomTextWidget(
+                  textAlign: TextAlign.right,
+                  text: "Skip",
+                  fontSize: 15,
+                  fontWeight: FontWeight.normal,
+                  color: Color(0xff656565),
+                ),
+              ),
             ),
-          ],
+          ),
+        SizedBox(height: isLastPage ? 190.h : 61.h),
+        Padding(
+          padding: EdgeInsets.only(right: 80.w, left: 64.w),
+          child: SizedBox(
+            height: 442.h,
+            width: 285.11.w,
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 393.h,
+                  child: PageView.builder(
+                    onPageChanged:
+                        (index) => setState(() {
+                          if (index == 2) {
+                            isLastPage = true;
+                          } else {
+                            isLastPage = false;
+                          }
+                        }),
+                    controller: pageController,
+                    itemCount: 3,
+                    itemBuilder:
+                        (context, index) => Column(
+                          children: [
+                            Image.asset("assets/onboarding.png"),
+                            const CustomTextWidget(
+                              text: "E Shopping",
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            const CustomTextWidget(
+                              text: "Explore op organic fruits & grab them",
+                              fontSize: 17,
+                              fontWeight: FontWeight.normal,
+                              color: Color(0xff78787C),
+                            ),
+                          ],
+                        ),
+                  ),
+                ),
+                SmoothPageIndicator(
+                  controller: pageController, // PageController
+                  count: 3,
+                  effect: const WormEffect(
+                    activeDotColor: primaryColor,
+                    dotColor: Colors.black12,
+                    dotWidth: 10,
+                    dotHeight: 10,
+                  ), // your preferred effect
+                ),
+              ],
+            ),
+          ),
         ),
-      ),
+        SizedBox(height: 98.h),
+        CustomButtonWidget(
+          text: isLastPage ? "Get Started" : "Next",
+          function: () {
+            if (isLastPage) {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const WelcomeScreeView(),
+                ),
+                (route) => false,
+              );
+            } else {
+              pageController.nextPage(
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.easeIn,
+              );
+            }
+          },
+        ),
+      ],
     );
   }
 }
@@ -154,98 +153,16 @@ class _LandScapeViewState extends State<LandScapeView> {
   PageController pageController = PageController();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if (!isLastPage)
-              Align(
-                alignment: Alignment.topRight,
-                child: Padding(
-                  padding: EdgeInsets.only(top: 76.h, right: 37.w),
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const WelcomeScreeView(),
-                        ),
-                        (route) => false,
-                      );
-                    },
-                    child: const CustomTextWidget(
-                      textAlign: TextAlign.right,
-                      text: "Skip",
-                      fontSize: 15,
-                      fontWeight: FontWeight.normal,
-                      color: Color(0xff656565),
-                    ),
-                  ),
-                ),
-              ),
-            SizedBox(height: isLastPage ? 190.h : 61.h),
-            Padding(
-              padding: EdgeInsets.only(right: 80.w, left: 64.w),
-              child: SizedBox(
-                height: 600.h,
-                width: 285.11.w,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 520.h,
-                      child: PageView.builder(
-                        onPageChanged:
-                            (index) => setState(() {
-                              if (index == 2) {
-                                isLastPage = true;
-                              } else {
-                                isLastPage = false;
-                              }
-                            }),
-                        controller: pageController,
-                        itemCount: 3,
-                        itemBuilder:
-                            (context, index) => Column(
-                              children: [
-                                Image.asset(
-                                  "assets/onboarding.png",
-                                  height: 280.h,
-                                ),
-                                const CustomTextWidget(
-                                  text: "E Shopping",
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                const CustomTextWidget(
-                                  text: "Explore op organic fruits & grab them",
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.normal,
-                                  color: Color(0xff78787C),
-                                ),
-                              ],
-                            ),
-                      ),
-                    ),
-                    SmoothPageIndicator(
-                      controller: pageController, // PageController
-                      count: 3,
-                      effect: const WormEffect(
-                        activeDotColor: primaryColor,
-                        dotColor: Colors.black12,
-                        dotWidth: 10,
-                        dotHeight: 10,
-                      ), // your preferred effect
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(height: 20.h),
-            CustomButtonWidget(
-              text: isLastPage ? "Get Started" : "Next",
-              function: () {
-                if (isLastPage) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        if (!isLastPage)
+          Align(
+            alignment: Alignment.topRight,
+            child: Padding(
+              padding: EdgeInsets.only(top: 76.h, right: 37.w),
+              child: TextButton(
+                onPressed: () {
                   Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
@@ -253,18 +170,101 @@ class _LandScapeViewState extends State<LandScapeView> {
                     ),
                     (route) => false,
                   );
-                } else {
-                  pageController.nextPage(
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.easeIn,
-                  );
-                }
-              },
+                },
+                child: const CustomTextWidget(
+                  textAlign: TextAlign.right,
+                  text: "Skip",
+                  fontSize: 15,
+                  fontWeight: FontWeight.normal,
+                  color: Color(0xff656565),
+                ),
+              ),
             ),
-            SizedBox(height: 20.h),
-          ],
+          ),
+        SizedBox(height: isLastPage ? 170.h : 20.h),
+        Padding(
+          padding: EdgeInsets.only(right: 80.w, left: 64.w),
+          child: SizedBox(
+            height: 250.h,
+            width: 285.11.w,
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 200.h,
+                  child: PageView.builder(
+                    onPageChanged:
+                        (index) => setState(() {
+                          if (index == 2) {
+                            isLastPage = true;
+                          } else {
+                            isLastPage = false;
+                          }
+                        }),
+                    controller: pageController,
+                    itemCount: 3,
+                    itemBuilder:
+                        (context, index) => Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Image.asset("assets/onboarding.png", height: 280.h),
+                            const Expanded(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  CustomTextWidget(
+                                    text: "E Shopping",
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  CustomTextWidget(
+                                    text:
+                                        "Explore op organic fruits & grab them",
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.normal,
+                                    color: Color(0xff78787C),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                  ),
+                ),
+                SmoothPageIndicator(
+                  controller: pageController, // PageController
+                  count: 3,
+                  effect: const WormEffect(
+                    activeDotColor: primaryColor,
+                    dotColor: Colors.black12,
+                    dotWidth: 10,
+                    dotHeight: 10,
+                  ), // your preferred effect
+                ),
+              ],
+            ),
+          ),
         ),
-      ),
+        CustomButtonWidget(
+          text: isLastPage ? "Get Started" : "Next",
+          function: () {
+            if (isLastPage) {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const WelcomeScreeView(),
+                ),
+                (route) => false,
+              );
+            } else {
+              pageController.nextPage(
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.easeIn,
+              );
+            }
+          },
+        ),
+        SizedBox(height: 20.h),
+      ],
     );
   }
 }

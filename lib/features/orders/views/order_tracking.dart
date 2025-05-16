@@ -1,18 +1,32 @@
 import 'package:flutter/material.dart';
+import '../../../core/widgets/custom_text_widget.dart';
 import 'order_tracking_portreit_view.dart';
 import 'order_tracking_landscape_view.dart';
+
 class OrderTracking extends StatelessWidget {
   const OrderTracking({super.key});
 
   @override
   Widget build(BuildContext context) {
-    if (MediaQuery.of(context).orientation == Orientation.portrait) {
-      return const OrderTrackingPortraitView();
-    } else {
-      return const OrderTrackingLandScapeView();
-    }
-  
-
-
-    }
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back_ios_new_outlined),
+        ),
+        centerTitle: true,
+        title: const CustomTextWidget(
+          text: "Order Tracking",
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+          color: Color(0xff204F38),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: MediaQuery.of(context).orientation == Orientation.portrait?OrderTrackingPortraitView():OrderTrackingLandScapeView(),
+      ),
+    );
+  }
 }

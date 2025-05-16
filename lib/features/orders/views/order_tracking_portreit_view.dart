@@ -11,122 +11,95 @@ class OrderTrackingPortraitView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(Icons.arrow_back_ios_new_outlined),
-        ),
-        centerTitle: true,
-        title: const CustomTextWidget(
-          text: "Order Tracking",
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-          color: Color(0xff204F38),
-        ),
-      ),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(top: 18.h, bottom: 7.h),
-                child: RichText(
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: "Your Order Code: ",
-                        style: TextStyle(
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.w400,
-                          color: const Color(0xff656565),
-                        ),
-                      ),
-                      TextSpan(
-                        text: "#882610",
-                        style: TextStyle(
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.bold,
-                          color: const Color(0xff656565),
-                        ),
-                      ),
-                    ],
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.only(top: 18.h, bottom: 7.h),
+          child: RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: "Your Order Code: ",
+                  style: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w400,
+                    color: const Color(0xff656565),
                   ),
                 ),
-              ),
-              const CustomTextWidget(
-                text: "3 items - 37.50 KD",
-                fontSize: 18,
-                fontWeight: FontWeight.w400,
-                color: Color(0xff656565),
-              ),
-              SizedBox(height: 8.h),
-              const CustomTextWidget(
-                text: "Payment Method : Cash",
-                fontSize: 18,
-                fontWeight: FontWeight.w400,
-                color: Color(0xff656565),
-              ),
-              SizedBox(height: 22.h),
-              const ProgressWidget(),
-              SizedBox(height: 37.h),
-
-              Container(
-                // padding: EdgeInsets.all(10),
-                width: 347.w,
-                height: 51.h,
-                decoration: BoxDecoration(
-                  color: const Color(0xff204F38),
-                  borderRadius: BorderRadius.circular(25.r),
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 4,
-                      color: Colors.black.withOpacity(.25),
-                    ),
-                  ],
+                TextSpan(
+                  text: "#882610",
+                  style: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.bold,
+                    color: const Color(0xff656565),
+                  ),
                 ),
-                child: CustomButtonWidget(
-                  text: "Confirm",
-                  function: () {},
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 22.h),
-
-              Container(
-                // padding: EdgeInsets.all(10),
-                width: 347.w,
-                height: 51.h,
-                decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  borderRadius: BorderRadius.circular(25.r),
-                  border: Border.all(width: 0.w),
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 4,
-                      color: Colors.black.withOpacity(.25),
-                    ),
-                  ],
-                ),
-                child: CustomButtonWidget(
-                  color: const Color(0xffFF4A4A),
-                  text: "Cancel Order",
-                  textColor: Colors.white,
-                  function: () {
-                    cancelDialogPortreit(context);
-                  },
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 15.h),
-            ],
+              ],
+            ),
           ),
         ),
-      ),
+        const CustomTextWidget(
+          text: "3 items - 37.50 KD",
+          fontSize: 18,
+          fontWeight: FontWeight.w400,
+          color: Color(0xff656565),
+        ),
+        SizedBox(height: 8.h),
+        const CustomTextWidget(
+          text: "Payment Method : Cash",
+          fontSize: 18,
+          fontWeight: FontWeight.w400,
+          color: Color(0xff656565),
+        ),
+        SizedBox(height: 22.h),
+        const ProgressWidget(),
+        SizedBox(height: 37.h),
+
+        Container(
+          // padding: EdgeInsets.all(10),
+          width: 347.w,
+          height: 51.h,
+          decoration: BoxDecoration(
+            color: const Color(0xff204F38),
+            borderRadius: BorderRadius.circular(25.r),
+            boxShadow: [
+              BoxShadow(blurRadius: 4, color: Colors.black.withOpacity(.25)),
+            ],
+          ),
+          child: CustomButtonWidget(
+            text: "Confirm",
+            function: () {},
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(height: 22.h),
+
+        Container(
+          // padding: EdgeInsets.all(10),
+          width: 347.w,
+          height: 51.h,
+          decoration: BoxDecoration(
+            color: Colors.transparent,
+            borderRadius: BorderRadius.circular(25.r),
+            border: Border.all(width: 0.w),
+            boxShadow: [
+              BoxShadow(blurRadius: 4, color: Colors.black.withOpacity(.25)),
+            ],
+          ),
+          child: CustomButtonWidget(
+            color: const Color(0xffFF4A4A),
+            text: "Cancel Order",
+            textColor: Colors.white,
+            function: () {
+              cancelDialogPortreit(context);
+            },
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(height: 15.h),
+      ],
     );
   }
 }

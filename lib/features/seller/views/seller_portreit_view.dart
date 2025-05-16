@@ -5,121 +5,80 @@ import '../../../core/colors/colors.dart';
 import '../../../core/widgets/custom_text_widget.dart';
 
 class PortreitView extends StatefulWidget {
-  const PortreitView({super.key});
-
+  const PortreitView({super.key, required this.searchClicked});
+  final bool searchClicked;
   @override
   State<PortreitView> createState() => _PortreitViewState();
 }
 
 class _PortreitViewState extends State<PortreitView> {
-  bool searchClicked = false;
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(Icons.arrow_back_ios_new_outlined),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        title: const CustomTextWidget(
-          text: "Fruit Market",
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-          color: primaryColor,
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              if (!searchClicked) {
-                setState(() {
-                  searchClicked = !searchClicked;
-                });
-              }
-            },
-            icon:
-                searchClicked
-                    ? const Icon(Icons.notifications_outlined)
-                    : Image.asset(
-                      "assets/Icon feather-search.png",
-                      width: 25.w,
-                    ),
-          ),
-        ],
-      ),
-
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            if (searchClicked)
-              Padding(
-                padding: EdgeInsets.only(
-                  left: 18.w,
-                  right: 25.w,
-                  top: 22.h,
-                  bottom: 11.h,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (widget. searchClicked)
+          Padding(
+            padding: EdgeInsets.only(
+              left: 18.w,
+              right: 25.w,
+              top: 22.h,
+              bottom: 11.h,
+            ),
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: "What are you looking for?",
+                hintStyle: TextStyle(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w400,
                 ),
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: "What are you looking for?",
-                    hintStyle: TextStyle(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w400,
-                    ),
-                    prefixIcon: const Icon(Icons.search),
+                prefixIcon: const Icon(Icons.search),
 
-                    border: const OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
-                    ),
-                  ),
+                border: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black),
                 ),
               ),
-            const SellersItem(),
-            Padding(
-              padding: EdgeInsets.only(left: 21.w, top: 1.5.h, bottom: 8.h),
-              child: const CustomTextWidget(
-                text: "Categories ",
+            ),
+          ),
+        const SellersItem(),
+        Padding(
+          padding: EdgeInsets.only(left: 21.w, top: 1.5.h, bottom: 8.h),
+          child: const CustomTextWidget(
+            text: "Categories ",
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const CategoryList(),
+        Padding(
+          padding: EdgeInsets.only(left: 21.w, top: 1.h, bottom: 7.h),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const CustomTextWidget(
+                text: "Products",
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
-            ),
-            const CategoryList(),
-            Padding(
-              padding: EdgeInsets.only(left: 21.w, top: 1.h, bottom: 7.h),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const CustomTextWidget(
-                    text: "Products",
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Image.asset("assets/format.png", width: 17.w),
-                  ),
-                ],
+              IconButton(
+                onPressed: () {},
+                icon: Image.asset("assets/format.png", width: 17.w),
               ),
-            ),
-            ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: 2,
-              itemBuilder:
-                  (context, index) => Padding(
-                    padding: EdgeInsets.only(bottom: 18.h),
-                    child: const ProductsItem(),
-                  ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
-    );
+        ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: 2,
+          itemBuilder:
+              (context, index) => Padding(
+                padding: EdgeInsets.only(bottom: 18.h),
+                child: const ProductsItem(),
+              ),
+        ),
+      ],
+    ); 
   }
 }
 

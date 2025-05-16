@@ -1,172 +1,152 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task_one/core/widgets/custom_text_widget.dart';
 
-import '../../home/views/home_view.dart';
 
 class PortreitView extends StatelessWidget {
   const PortreitView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-      },
-          icon: const Icon(Icons.arrow_back_ios_new_outlined),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: 3,
+          itemBuilder:
+              (context, index) => Padding(
+                padding: EdgeInsets.only(bottom: 15.h),
+                child: const ProductsItem(),
+              ),
         ),
-        centerTitle: true,
-        title: const CustomTextWidget(
-          text: "Basket",
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-          color: Color(0xff204F38),
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: 3,
-              itemBuilder:
-                  (context, index) => Padding(
-                    padding: EdgeInsets.only(bottom: 15.h),
-                    child: const ProductsItem(),
-                  ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 19.w, right: 21.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Divider(),
+        Padding(
+          padding: EdgeInsets.only(left: 19.w, right: 21.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Divider(),
 
-                  Padding(
-                    padding: EdgeInsets.only(top: 20.h, bottom: 10.h),
-                    child: const Row(
+              Padding(
+                padding: EdgeInsets.only(top: 20.h, bottom: 10.h),
+                child: const Row(
+                  children: [
+                    CustomTextWidget(
+                      text: "Subtotal",
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      color: Color(0xff656565),
+                    ),
+                    Spacer(),
+                    Row(
                       children: [
                         CustomTextWidget(
-                          text: "Subtotal",
+                          text: "36.00 ",
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
                           color: Color(0xff656565),
                         ),
-                        Spacer(),
-                        Row(
-                          children: [
-                            CustomTextWidget(
-                              text: "36.00 ",
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              color: Color(0xff656565),
-                            ),
-                            CustomTextWidget(
-                              text: "KD",
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                              color: Color(0xffBEBEBE),
-                            ),
-                          ],
+                        CustomTextWidget(
+                          text: "KD",
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xffBEBEBE),
                         ),
                       ],
                     ),
-                  ),
+                  ],
+                ),
+              ),
 
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 10.h),
-                    child: const Row(
+              Padding(
+                padding: EdgeInsets.only(bottom: 10.h),
+                child: const Row(
+                  children: [
+                    CustomTextWidget(
+                      text: "Shipping Charges",
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      color: Color(0xff656565),
+                    ),
+                    Spacer(),
+                    Row(
                       children: [
                         CustomTextWidget(
-                          text: "Shipping Charges",
+                          text: "1.50 ",
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
                           color: Color(0xff656565),
                         ),
-                        Spacer(),
-                        Row(
-                          children: [
-                            CustomTextWidget(
-                              text: "1.50 ",
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              color: Color(0xff656565),
-                            ),
-                            CustomTextWidget(
-                              text: "KD",
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                              color: Color(0xffBEBEBE),
-                            ),
-                          ],
+                        CustomTextWidget(
+                          text: "KD",
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xffBEBEBE),
                         ),
                       ],
                     ),
-                  ),
+                  ],
+                ),
+              ),
 
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 43.h),
-                    child: const Row(
+              Padding(
+                padding: EdgeInsets.only(bottom: 43.h),
+                child: const Row(
+                  children: [
+                    CustomTextWidget(
+                      text: "Bag Total",
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xff204F38),
+                    ),
+                    Spacer(),
+                    Row(
                       children: [
                         CustomTextWidget(
-                          text: "Bag Total",
+                          text: "37.50 ",
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                           color: Color(0xff204F38),
                         ),
-                        Spacer(),
-                        Row(
-                          children: [
-                            CustomTextWidget(
-                              text: "37.50 ",
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xff204F38),
-                            ),
-                            CustomTextWidget(
-                              text: "KD",
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xff204F38),
-                            ),
-                          ],
+                        CustomTextWidget(
+                          text: "KD",
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xff204F38),
                         ),
                       ],
                     ),
-                  ),
-                  const Row(
+                  ],
+                ),
+              ),
+              const Row(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CustomTextWidget(
-                            text: "4 items in cart",
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                            color: Color(0xff656565),
-                          ),
-                          CustomTextWidget(
-                            text: "37.50 KD",
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xff656565),
-                          ),
-                        ],
+                      CustomTextWidget(
+                        text: "4 items in cart",
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xff656565),
                       ),
-                      Spacer(),
-                      CustomContainer(),
+                      CustomTextWidget(
+                        text: "37.50 KD",
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xff656565),
+                      ),
                     ],
                   ),
+                  Spacer(),
+                  CustomContainer(),
                 ],
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }

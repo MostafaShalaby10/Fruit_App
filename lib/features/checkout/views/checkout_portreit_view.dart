@@ -1,4 +1,3 @@
-
 import 'package:easy_stepper/easy_stepper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,124 +18,104 @@ class _PortreitViewState extends State<PortreitView> {
   int currentStep = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(Icons.arrow_back_ios_new_outlined),
-        ),
-        centerTitle: true,
-        title: const CustomTextWidget(
-          text: "Checkout",
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-          color: Color(0xff204F38),
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 80.h,
-              child: EasyStepper(
-                padding: const EdgeInsets.all(0),
-                internalPadding: 80,
-                borderThickness: 5,
-                defaultStepBorderType: BorderType.normal,
+    return Column(
+      children: [
+        SizedBox(
+          height: 80.h,
+          child: EasyStepper(
+            padding: const EdgeInsets.all(0),
+            internalPadding: 80,
+            borderThickness: 5,
+            defaultStepBorderType: BorderType.normal,
 
-                activeStepIconColor: const Color(0xff204F38),
-                stepRadius: 12,
-                fitWidth: true,
-                activeStep: currentStep,
-                activeStepBackgroundColor: Colors.transparent,
-                finishedStepBackgroundColor: Colors.transparent,
-                finishedStepBorderColor: const Color(0xff204F38),
-                activeStepBorderColor: const Color(0xff204F38),
-                finishedStepBorderType: BorderType.normal,
-                showLoadingAnimation: false,
-                steps: [
-                  const EasyStep(
-                    customTitle: CustomTextWidget(
-                      text: "Delivery Time",
-                      fontSize: 16,
+            activeStepIconColor: const Color(0xff204F38),
+            stepRadius: 12,
+            fitWidth: true,
+            activeStep: currentStep,
+            activeStepBackgroundColor: Colors.transparent,
+            finishedStepBackgroundColor: Colors.transparent,
+            finishedStepBorderColor: const Color(0xff204F38),
+            activeStepBorderColor: const Color(0xff204F38),
+            finishedStepBorderType: BorderType.normal,
+            showLoadingAnimation: false,
+            steps: [
+              const EasyStep(
+                customTitle: CustomTextWidget(
+                  text: "Delivery Time",
+                  fontSize: 16,
 
-                      fontWeight: FontWeight.w400,
-                      color: Color(0xff204F38),
-                      textAlign: TextAlign.center,
-                    ),
-
-                    customStep: Icon(Icons.circle, size: 6),
-                    activeIcon: Icon(Icons.circle),
-                  ),
-                  const EasyStep(
-                    customTitle: CustomTextWidget(
-                      text: "Delivery Address",
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
-                      color: Color(0xff204F38),
-                      textAlign: TextAlign.center,
-                    ),
-
-                    customStep: Icon(Icons.circle, size: 6),
-
-                    activeIcon: Icon(Icons.circle),
-                  ),
-                  const EasyStep(
-                    customTitle: CustomTextWidget(
-                      text: "Payment",
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
-                      color: Color(0xff204F38),
-                      textAlign: TextAlign.center,
-                    ),
-                    customStep: Icon(Icons.circle, size: 6),
-
-                    activeIcon: Icon(Icons.circle),
-                  ),
-                ],
-                onStepReached: (value) {
-                  setState(() {
-                    currentStep = value;
-                  });
-                },
-              ),
-            ),
-            Container(height: 1.h, color: Colors.black, width: double.infinity),
-            if (currentStep == 0) const DeliveryPage(),
-            if (currentStep == 1) const AddressPage(),
-            if (currentStep == 2) const PaymentPage(),
-            Padding(
-              padding: EdgeInsets.only(bottom: 20.h),
-              child: SizedBox(
-                width: 347.w,
-                height: 51.h,
-                child: CustomButtonWidget(
-                  text: currentStep == 2 ? "Place Order" : "Continue",
-                  function: () {
-                    if (currentStep < 2) {
-                      setState(() {
-                        currentStep++;
-                      });
-                    } else {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const SuccessfullyView(),
-                        ),
-                      );
-                    }
-                  },
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xff204F38),
+                  textAlign: TextAlign.center,
                 ),
+
+                customStep: Icon(Icons.circle, size: 6),
+                activeIcon: Icon(Icons.circle),
               ),
-            ),
-          ],
+              const EasyStep(
+                customTitle: CustomTextWidget(
+                  text: "Delivery Address",
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xff204F38),
+                  textAlign: TextAlign.center,
+                ),
+
+                customStep: Icon(Icons.circle, size: 6),
+
+                activeIcon: Icon(Icons.circle),
+              ),
+              const EasyStep(
+                customTitle: CustomTextWidget(
+                  text: "Payment",
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xff204F38),
+                  textAlign: TextAlign.center,
+                ),
+                customStep: Icon(Icons.circle, size: 6),
+
+                activeIcon: Icon(Icons.circle),
+              ),
+            ],
+            onStepReached: (value) {
+              setState(() {
+                currentStep = value;
+              });
+            },
+          ),
         ),
-      ),
+        Container(height: 1.h, color: Colors.black, width: double.infinity),
+        if (currentStep == 0) const DeliveryPage(),
+        if (currentStep == 1) const AddressPage(),
+        if (currentStep == 2) const PaymentPage(),
+        Padding(
+          padding: EdgeInsets.only(bottom: 20.h),
+          child: SizedBox(
+            width: 347.w,
+            height: 51.h,
+            child: CustomButtonWidget(
+              text: currentStep == 2 ? "Place Order" : "Continue",
+              function: () {
+                if (currentStep < 2) {
+                  setState(() {
+                    currentStep++;
+                  });
+                } else {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SuccessfullyView(),
+                    ),
+                  );
+                }
+              },
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

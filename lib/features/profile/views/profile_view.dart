@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../core/widgets/custom_text_widget.dart';
 import 'profile_landscape_view.dart';
 import 'profile_portreit_view.dart';
 
@@ -25,10 +26,25 @@ class ProfileView extends StatelessWidget {
       "assets/money.png",
       "assets/info.png",
     ];
-    if (MediaQuery.of(context).orientation == Orientation.portrait) {
-      return PortreitView(titles: titles, icons: icons);
-    } else {
-      return LandScapeView(titles: titles, icons: icons);
-    }
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const CustomTextWidget(
+          text: "Fruit Market",
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+          color: Color(0xff204F38),
+        ),
+        leading: IconButton(
+          onPressed: () {
+           
+          },
+          icon: const Icon(Icons.arrow_back_ios_new),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: MediaQuery.of(context).orientation == Orientation.portrait?PortreitView(titles: titles, icons: icons):LandScapeView(titles: titles, icons: icons,),
+      )
+    );
   }
 }

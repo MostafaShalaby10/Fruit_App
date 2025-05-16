@@ -5,58 +5,20 @@ import '../../../core/colors/colors.dart';
 import '../../../core/widgets/custom_text_widget.dart';
 
 class LandScapeView extends StatefulWidget {
-  const LandScapeView({super.key});
-
+  const LandScapeView({super.key, required this.searchClicked});
+final bool searchClicked;
   @override
   State<LandScapeView> createState() => _LandScapeViewState();
 }
 
 class _LandScapeViewState extends State<LandScapeView> {
-  bool searchClicked = false;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(Icons.arrow_back_ios_new_outlined),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        title: const CustomTextWidget(
-          text: "Fruit Market",
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-          color: primaryColor,
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              if (!searchClicked) {
-                setState(() {
-                  searchClicked = !searchClicked;
-                });
-              }
-            },
-            icon:
-                searchClicked
-                    ? const Icon(Icons.notifications_outlined)
-                    : Image.asset(
-                      "assets/Icon feather-search.png",
-                      width: 25.w,
-                    ),
-          ),
-        ],
-      ),
-
-      body: SingleChildScrollView(
-        child: Column(
+    return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (searchClicked)
+            if (widget. searchClicked)
               Padding(
                 padding: EdgeInsets.only(
                   left: 18.w,
@@ -117,9 +79,8 @@ class _LandScapeViewState extends State<LandScapeView> {
                   ),
             ),
           ],
-        ),
-      ),
-    );
+        ); 
+     
   }
 }
 
