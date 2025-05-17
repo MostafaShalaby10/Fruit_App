@@ -1,9 +1,9 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task_one/features/onboarding/views/onboarding.dart';
+import 'package:task_one/features/splash/view/splash_view.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,8 +15,7 @@ void main() {
     ),
   );
   runApp(
-    DevicePreview(enabled: !kReleaseMode, builder: (context) => const MyApp()),
-  );
+const MyApp()  );
 }
 
 class MyApp extends StatelessWidget {
@@ -38,7 +37,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             home: child,
           ),
-      child: const OnBoardingView(),
+      child: const SplashView(),
     );
   }
 }

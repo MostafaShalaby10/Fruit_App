@@ -6,6 +6,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../core/widgets/custom_text_widget.dart';
 import '../../product/view/product_view.dart';
 import '../../seller/views/seller_view.dart';
+import 'home_view.dart';
 
 class PortreitView extends StatefulWidget {
   const PortreitView({super.key, required this.cards});
@@ -15,7 +16,6 @@ class PortreitView extends StatefulWidget {
 }
 
 class _PortreitViewState extends State<PortreitView> {
-  bool searchClicked = false;
   int _index = 0;
   @override
   Widget build(BuildContext context) {

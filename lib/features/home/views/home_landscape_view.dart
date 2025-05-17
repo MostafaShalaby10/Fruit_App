@@ -5,7 +5,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../seller/views/seller_view.dart';
 import '../../../core/widgets/custom_text_widget.dart';
 import '../../product/view/product_view.dart';
-
+import 'home_view.dart';
 
 class LandScapeView extends StatefulWidget {
   const LandScapeView({super.key, required this.cards});
@@ -16,7 +16,6 @@ class LandScapeView extends StatefulWidget {
 }
 
 class _LandScapeViewState extends State<LandScapeView> {
-  bool searchClicked = false;
   int _index = 0;
   @override
   Widget build(BuildContext context) {
@@ -93,7 +92,7 @@ class _LandScapeViewState extends State<LandScapeView> {
             top: 15.h,
           ),
           child: SizedBox(
-            height: 150.h,
+            height: 170.h,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: widget.cards.length,

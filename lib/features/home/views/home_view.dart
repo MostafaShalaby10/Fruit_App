@@ -13,9 +13,9 @@ class HomeView extends StatefulWidget {
   @override
   State<HomeView> createState() => _HomeViewState();
 }
+  bool searchClicked = false;
 
 class _HomeViewState extends State<HomeView> {
-  bool searchClicked = false;
   List<String> cards = [
     "assets/restruants.png",
     "assets/farm.png",
@@ -60,7 +60,10 @@ class _HomeViewState extends State<HomeView> {
         ],
       ),
       body: SingleChildScrollView(
-        child: MediaQuery.of(context).orientation == Orientation.portrait?PortreitView(cards: cards,):LandScapeView(cards: cards,),
+        child:
+            MediaQuery.of(context).orientation == Orientation.portrait
+                ? PortreitView(cards: cards)
+                : LandScapeView(cards: cards),
       ),
     );
   }
