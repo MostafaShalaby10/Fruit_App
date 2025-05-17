@@ -1,11 +1,16 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:task_one/core/services/notifications/local_notification_service.dart';
 import 'package:task_one/features/onboarding/views/onboarding.dart';
 import 'package:task_one/features/splash/view/splash_view.dart';
+import 'package:task_one/firebase_options.dart';
 
-void main() {
+import 'core/services/notifications/notification_services.dart';
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
@@ -14,8 +19,10 @@ void main() {
           Brightness.dark, // Choose icon color (light or dark)
     ),
   );
-  runApp(
-const MyApp()  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  Future.wait([NotificationServices.init(), LocalNotificationService.init()]);
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

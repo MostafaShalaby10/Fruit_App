@@ -31,8 +31,12 @@ dependencies:
   carousel_slider: ^5.0.0
   cupertino_icons: ^1.0.8
   easy_stepper: ^0.8.5+1
+  firebase_analytics: ^11.4.5
+  firebase_core: ^3.13.0
+  firebase_messaging: ^15.2.5
   flutter:
     sdk: flutter
+  flutter_local_notifications: ^19.2.0
   flutter_native_splash: ^2.4.6
   flutter_screenutil: ^5.9.3
   flutter_svg: ^2.1.0
