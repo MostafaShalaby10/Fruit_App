@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "881338126455",
-    "project_id": "fruitapp-806d6",
-    "storage_bucket": "fruitapp-806d6.firebasestorage.app"
+    "project_number": "246193552916",
+    "project_id": "fruit-d6e9a",
+    "storage_bucket": "fruit-d6e9a.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:881338126455:android:40871f52d27dcb0bfc3672",
+        "mobilesdk_app_id": "1:246193552916:android:571003aa7d812e359cb101",
         "android_client_info": {
-          "package_name": "com.example.task_one"
+          "package_name": "com.fruit.name"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCIm-9O1RZ68ArPhT_By46hmASLVqs_28I"
+          "current_key": "AIzaSyCdWWeDx9PJ6SEZF-uQ7yJTOP2Hon7giC0"
         }
       ],
       "services": {

@@ -50,20 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCIm-9O1RZ68ArPhT_By46hmASLVqs_28I',
-    appId: '1:881338126455:android:40871f52d27dcb0bfc3672',
-    messagingSenderId: '881338126455',
-    projectId: 'fruitapp-806d6',
-    storageBucket: 'fruitapp-806d6.firebasestorage.app',
+    apiKey: 'AIzaSyCdWWeDx9PJ6SEZF-uQ7yJTOP2Hon7giC0',
+    appId: '1:246193552916:android:571003aa7d812e359cb101',
+    messagingSenderId: '246193552916',
+    projectId: 'fruit-d6e9a',
+    storageBucket: 'fruit-d6e9a.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDWzCzhqZjsT_lSRP_ttGHEua66Z3WxMY0',
-    appId: '1:881338126455:ios:397c4cd0169dabaefc3672',
-    messagingSenderId: '881338126455',
-    projectId: 'fruitapp-806d6',
-    storageBucket: 'fruitapp-806d6.firebasestorage.app',
-    iosBundleId: 'com.example.taskOne',
+    apiKey: 'AIzaSyB0zKL6W02oiiHGkpBjwS9XeXf2Qsf7hnQ',
+    appId: '1:246193552916:ios:c5d4e9d29f5ebef29cb101',
+    messagingSenderId: '246193552916',
+    projectId: 'fruit-d6e9a',
+    storageBucket: 'fruit-d6e9a.firebasestorage.app',
+    iosBundleId: 'com.fruit.name',
   );
-
 }
