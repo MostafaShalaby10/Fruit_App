@@ -3,7 +3,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:task_one/core/services/notifications/local_notification_service.dart';
+import 'package:task_one/core/services/notifications/onesignal_service.dart';
 import 'package:task_one/features/onboarding/views/onboarding.dart';
 import 'package:task_one/features/splash/view/splash_view.dart';
 import 'package:task_one/firebase_options.dart';
@@ -22,6 +24,7 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   Future.wait([NotificationServices.init(), LocalNotificationService.init()]);
+  await OneSignalService.init();
   runApp(const MyApp());
 }
 
