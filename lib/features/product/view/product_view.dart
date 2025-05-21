@@ -15,7 +15,7 @@ class _ProductViewState extends State<ProductView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppBar(
+      appBar: AppBar(
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
@@ -23,9 +23,12 @@ class _ProductViewState extends State<ProductView> {
           icon: const Icon(Icons.arrow_back_ios_new_outlined),
         ),
         centerTitle: true,
-        title: const CustomTextWidget(
+        title: CustomTextWidget(
           text: "Product Name",
-          fontSize: 24,
+          fontSize:
+              MediaQuery.of(context).orientation == Orientation.portrait
+                  ? 24
+                  : 15,
           fontWeight: FontWeight.bold,
           color: Color(0xff204F38),
         ),
@@ -43,9 +46,12 @@ class _ProductViewState extends State<ProductView> {
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 21.w),
-child: SingleChildScrollView(
-  child:  MediaQuery.of(context).orientation == Orientation.portrait?const PortreitView():const LandScapeView(),
-),
+        child: SingleChildScrollView(
+          child:
+              MediaQuery.of(context).orientation == Orientation.portrait
+                  ? const PortreitView()
+                  : const LandScapeView(),
+        ),
       ),
     );
   }

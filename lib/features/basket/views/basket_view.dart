@@ -8,25 +8,29 @@ class BasketView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   return Scaffold(
-     appBar: AppBar(
+    return Scaffold(
+      appBar: AppBar(
         leading: IconButton(
-          onPressed: () {
-      },
+          onPressed: () {},
           icon: const Icon(Icons.arrow_back_ios_new_outlined),
         ),
         centerTitle: true,
-        title: const CustomTextWidget(
+        title: CustomTextWidget(
           text: "Basket",
-          fontSize: 24,
+          fontSize:
+              MediaQuery.of(context).orientation == Orientation.portrait
+                  ? 24
+                  : 15,
           fontWeight: FontWeight.bold,
           color: Color(0xff204F38),
         ),
       ),
-    
-    resizeToAvoidBottomInset: false,
-    body: SingleChildScrollView(
-      child: MediaQuery.of(context).orientation == Orientation.portrait?const PortreitView():const LandScapeView(),
-   ));
+
+      resizeToAvoidBottomInset: false,
+      body:
+          MediaQuery.of(context).orientation == Orientation.portrait
+              ? const PortreitView()
+              : const LandScapeView(),
+    );
   }
 }

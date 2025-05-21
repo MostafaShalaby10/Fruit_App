@@ -5,7 +5,7 @@ import 'package:task_one/core/widgets/custom_text_form_field.dart';
 import 'package:task_one/core/widgets/phone_field.dart';
 import 'package:task_one/features/authentication/login/views/login_view.dart';
 
-import '../../../../core/colors/colors.dart';
+import '../../../../core/services/colors/colors.dart';
 import '../../../../core/widgets/custom_text_widget.dart';
 
 class SignupView extends StatelessWidget {
@@ -14,10 +14,13 @@ class SignupView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: false,
 
       body: SingleChildScrollView(
-  child:   MediaQuery.of(context).orientation == Orientation.portrait?const PortreitView():const LandScapeView()
+        child:
+            MediaQuery.of(context).orientation == Orientation.portrait
+                ? const PortreitView()
+                : const LandScapeView(),
       ),
     );
   }
@@ -228,7 +231,7 @@ class LandScapeView extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.only(top: 30.h, left: 49.w, bottom: 20.0),
+          padding: EdgeInsets.only(top: 30.h, left: 30.w),
           child: Align(
             alignment: Alignment.centerLeft,
             child: IconButton(
@@ -258,7 +261,7 @@ class LandScapeView extends StatelessWidget {
                       child: const CustomTextWidget(
                         textAlign: TextAlign.center,
                         text: "Sign Up to Wikala",
-                        fontSize: 17,
+                        fontSize: 12,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                       ),
@@ -274,13 +277,13 @@ class LandScapeView extends StatelessWidget {
                       children: [
                         CustomTextWidget(
                           text: "Full name",
-                          fontSize: 11,
+                          fontSize: 8,
                           color: Color(0xff858D9A),
                           fontWeight: FontWeight.normal,
                         ),
                         CustomTextWidget(
                           text: " *",
-                          fontSize: 11,
+                          fontSize: 8,
                           color: Color(0xffED692E),
                           fontWeight: FontWeight.normal,
                         ),
@@ -299,20 +302,20 @@ class LandScapeView extends StatelessWidget {
                       ),
                       child: CustomTextFormField(
                         hintText: "First and Last Name",
-                        fontSize: 11.sp,
+                        fontSize: 9.sp,
                       ),
                     ),
                     const Row(
                       children: [
                         CustomTextWidget(
                           text: "Phone Number",
-                          fontSize: 11,
+                          fontSize: 8,
                           color: Color(0xff858D9A),
                           fontWeight: FontWeight.normal,
                         ),
                         CustomTextWidget(
                           text: " *",
-                          fontSize: 11,
+                          fontSize: 8,
                           color: Color(0xffED692E),
                           fontWeight: FontWeight.normal,
                         ),
@@ -332,20 +335,20 @@ class LandScapeView extends StatelessWidget {
 
                       child: PhoneField(
                         hintText: "Mobile Number",
-                        fontSize: 11.sp,
+                        fontSize: 9.sp,
                       ),
                     ),
                     const Row(
                       children: [
                         CustomTextWidget(
                           text: "Password",
-                          fontSize: 11,
+                          fontSize: 8,
                           color: Color(0xff858D9A),
                           fontWeight: FontWeight.normal,
                         ),
                         CustomTextWidget(
                           text: " *",
-                          fontSize: 11,
+                          fontSize: 8,
                           color: Color(0xffED692E),
                           fontWeight: FontWeight.normal,
                         ),
@@ -353,7 +356,6 @@ class LandScapeView extends StatelessWidget {
                     ),
                     Container(
                       height: 80.h,
-
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(25.r),
                         boxShadow: [
@@ -366,17 +368,19 @@ class LandScapeView extends StatelessWidget {
 
                       child: CustomTextFormField(
                         hintText: "Password",
-                        fontSize: 11.sp,
+                        fontSize: 9.sp,
                       ),
                     ),
+                    SizedBox(height: 10.h),
+
                     SizedBox(
-                      width: 347.w,
-                      height: 80.h,
+                      height: 60.h,
                       child: CustomButtonWidget(
                         function: () {},
 
                         text: "SignUp",
                         fontWeight: FontWeight.bold,
+                        fontSize: 9,
                       ),
                     ),
                   ],
@@ -390,7 +394,7 @@ class LandScapeView extends StatelessWidget {
           children: [
             const CustomTextWidget(
               text: "Already have an account?",
-              fontSize: 18,
+              fontSize: 9,
               fontWeight: FontWeight.normal,
             ),
             TextButton(
@@ -402,7 +406,7 @@ class LandScapeView extends StatelessWidget {
               },
               child: const CustomTextWidget(
                 text: "Login",
-                fontSize: 18,
+                fontSize: 9,
                 fontWeight: FontWeight.normal,
                 color: Color(0xff004D8E),
               ),

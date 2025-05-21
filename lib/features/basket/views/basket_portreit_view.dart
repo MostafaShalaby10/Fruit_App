@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task_one/core/widgets/custom_text_widget.dart';
 
-
 class PortreitView extends StatelessWidget {
   const PortreitView({super.key});
 
@@ -11,15 +10,15 @@ class PortreitView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ListView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: 3,
-          itemBuilder:
-              (context, index) => Padding(
-                padding: EdgeInsets.only(bottom: 15.h),
-                child: const ProductsItem(),
-              ),
+        Expanded(
+          child: ListView.builder(
+            itemCount: 6,
+            itemBuilder:
+                (context, index) => Padding(
+                  padding: EdgeInsets.only(bottom: 15.h),
+                  child: const ProductsItem(),
+                ),
+          ),
         ),
         Padding(
           padding: EdgeInsets.only(left: 19.w, right: 21.w),
@@ -27,7 +26,7 @@ class PortreitView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Divider(),
-
+        
               Padding(
                 padding: EdgeInsets.only(top: 20.h, bottom: 10.h),
                 child: const Row(
@@ -58,7 +57,7 @@ class PortreitView extends StatelessWidget {
                   ],
                 ),
               ),
-
+        
               Padding(
                 padding: EdgeInsets.only(bottom: 10.h),
                 child: const Row(
@@ -89,7 +88,7 @@ class PortreitView extends StatelessWidget {
                   ],
                 ),
               ),
-
+        
               Padding(
                 padding: EdgeInsets.only(bottom: 43.h),
                 child: const Row(

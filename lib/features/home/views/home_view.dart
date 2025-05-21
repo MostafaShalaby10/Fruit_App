@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../core/colors/colors.dart';
+import '../../../core/services/colors/colors.dart';
 import '../../../core/widgets/custom_text_widget.dart';
 import 'filter_dialog_landscape.dart';
 import 'home_portreit_view.dart';
@@ -13,7 +13,8 @@ class HomeView extends StatefulWidget {
   @override
   State<HomeView> createState() => _HomeViewState();
 }
-  bool searchClicked = false;
+
+bool searchClicked = false;
 
 class _HomeViewState extends State<HomeView> {
   List<String> cards = [
@@ -28,9 +29,12 @@ class _HomeViewState extends State<HomeView> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.white,
-        title: const CustomTextWidget(
+        title: CustomTextWidget(
           text: "Fruit Market",
-          fontSize: 24,
+          fontSize:
+              MediaQuery.of(context).orientation == Orientation.portrait
+                  ? 24
+                  : 15,
           fontWeight: FontWeight.bold,
           color: primaryColor,
         ),
@@ -48,14 +52,24 @@ class _HomeViewState extends State<HomeView> {
                     ? const Icon(Icons.notifications_outlined)
                     : Image.asset(
                       "assets/Icon feather-search.png",
-                      width: 25.w,
+                      width:
+                          MediaQuery.of(context).orientation ==
+                                  Orientation.portrait
+                              ? 25.w
+                              : 14.w,
                     ),
           ),
           IconButton(
             onPressed: () {
               filterDialogLandScape(context);
             },
-            icon: Image.asset("assets/category_app_bar.png", width: 25.w),
+            icon: Image.asset(
+              "assets/category_app_bar.png",
+              width:
+                  MediaQuery.of(context).orientation == Orientation.portrait
+                      ? 25.w
+                      : 14.w,
+            ),
           ),
         ],
       ),

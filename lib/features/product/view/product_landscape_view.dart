@@ -16,12 +16,11 @@ class _LandScapeViewState extends State<LandScapeView> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(vertical: 21.h),
+          padding: EdgeInsets.symmetric(vertical: 0.h),
           child: SizedBox(
-            width: double.infinity,
             child: Image.asset("assets/product.png", fit: BoxFit.cover),
           ),
         ),
@@ -32,13 +31,13 @@ class _LandScapeViewState extends State<LandScapeView> {
               children: [
                 CustomTextWidget(
                   text: "Category Name",
-                  fontSize: 18,
+                  fontSize: 9,
                   fontWeight: FontWeight.bold,
                   color: Color(0xff204F38),
                 ),
                 CustomTextWidget(
                   text: "Product name",
-                  fontSize: 24,
+                  fontSize: 11,
                   fontWeight: FontWeight.bold,
                   color: Color(0xff292727),
                 ),
@@ -51,7 +50,7 @@ class _LandScapeViewState extends State<LandScapeView> {
               children: [
                 const CustomTextWidget(
                   text: "Price",
-                  fontSize: 14,
+                  fontSize: 9,
                   fontWeight: FontWeight.w400,
                   color: Color(0xff656565),
                 ),
@@ -60,14 +59,14 @@ class _LandScapeViewState extends State<LandScapeView> {
                   children: [
                     const CustomTextWidget(
                       text: "KD12.00 ",
-                      fontSize: 20,
+                      fontSize: 7,
                       fontWeight: FontWeight.bold,
                       color: Color(0xff656565),
                     ),
                     SizedBox(width: 10.w),
                     const CustomTextWidget(
                       text: "KD14.00",
-                      fontSize: 17,
+                      fontSize: 7,
                       textDecoration: TextDecoration.lineThrough,
                       fontWeight: FontWeight.w400,
                       color: Color(0xffDF958F),
@@ -82,17 +81,20 @@ class _LandScapeViewState extends State<LandScapeView> {
           textAlign: TextAlign.start,
           text:
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim",
-          fontSize: 16,
+          fontSize: 9,
           color: Color(0xff656565),
           fontWeight: FontWeight.w400,
         ),
         Padding(
           padding: EdgeInsets.only(top: 13.h, bottom: 21.h),
-          child: const CustomTextWidget(
-            text: "Sell Per : Kartoon",
-            fontSize: 16,
-            color: Color(0xff656565),
-            fontWeight: FontWeight.w400,
+          child: const Align(
+            alignment: Alignment.centerLeft,
+            child: CustomTextWidget(
+              text: "Sell Per : Kartoon",
+              fontSize: 9,
+              color: Color(0xff656565),
+              fontWeight: FontWeight.w400,
+            ),
           ),
         ),
 
@@ -106,7 +108,7 @@ class _LandScapeViewState extends State<LandScapeView> {
             children: [
               const CustomTextWidget(
                 text: "Select weight",
-                fontSize: 18,
+                fontSize: 11,
                 fontWeight: FontWeight.bold,
                 color: Color(0xff292727),
               ),
@@ -135,7 +137,7 @@ class _LandScapeViewState extends State<LandScapeView> {
             children: [
               const CustomTextWidget(
                 text: "Select  Addons",
-                fontSize: 18,
+                fontSize: 11,
                 fontWeight: FontWeight.bold,
                 color: Color(0xff292727),
               ),
@@ -159,8 +161,7 @@ class _LandScapeViewState extends State<LandScapeView> {
           child: Align(
             alignment: Alignment.centerRight,
             child: Container(
-              width: 144.w,
-              height: 80.h,
+              width: MediaQuery.of(context).size.width * .3,
               padding: EdgeInsets.only(bottom: 2.h, left: 10.w, right: 10.w),
               decoration: BoxDecoration(
                 color: const Color(0xff204F38),
@@ -178,7 +179,7 @@ class _LandScapeViewState extends State<LandScapeView> {
                   Image.asset("assets/cart_icon.png"),
                   const CustomTextWidget(
                     text: "Add to Cart",
-                    fontSize: 16,
+                    fontSize: 9,
                     color: Colors.white,
                     fontWeight: FontWeight.w500,
                   ),
@@ -215,7 +216,7 @@ class _RadioButtonWeightsState extends State<RadioButtonWeights> {
           title: const CustomTextWidget(
             textAlign: TextAlign.start,
             text: "50 Gram - 4.00 KD",
-            fontSize: 16,
+            fontSize: 9,
             fontWeight: FontWeight.w400,
           ),
           leading: Radio<String>(
@@ -235,7 +236,7 @@ class _RadioButtonWeightsState extends State<RadioButtonWeights> {
           title: const CustomTextWidget(
             textAlign: TextAlign.start,
             text: "1 Kg - 6.25 KD",
-            fontSize: 16,
+            fontSize: 9,
             fontWeight: FontWeight.w400,
           ),
           leading: Radio<String>(
@@ -256,7 +257,7 @@ class _RadioButtonWeightsState extends State<RadioButtonWeights> {
             textAlign: TextAlign.start,
 
             text: "2 Kg - 12.00 KD",
-            fontSize: 16,
+            fontSize: 9,
             fontWeight: FontWeight.w400,
           ),
           leading: Radio<String>(
@@ -295,7 +296,7 @@ class _RadioButtonAddonsState extends State<RadioButtonAddons> {
           title: const CustomTextWidget(
             textAlign: TextAlign.start,
             text: "50 Gram - 4.00 KD",
-            fontSize: 16,
+            fontSize: 9,
             fontWeight: FontWeight.w400,
           ),
           leading: Radio<String>(
@@ -315,7 +316,7 @@ class _RadioButtonAddonsState extends State<RadioButtonAddons> {
           title: const CustomTextWidget(
             textAlign: TextAlign.start,
             text: "1 Kg - 6.25 KD",
-            fontSize: 16,
+            fontSize: 9,
             fontWeight: FontWeight.w400,
           ),
           leading: Radio<String>(

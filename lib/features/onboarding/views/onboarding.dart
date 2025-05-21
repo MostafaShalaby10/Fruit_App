@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:task_one/core/colors/colors.dart';
+import 'package:task_one/core/services/colors/colors.dart';
 import 'package:task_one/core/widgets/custom_button_widget.dart';
 import 'package:task_one/core/widgets/custom_text_widget.dart';
 import 'package:task_one/features/welcome/views/welcome_scree_view.dart';
@@ -71,7 +71,7 @@ class _PortreitViewState extends State<PortreitView> {
             child: Column(
               children: [
                 SizedBox(
-                  height: 393.h,
+                  height: 403.h,
                   child: PageView.builder(
                     onPageChanged:
                         (index) => setState(() {
@@ -102,6 +102,8 @@ class _PortreitViewState extends State<PortreitView> {
                         ),
                   ),
                 ),
+                SizedBox(height: 20.h),
+
                 SmoothPageIndicator(
                   controller: pageController, // PageController
                   count: 3,
@@ -160,7 +162,7 @@ class _LandScapeViewState extends State<LandScapeView> {
           Align(
             alignment: Alignment.topRight,
             child: Padding(
-              padding: EdgeInsets.only(top: 76.h, right: 37.w),
+              padding: EdgeInsets.only(top: 10.h, right: 37.w),
               child: TextButton(
                 onPressed: () {
                   Navigator.pushAndRemoveUntil(
@@ -174,14 +176,14 @@ class _LandScapeViewState extends State<LandScapeView> {
                 child: const CustomTextWidget(
                   textAlign: TextAlign.right,
                   text: "Skip",
-                  fontSize: 15,
+                  fontSize: 9,
                   fontWeight: FontWeight.normal,
                   color: Color(0xff656565),
                 ),
               ),
             ),
           ),
-        SizedBox(height: isLastPage ? 170.h : 20.h),
+        SizedBox(height: isLastPage ? 100.h : 20.h),
         Padding(
           padding: EdgeInsets.only(right: 80.w, left: 64.w),
           child: SizedBox(
@@ -206,20 +208,21 @@ class _LandScapeViewState extends State<LandScapeView> {
                         (context, index) => Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Image.asset("assets/onboarding.png", height: 280.h),
+                            Image.asset("assets/onboarding.png"),
                             const Expanded(
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   CustomTextWidget(
                                     text: "E Shopping",
-                                    fontSize: 17,
+                                    fontSize: 11,
                                     fontWeight: FontWeight.bold,
                                   ),
                                   CustomTextWidget(
                                     text:
                                         "Explore op organic fruits & grab them",
-                                    fontSize: 12,
+                                    fontSize: 9,
                                     fontWeight: FontWeight.normal,
                                     color: Color(0xff78787C),
                                   ),
@@ -236,8 +239,8 @@ class _LandScapeViewState extends State<LandScapeView> {
                   effect: const WormEffect(
                     activeDotColor: primaryColor,
                     dotColor: Colors.black12,
-                    dotWidth: 10,
-                    dotHeight: 10,
+                    dotWidth: 6,
+                    dotHeight: 6,
                   ), // your preferred effect
                 ),
               ],
@@ -245,6 +248,7 @@ class _LandScapeViewState extends State<LandScapeView> {
           ),
         ),
         CustomButtonWidget(
+          fontSize: 11,
           text: isLastPage ? "Get Started" : "Next",
           function: () {
             if (isLastPage) {

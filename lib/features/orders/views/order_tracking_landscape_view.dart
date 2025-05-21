@@ -11,94 +11,105 @@ class OrderTrackingLandScapeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: 10.w,
       children: [
-        Padding(
-          padding: EdgeInsets.only(top: 18.h, bottom: 7.h),
-          child: RichText(
-            text: TextSpan(
-              children: [
-                TextSpan(
-                  text: "Your Order Code: ",
-                  style: TextStyle(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.w400,
-                    color: const Color(0xff656565),
-                  ),
-                ),
-                TextSpan(
-                  text: "#882610",
-                  style: TextStyle(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.bold,
-                    color: const Color(0xff656565),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        const CustomTextWidget(
-          text: "3 items - 37.50 KD",
-          fontSize: 18,
-          fontWeight: FontWeight.w400,
-          color: Color(0xff656565),
-        ),
-        SizedBox(height: 8.h),
-        const CustomTextWidget(
-          text: "Payment Method : Cash",
-          fontSize: 18,
-          fontWeight: FontWeight.w400,
-          color: Color(0xff656565),
-        ),
-        SizedBox(height: 22.h),
         const ProgressWidget(),
-        SizedBox(height: 37.h),
 
-        Container(
-          // padding: EdgeInsets.all(10),
-          width: 347.w,
-          height: 80.h,
-          decoration: BoxDecoration(
-            color: const Color(0xff204F38),
-            borderRadius: BorderRadius.circular(25.r),
-            boxShadow: [
-              BoxShadow(blurRadius: 4, color: Colors.black.withOpacity(.25)),
-            ],
-          ),
-          child: CustomButtonWidget(
-            text: "Confirm",
-            function: () {},
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        SizedBox(height: 22.h),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(top: 18.h, bottom: 7.h),
+              child: RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: "Your Order Code: \n",
+                      style: TextStyle(
+                        fontSize: 9.sp,
+                        fontWeight: FontWeight.w400,
+                        color: const Color(0xff656565),
+                      ),
+                    ),
+                    TextSpan(
+                      text: "#882610",
 
-        Container(
-          // padding: EdgeInsets.all(10),
-          width: 347.w,
-          height: 80.h,
-          decoration: BoxDecoration(
-            color: Colors.transparent,
-            borderRadius: BorderRadius.circular(25.r),
-            border: Border.all(width: 0.w),
-            boxShadow: [
-              BoxShadow(blurRadius: 4, color: Colors.black.withOpacity(.25)),
-            ],
-          ),
-          child: CustomButtonWidget(
-            color: const Color(0xffFF4A4A),
-            text: "Cancel Order",
-            textColor: Colors.white,
-            function: () {
-              cancelDialogLandScape(context);
-            },
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
+                      style: TextStyle(
+                        fontSize: 9.sp,
+                        fontWeight: FontWeight.bold,
+                        color: const Color(0xff656565),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const CustomTextWidget(
+              text: "3 items - 37.50 KD",
+              fontSize: 9,
+              fontWeight: FontWeight.w400,
+              color: Color(0xff656565),
+            ),
+            SizedBox(height: 5.h),
+            const CustomTextWidget(
+              text: "Payment Method : Cash",
+              fontSize: 9,
+              fontWeight: FontWeight.w400,
+              color: Color(0xff656565),
+            ),
+            Container(
+              // padding: EdgeInsets.all(10),
+              width: MediaQuery.of(context).size.width * .25,
+              decoration: BoxDecoration(
+                color: const Color(0xff204F38),
+                borderRadius: BorderRadius.circular(25.r),
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 4,
+                    color: Colors.black.withOpacity(.25),
+                  ),
+                ],
+              ),
+              child: CustomButtonWidget(
+                text: "Confirm",
+                function: () {},
+                fontSize: 9,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 10.h),
+
+            Container(
+              width: MediaQuery.of(context).size.width * .25,
+              // padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(25.r),
+                border: Border.all(width: 0.w),
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 4,
+                    color: Colors.black.withOpacity(.25),
+                  ),
+                ],
+              ),
+              child: CustomButtonWidget(
+                color: const Color(0xffFF4A4A),
+                text: "Cancel Order",
+                textColor: Colors.white,
+                function: () {
+                  cancelDialogLandScape(context);
+                },
+                fontSize: 9,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
         ),
-        SizedBox(height: 15.h),
       ],
     );
   }
@@ -131,7 +142,7 @@ class _ProgressWidgetState extends State<ProgressWidget> {
               fitWidth: true,
 
               lineStyle: const LineStyle(
-                lineLength: 65,
+                lineLength: 10,
 
                 lineThickness: 3,
                 activeLineColor: Color(0xff00BB1A),
@@ -192,7 +203,7 @@ class _ProgressWidgetState extends State<ProgressWidget> {
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              spacing: 45.h,
+              spacing: 60.h,
               children: [
                 RichText(
                   text: TextSpan(
@@ -200,7 +211,7 @@ class _ProgressWidgetState extends State<ProgressWidget> {
                       TextSpan(
                         text: "Order Placed\n",
                         style: TextStyle(
-                          fontSize: 21.sp,
+                          fontSize: 8.sp,
                           fontWeight: FontWeight.bold,
                           color: const Color(0xff292727),
                         ),
@@ -208,7 +219,7 @@ class _ProgressWidgetState extends State<ProgressWidget> {
                       TextSpan(
                         text: "We have received your order ",
                         style: TextStyle(
-                          fontSize: 18.sp,
+                          fontSize: 9.sp,
                           fontWeight: FontWeight.w400,
                           color: const Color(0xff656565),
                         ),
@@ -222,7 +233,7 @@ class _ProgressWidgetState extends State<ProgressWidget> {
                       TextSpan(
                         text: "Confirmed\n",
                         style: TextStyle(
-                          fontSize: 21.sp,
+                          fontSize: 9.sp,
                           fontWeight: FontWeight.bold,
                           color: const Color(0xff292727),
                         ),
@@ -230,7 +241,7 @@ class _ProgressWidgetState extends State<ProgressWidget> {
                       TextSpan(
                         text: "Your order has been confirmed ",
                         style: TextStyle(
-                          fontSize: 18.sp,
+                          fontSize: 9.sp,
                           fontWeight: FontWeight.w400,
                           color: const Color(0xff656565),
                         ),
@@ -244,7 +255,7 @@ class _ProgressWidgetState extends State<ProgressWidget> {
                       TextSpan(
                         text: "Order shipped\n",
                         style: TextStyle(
-                          fontSize: 21.sp,
+                          fontSize: 9.sp,
                           fontWeight: FontWeight.bold,
                           color: const Color(0xff292727),
                         ),
@@ -252,7 +263,7 @@ class _ProgressWidgetState extends State<ProgressWidget> {
                       TextSpan(
                         text: "Estimated for 10 September, 2021  ",
                         style: TextStyle(
-                          fontSize: 18.sp,
+                          fontSize: 9.sp,
                           fontWeight: FontWeight.w400,
                           color: const Color(0xff656565),
                         ),
@@ -266,7 +277,7 @@ class _ProgressWidgetState extends State<ProgressWidget> {
                       TextSpan(
                         text: "Out for delivery\n",
                         style: TextStyle(
-                          fontSize: 21.sp,
+                          fontSize: 9.sp,
                           fontWeight: FontWeight.bold,
                           color: const Color(0xff292727),
                         ),
@@ -274,7 +285,7 @@ class _ProgressWidgetState extends State<ProgressWidget> {
                       TextSpan(
                         text: "Estimated for 10 September, 2021 ",
                         style: TextStyle(
-                          fontSize: 18.sp,
+                          fontSize: 9.sp,
                           fontWeight: FontWeight.w400,
                           color: const Color(0xff656565),
                         ),
@@ -289,7 +300,7 @@ class _ProgressWidgetState extends State<ProgressWidget> {
                       TextSpan(
                         text: "Deliverd\n",
                         style: TextStyle(
-                          fontSize: 21.sp,
+                          fontSize: 9.sp,
                           fontWeight: FontWeight.bold,
                           color: const Color(0xff292727),
                         ),
@@ -297,7 +308,7 @@ class _ProgressWidgetState extends State<ProgressWidget> {
                       TextSpan(
                         text: "Estimated for 10 September, 2021 ",
                         style: TextStyle(
-                          fontSize: 18.sp,
+                          fontSize: 9.sp,
                           fontWeight: FontWeight.w400,
                           color: const Color(0xff656565),
                         ),

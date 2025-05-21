@@ -10,13 +10,14 @@ Future cancelDialogLandScape(context) async => showDialog(
       (context) => StatefulBuilder(
         builder:
             (context, setState) => SizedBox(
-              height: 348.h,
               child: SingleChildScrollView(
                 child: AlertDialog(
+                  actionsPadding: EdgeInsets.zero,
+
                   backgroundColor: Colors.white,
                   title: const CustomTextWidget(
                     text: "Cancel Orderd",
-                    fontSize: 18,
+                    fontSize: 9,
                     fontWeight: FontWeight.bold,
                   ),
 
@@ -27,7 +28,7 @@ Future cancelDialogLandScape(context) async => showDialog(
                       children: [
                         const CustomTextWidget(
                           text: "Reason",
-                          fontSize: 14,
+                          fontSize: 9,
                           fontWeight: FontWeight.normal,
                           color: Color(0xff858D9A),
                         ),
@@ -36,7 +37,7 @@ Future cancelDialogLandScape(context) async => showDialog(
 
                         const CustomTextWidget(
                           text: "Reason",
-                          fontSize: 14,
+                          fontSize: 9,
                           fontWeight: FontWeight.normal,
                           color: Color(0xff858D9A),
                         ),
@@ -63,13 +64,13 @@ Future cancelDialogLandScape(context) async => showDialog(
                             ),
                           ),
                         ),
-                        SizedBox(height: 17.h),
+                        SizedBox(height: 10.h),
                         Center(
                           child: SizedBox(
-                            width: 224.w,
+                            width: MediaQuery.of(context).size.width * .3,
                             child: CustomButtonWidget(
                               text: "Confirm Cancelation",
-                              fontSize: 16,
+                              fontSize: 9,
                               fontWeight: FontWeight.bold,
                               function: () {},
                             ),
@@ -79,18 +80,11 @@ Future cancelDialogLandScape(context) async => showDialog(
                     ),
                   ),
                   actionsAlignment: MainAxisAlignment.center,
-                  contentPadding: EdgeInsets.only(
-                    left: 29.w,
-                    bottom: 23.h,
-                    top: 21.h,
-                    right: 29.w,
-                  ),
-                  actionsPadding: const EdgeInsets.all(0),
                   actions: [
                     TextButton(
                       child: const CustomTextWidget(
                         text: "Close",
-                        fontSize: 16,
+                        fontSize: 9,
                         fontWeight: FontWeight.w400,
                         textAlign: TextAlign.center,
                         color: Color(0xff656565),
@@ -139,7 +133,7 @@ class _DropMenuState extends State<DropMenu> {
           ],
         ),
         height: 70.h,
-        width: 315.w,
+        width: MediaQuery.of(context).size.width * .3,
         child: DropdownButton<String>(
           dropdownColor: Colors.white,
           underline: const SizedBox(),
@@ -151,7 +145,7 @@ class _DropMenuState extends State<DropMenu> {
                   value: value,
                   child: CustomTextWidget(
                     text: value,
-                    fontSize: 14,
+                    fontSize: 9,
                     fontWeight: FontWeight.w400,
                   ),
                 );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:task_one/core/colors/colors.dart';
+import 'package:task_one/core/services/colors/colors.dart';
 import 'package:task_one/core/widgets/custom_text_widget.dart';
 import 'package:task_one/features/authentication/login/views/login_view.dart';
 import 'package:task_one/features/contact_us/view/terms_view.dart';
@@ -225,95 +225,97 @@ class LandScapeView extends StatelessWidget {
           ),
         ),
 
-        Row(
-          children: [
-            Expanded(
-              child: Column(
-                children: [
-                  const Center(
-                    child: CustomTextWidget(
-                      textAlign: TextAlign.center,
-                      text: "Fruit Market",
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      color: primaryColor,
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8.w),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  children: [
+                    const Center(
+                      child: CustomTextWidget(
+                        textAlign: TextAlign.center,
+                        text: "Fruit Market",
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                        color: primaryColor,
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 21.h, bottom: 52.h),
-                    child: const CustomTextWidget(
-                      textAlign: TextAlign.center,
-                      text: "Welcome to Our app",
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                    Padding(
+                      padding: EdgeInsets.only(top: 21.h, bottom: 52.h),
+                      child: const CustomTextWidget(
+                        textAlign: TextAlign.center,
+                        text: "Welcome to Our app",
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            Expanded(
-              child: Column(
-                children: [
-                  CustomContainerLandScape(
-                    function: () {},
-                    text: 'Sign in with Phone',
-                    icon: const Icon(Icons.phone),
-                  ),
-                  CustomContainerLandScape(
-                    function: () {},
-                    text: 'Sign in with Google',
-                    icon: Image.asset("assets/google.png"),
-                  ),
-                  CustomContainerLandScape(
-                    function: () {},
-                    color: const Color(0xff235C95),
-                    text: 'Sign in with facebook',
-                    icon: Image.asset("assets/facebook.png"),
-                    textColor: Colors.white,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 58.h),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        const Expanded(
-                          child: CustomTextWidget(
+              Expanded(
+                flex: 1,
+                child: Column(
+                  children: [
+                    CustomContainerLandScape(
+                      function: () {},
+                      text: 'Sign in with Phone',
+                      icon: const Icon(Icons.phone),
+                    ),
+                    CustomContainerLandScape(
+                      function: () {},
+                      text: 'Sign in with Google',
+                      icon: Image.asset("assets/google.png"),
+                    ),
+                    CustomContainerLandScape(
+                      function: () {},
+                      color: const Color(0xff235C95),
+                      text: 'Sign in with facebook',
+                      icon: Image.asset("assets/facebook.png"),
+                      textColor: Colors.white,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 0.h),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CustomTextWidget(
                             text: "Already member?",
-                            fontSize: 14,
+                            fontSize: 11,
                             fontWeight: FontWeight.normal,
                           ),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const LoginView(),
-                              ),
-                            );
-                          },
-                          child: const CustomTextWidget(
-                            text: "SignIn",
-                            fontSize: 14,
-                            fontWeight: FontWeight.normal,
-                            color: Color(0xff004D8E),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const LoginView(),
+                                ),
+                              );
+                            },
+                            child: const CustomTextWidget(
+                              text: "SignIn",
+                              fontSize: 11,
+                              fontWeight: FontWeight.normal,
+                              color: Color(0xff004D8E),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ), //
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const CustomTextWidget(
               text: "By continue you agree to our",
-              fontSize: 12,
+              fontSize: 9,
               fontWeight: FontWeight.normal,
               color: Color(0xff88909C),
             ),
@@ -326,7 +328,7 @@ class LandScapeView extends StatelessWidget {
               },
               child: const CustomTextWidget(
                 text: "Terms of service",
-                fontSize: 13,
+                fontSize: 9,
                 fontWeight: FontWeight.normal,
                 color: Color(0xff004D8E),
               ),
@@ -338,13 +340,13 @@ class LandScapeView extends StatelessWidget {
           children: [
             CustomTextWidget(
               text: "and our ",
-              fontSize: 12,
+              fontSize: 9,
               fontWeight: FontWeight.normal,
               color: Color(0xff88909C),
             ),
             CustomTextWidget(
               text: "Privacy Policy",
-              fontSize: 13,
+              fontSize: 9,
               fontWeight: FontWeight.normal,
               color: Color(0xff004D8E),
             ),
@@ -352,7 +354,7 @@ class LandScapeView extends StatelessWidget {
         ),
         SizedBox(height: 15.h),
       ],
-    ); 
+    );
   }
 }
 
@@ -391,13 +393,11 @@ class CustomContainerLandScape extends StatelessWidget {
             children: [
               icon,
 
-              Expanded(
-                child: CustomTextWidget(
-                  text: text,
-                  fontSize: 12,
-                  fontWeight: FontWeight.normal,
-                  color: textColor ?? Colors.black,
-                ),
+              CustomTextWidget(
+                text: text,
+                fontSize: 9,
+                fontWeight: FontWeight.normal,
+                color: textColor ?? Colors.black,
               ),
             ],
           ),

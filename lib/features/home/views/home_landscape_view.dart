@@ -34,7 +34,7 @@ class _LandScapeViewState extends State<LandScapeView> {
               decoration: InputDecoration(
                 hintText: "What are you looking for?",
                 hintStyle: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 9.sp,
                   fontWeight: FontWeight.w400,
                 ),
                 prefixIcon: const Icon(Icons.search),
@@ -47,7 +47,7 @@ class _LandScapeViewState extends State<LandScapeView> {
           ),
         CarouselSlider(
           options: CarouselOptions(
-            height: 230.h,
+            height: 200.h,
             autoPlay: true,
             onPageChanged: (index, reason) {
               setState(() {
@@ -60,11 +60,18 @@ class _LandScapeViewState extends State<LandScapeView> {
                 return Builder(
                   builder: (BuildContext context) {
                     return Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Image.asset(
-                        fit: BoxFit.fill,
-                        width: 400.w,
-                        "assets/home.png",
+                      padding: EdgeInsets.only(
+                        bottom: 10.h,
+                        left: 10.w,
+                        right: 10.w,
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20.r),
+                        child: Image.asset(
+                          fit: BoxFit.cover,
+                          width: MediaQuery.of(context).size.width,
+                          "assets/home.png",
+                        ),
                       ),
                     );
                   },
@@ -107,8 +114,7 @@ class _LandScapeViewState extends State<LandScapeView> {
                       );
                     },
                     child: Container(
-                      width: 80.w,
-                      height: 80.h,
+                      height: 60.h,
                       padding: const EdgeInsets.all(10),
                       margin: EdgeInsets.only(
                         right: index == 3 ? 0.w : 10.w,
@@ -118,7 +124,10 @@ class _LandScapeViewState extends State<LandScapeView> {
                         borderRadius: BorderRadius.circular(25.r),
                         border: Border.all(color: Colors.black12),
                       ),
-                      child: Image.asset(widget.cards[index], fit: BoxFit.fill),
+                      child: Image.asset(
+                        widget.cards[index],
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
             ),
@@ -131,12 +140,12 @@ class _LandScapeViewState extends State<LandScapeView> {
             children: [
               CustomTextWidget(
                 text: "Sellers",
-                fontSize: 16,
+                fontSize: 13,
                 fontWeight: FontWeight.bold,
               ),
               CustomTextWidget(
                 text: "Show all",
-                fontSize: 18,
+                fontSize: 11,
                 fontWeight: FontWeight.normal,
                 color: Color(0xff235C95),
               ),
@@ -175,7 +184,7 @@ class SellersItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: 10.w, right: 12.w),
-      height: 210.h,
+      height: 160.h,
       width: 412.w,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -191,7 +200,7 @@ class SellersItem extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Image.asset("assets/logo.png", width: 82.w, height: 82.h),
+          Image.asset("assets/logo.png", fit: BoxFit.cover),
           Expanded(
             child: Padding(
               padding: EdgeInsets.only(left: 26.w),
@@ -203,7 +212,7 @@ class SellersItem extends StatelessWidget {
                     children: [
                       const CustomTextWidget(
                         text: "Seller name",
-                        fontSize: 19,
+                        fontSize: 11,
                         fontWeight: FontWeight.bold,
                       ),
                       SizedBox(width: 7.w),
@@ -215,7 +224,7 @@ class SellersItem extends StatelessWidget {
                       Image.asset("assets/fesba.png"),
                       const CustomTextWidget(
                         text: " Delivery Charges : 0.5 KD",
-                        fontSize: 14,
+                        fontSize: 9,
                         fontWeight: FontWeight.normal,
                       ),
                     ],
@@ -232,7 +241,7 @@ class SellersItem extends StatelessWidget {
                       ),
                       const CustomTextWidget(
                         text: "Open",
-                        fontSize: 14,
+                        fontSize: 9,
                         fontWeight: FontWeight.normal,
                         color: Color(0xff00BB1A),
                       ),
@@ -246,7 +255,7 @@ class SellersItem extends StatelessWidget {
                       ),
                       const CustomTextWidget(
                         text: "Beverages",
-                        fontSize: 14,
+                        fontSize: 9,
                         fontWeight: FontWeight.normal,
                         color: Color(0xff51949F),
                       ),
@@ -261,7 +270,7 @@ class SellersItem extends StatelessWidget {
             children: [
               CustomTextWidget(
                 text: "4.5",
-                fontSize: 14,
+                fontSize: 9,
                 fontWeight: FontWeight.normal,
                 color: Color(0xff656565),
               ),
@@ -269,7 +278,7 @@ class SellersItem extends StatelessWidget {
                 children: [
                   CustomTextWidget(
                     text: "2.5 KM",
-                    fontSize: 12,
+                    fontSize: 9,
                     fontWeight: FontWeight.normal,
                     color: Color(0xff204F38),
                   ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../core/colors/colors.dart';
+import '../../../core/services/colors/colors.dart';
 import '../../../core/widgets/custom_text_widget.dart';
 import 'seller_portreit_view.dart';
 import 'seller_landscape_view.dart';
@@ -14,12 +14,12 @@ class SellerView extends StatefulWidget {
 }
 
 class _SellerViewState extends State<SellerView> {
-    bool searchClicked = false;
+  bool searchClicked = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
+      appBar: AppBar(
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
@@ -28,9 +28,12 @@ class _SellerViewState extends State<SellerView> {
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
-        title: const CustomTextWidget(
+        title: CustomTextWidget(
           text: "Fruit Market",
-          fontSize: 24,
+          fontSize:
+              MediaQuery.of(context).orientation == Orientation.portrait
+                  ? 24
+                  : 17,
           fontWeight: FontWeight.bold,
           color: primaryColor,
         ),
@@ -54,9 +57,12 @@ class _SellerViewState extends State<SellerView> {
         ],
       ),
 
-    body: SingleChildScrollView(
-      child: MediaQuery.of(context).orientation == Orientation.portrait?PortreitView(searchClicked: searchClicked,):LandScapeView(searchClicked: searchClicked),
-    ),
+      body: SingleChildScrollView(
+        child:
+            MediaQuery.of(context).orientation == Orientation.portrait
+                ? PortreitView(searchClicked: searchClicked)
+                : LandScapeView(searchClicked: searchClicked),
+      ),
     );
   }
 }

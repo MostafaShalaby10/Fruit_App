@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinput/pinput.dart';
 import 'package:task_one/core/widgets/nav_bar_widget.dart';
 
-import '../../../core/colors/colors.dart';
+import '../../../core/services/colors/colors.dart';
 import '../../../core/widgets/custom_button_widget.dart';
 import '../../../core/widgets/custom_text_widget.dart';
 
@@ -186,7 +186,7 @@ class LandScapeView extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.only(top: 20.h, left: 49.w),
+          padding: EdgeInsets.only(top: 50.h, left: 10.w),
           child: Align(
             alignment: Alignment.centerLeft,
             child: IconButton(
@@ -216,7 +216,7 @@ class LandScapeView extends StatelessWidget {
                     child: const CustomTextWidget(
                       textAlign: TextAlign.center,
                       text: "Enter Received OTP",
-                      fontSize: 17,
+                      fontSize: 11,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                     ),
@@ -230,8 +230,8 @@ class LandScapeView extends StatelessWidget {
                   children: [
                     Pinput(
                       defaultPinTheme: PinTheme(
-                        width: 48.w,
-                        height: 120.h,
+                        width: 35.w,
+                        height: 90.h,
                         textStyle: const TextStyle(
                           fontSize: 20,
                           color: Color(0xff929292),
@@ -245,7 +245,7 @@ class LandScapeView extends StatelessWidget {
                       length: 4,
                     ),
                     SizedBox(
-                      height: 80.h,
+                      height: 60.h,
                       child: CustomButtonWidget(
                         function: () {
                           Navigator.pushAndRemoveUntil(
@@ -257,12 +257,13 @@ class LandScapeView extends StatelessWidget {
                           );
                         },
                         text: "Confirm",
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w900,
+                        fontSize: 9,
                       ),
                     ),
                     CustomTextWidget(
                       text: seconds.toString(),
-                      fontSize: 30,
+                      fontSize: 11,
                       fontWeight: FontWeight.w400,
                       color: const Color(0xff707070),
                     ),
@@ -278,7 +279,7 @@ class LandScapeView extends StatelessWidget {
           children: [
             const CustomTextWidget(
               text: "Not received? ",
-              fontSize: 18,
+              fontSize: 9,
               fontWeight: FontWeight.w400,
               color: Color(0xff707070),
             ),
@@ -289,7 +290,7 @@ class LandScapeView extends StatelessWidget {
               },
               child: const CustomTextWidget(
                 text: "Send Again",
-                fontSize: 18,
+                fontSize: 9,
                 fontWeight: FontWeight.w400,
                 color: Color(0xff235C95),
               ),

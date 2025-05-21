@@ -5,81 +5,79 @@ import '../../../core/widgets/custom_text_widget.dart';
 
 class LandScapeView extends StatefulWidget {
   const LandScapeView({super.key, required this.searchClicked});
-final bool searchClicked;
+  final bool searchClicked;
   @override
   State<LandScapeView> createState() => _LandScapeViewState();
 }
 
 class _LandScapeViewState extends State<LandScapeView> {
-
   @override
   Widget build(BuildContext context) {
     return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            if (widget. searchClicked)
-              Padding(
-                padding: EdgeInsets.only(
-                  left: 18.w,
-                  right: 25.w,
-                  top: 22.h,
-                  bottom: 11.h,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (widget.searchClicked)
+          Padding(
+            padding: EdgeInsets.only(
+              left: 18.w,
+              right: 25.w,
+              top: 22.h,
+              bottom: 11.h,
+            ),
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: "What are you looking for?",
+                hintStyle: TextStyle(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w400,
                 ),
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: "What are you looking for?",
-                    hintStyle: TextStyle(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w400,
-                    ),
-                    prefixIcon: const Icon(Icons.search),
+                prefixIcon: const Icon(Icons.search),
 
-                    border: const OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
-                    ),
-                  ),
+                border: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black),
                 ),
               ),
-            const SellersItem(),
-            Padding(
-              padding: EdgeInsets.only(left: 21.w, top: 1.5.h, bottom: 8.h),
-              child: const CustomTextWidget(
-                text: "Categories ",
-                fontSize: 18,
+            ),
+          ),
+        const SellersItem(),
+        Padding(
+          padding: EdgeInsets.only(left: 21.w, top: 1.5.h, bottom: 8.h),
+          child: const CustomTextWidget(
+            text: "Categories ",
+            fontSize: 11,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const CategoryList(),
+        Padding(
+          padding: EdgeInsets.only(left: 21.w, top: 1.h, bottom: 7.h),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const CustomTextWidget(
+                text: "Products",
+                fontSize: 11,
                 fontWeight: FontWeight.bold,
               ),
-            ),
-            const CategoryList(),
-            Padding(
-              padding: EdgeInsets.only(left: 21.w, top: 1.h, bottom: 7.h),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const CustomTextWidget(
-                    text: "Products",
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Image.asset("assets/format.png", width: 17.w),
-                  ),
-                ],
+              IconButton(
+                onPressed: () {},
+                icon: Image.asset("assets/format.png"),
               ),
-            ),
-            ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: 2,
-              itemBuilder:
-                  (context, index) => Padding(
-                    padding: EdgeInsets.only(bottom: 18.h),
-                    child: const ProductsItem(),
-                  ),
-            ),
-          ],
-        ); 
-     
+            ],
+          ),
+        ),
+        ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: 2,
+          itemBuilder:
+              (context, index) => Padding(
+                padding: EdgeInsets.only(bottom: 18.h),
+                child: const ProductsItem(),
+              ),
+        ),
+      ],
+    );
   }
 }
 
@@ -104,9 +102,7 @@ class _ProductsItemState extends State<ProductsItem> {
               isClicked = !isClicked;
             }),
         child: Container(
-          padding: EdgeInsets.only(right: 34.w, left: 10.w),
-          width: isClicked ? 394.w : 401.w,
-          height: isClicked ? 450.h : 230.h,
+          padding: EdgeInsets.only(right: 10.w, left: 10.w, bottom: 10.h),
           decoration: BoxDecoration(
             color: Colors.white,
             boxShadow: [
@@ -135,38 +131,41 @@ class _ProductsItemState extends State<ProductsItem> {
                         ),
                       ],
                     ),
-                    child: Image.asset(
-                      "assets/vegetables.png",
-                      width: 57.w,
-                      height: 59.h,
-                    ),
+                    child: Image.asset("assets/vegetables.png"),
                   ),
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsets.only(left: 22.w),
+                      padding: EdgeInsets.only(left: 10.w),
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment:
+                            isClicked
+                                ? CrossAxisAlignment.start
+                                : CrossAxisAlignment.center,
                         children: [
-                          SizedBox(height: 20.h),
+                          SizedBox(height: 5.h),
 
                           const CustomTextWidget(
                             text: "Product name",
-                            fontSize: 16,
+                            fontSize: 11,
                             fontWeight: FontWeight.bold,
                           ),
                           SizedBox(height: 4.h),
                           Row(
+                            mainAxisAlignment:
+                                isClicked
+                                    ? MainAxisAlignment.start
+                                    : MainAxisAlignment.center,
                             children: [
                               const CustomTextWidget(
                                 text: "12.00 KD",
-                                fontSize: 14,
+                                fontSize: 9,
                                 fontWeight: FontWeight.w400,
                                 color: Color(0xff656565),
                               ),
                               SizedBox(width: 12.w),
                               const CustomTextWidget(
                                 text: "14.00 KD",
-                                fontSize: 14,
+                                fontSize: 9,
                                 fontWeight: FontWeight.w400,
                                 color: Color(0xffD1D1D1),
                               ),
@@ -176,8 +175,7 @@ class _ProductsItemState extends State<ProductsItem> {
                           SizedBox(height: 10.h),
 
                           Container(
-                            width: 102.w,
-                            height: 50.h,
+                            width: 80.w,
                             padding: EdgeInsets.symmetric(horizontal: 7.w),
                             decoration: BoxDecoration(
                               color: const Color(0xffDF958F),
@@ -187,7 +185,7 @@ class _ProductsItemState extends State<ProductsItem> {
                               child: CustomTextWidget(
                                 color: Colors.white,
                                 text: "Up to 10% Off",
-                                fontSize: 12,
+                                fontSize: 9,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
@@ -208,8 +206,8 @@ class _ProductsItemState extends State<ProductsItem> {
                     const CustomTextWidget(
                       textAlign: TextAlign.start,
                       text:
-                          "Lorem ipsum dolor sit amet, consectetur adipiscing",
-                      fontSize: 16,
+                          "Lorem ipsum dolor sit amet, consectetur adipiscing Lorem ipsum dolor sit amet, consectetur adipiscing Lorem ipsum dolor sit amet, consectetur adipiscing Lorem ipsum dolor sit amet, consectetur adipiscing Lorem ipsum dolor sit amet, consectetur adipiscing",
+                      fontSize: 9,
                       fontWeight: FontWeight.w400,
                       color: Color(0xff656565),
                     ),
@@ -217,54 +215,40 @@ class _ProductsItemState extends State<ProductsItem> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          width: 126.w,
-                          height: 60.h,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(15.r),
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 4,
-                                spreadRadius: 0,
-                                color: Colors.black.withOpacity(0.25),
-                                offset: const Offset(0, 1),
-                              ),
-                            ],
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    if (count > 1) {
-                                      count--;
-                                    }
-                                  });
-                                },
-                                icon: const Icon(Icons.remove, size: 30),
-                              ),
-                              CustomTextWidget(
-                                text: "$count",
-                                fontSize: 17,
-                                fontWeight: FontWeight.w400,
-                              ),
-                              IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    count++;
-                                  });
-                                },
-                                icon: const Icon(Icons.add, size: 30),
-                              ),
-                            ],
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            IconButton(
+                              iconSize: 15,
+                              onPressed: () {
+                                setState(() {
+                                  if (count > 1) {
+                                    count--;
+                                  }
+                                });
+                              },
+                              icon: const Icon(Icons.remove),
+                            ),
+                            CustomTextWidget(
+                              text: "$count",
+                              fontSize: 9,
+                              fontWeight: FontWeight.w400,
+                            ),
+                            IconButton(
+                              iconSize: 15,
+
+                              onPressed: () {
+                                setState(() {
+                                  count++;
+                                });
+                              },
+                              icon: const Icon(Icons.add),
+                            ),
+                          ],
                         ),
                         Container(
-                          width: 144.w,
-                          height: 60.h,
+                          // width: 144.w,
                           padding: EdgeInsets.only(
                             left: 10.w,
                             right: 10.w,
@@ -288,7 +272,7 @@ class _ProductsItemState extends State<ProductsItem> {
                               Image.asset("assets/cart_icon.png"),
                               const CustomTextWidget(
                                 text: "Add to Cart",
-                                fontSize: 16,
+                                fontSize: 9,
                                 color: Colors.white,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -314,8 +298,8 @@ class SellersItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: 10.w, right: 12.w, top: 15.h),
-      height: 230.h,
-      width: 412.w,
+      height: MediaQuery.of(context).size.height * .34,
+      width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
@@ -330,19 +314,20 @@ class SellersItem extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Image.asset("assets/logo.png", width: 82.w, height: 82.h),
+          Image.asset("assets/logo.png"),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.only(left: 26.w),
+              padding: EdgeInsets.only(left: 10.w),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [
                       const CustomTextWidget(
                         text: "Seller name",
-                        fontSize: 19,
+                        fontSize: 11,
                         fontWeight: FontWeight.bold,
                       ),
                       SizedBox(width: 7.w),
@@ -353,7 +338,7 @@ class SellersItem extends StatelessWidget {
                       Image.asset("assets/fesba.png"),
                       const CustomTextWidget(
                         text: " Delivery Charges : 0.5 KD",
-                        fontSize: 14,
+                        fontSize: 9,
                         fontWeight: FontWeight.normal,
                       ),
                     ],
@@ -370,7 +355,7 @@ class SellersItem extends StatelessWidget {
                       ),
                       const CustomTextWidget(
                         text: "Open",
-                        fontSize: 14,
+                        fontSize: 9,
                         fontWeight: FontWeight.normal,
                         color: Color(0xff00BB1A),
                       ),
@@ -384,7 +369,7 @@ class SellersItem extends StatelessWidget {
                       ),
                       const CustomTextWidget(
                         text: "4.5",
-                        fontSize: 14,
+                        fontSize: 9,
                         fontWeight: FontWeight.normal,
                         color: Color(0xff656565),
                       ),
@@ -428,9 +413,12 @@ class _CategoryListState extends State<CategoryList> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 27.w, right: 26.w, bottom: 11.h),
+      padding: EdgeInsets.only(
+        left: MediaQuery.of(context).size.width * .1,
+        bottom: 11.h,
+      ),
       child: SizedBox(
-        height: 200.h,
+        height: 160.h,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: categoriesImages.length,
@@ -445,8 +433,8 @@ class _CategoryListState extends State<CategoryList> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      width: 80.w,
-                      height: 80.h,
+                      width: 50.w,
+                      height: 100.h,
                       padding: const EdgeInsets.all(10),
 
                       decoration: BoxDecoration(
@@ -455,11 +443,11 @@ class _CategoryListState extends State<CategoryList> {
                       ),
                       child: Image.asset(categoriesImages[index]),
                     ),
-                    SizedBox(height: 17.h),
+                    SizedBox(height: 5.h),
                     CustomTextWidget(
                       textAlign: TextAlign.center,
                       text: categoriesTitles[index],
-                      fontSize: 14,
+                      fontSize: 9,
                       fontWeight: FontWeight.w400,
                     ),
                   ],

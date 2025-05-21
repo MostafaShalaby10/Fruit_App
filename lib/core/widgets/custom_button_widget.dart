@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../colors/colors.dart';
+import '../services/colors/colors.dart';
 import 'custom_text_widget.dart';
 
 class CustomButtonWidget extends StatelessWidget {
@@ -26,7 +26,10 @@ class CustomButtonWidget extends StatelessWidget {
     return MaterialButton(
       minWidth: 177.w,
       height: 52.h,
-      shape: OutlineInputBorder(borderRadius: BorderRadius.circular(25.r)),
+      shape: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(25.r),
+        borderSide: BorderSide.none,
+      ),
       color: color ?? primaryColor,
       onPressed: function,
       child: CustomTextWidget(

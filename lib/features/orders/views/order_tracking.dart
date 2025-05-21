@@ -17,15 +17,21 @@ class OrderTracking extends StatelessWidget {
           icon: const Icon(Icons.arrow_back_ios_new_outlined),
         ),
         centerTitle: true,
-        title: const CustomTextWidget(
+        title: CustomTextWidget(
           text: "Order Tracking",
-          fontSize: 24,
+          fontSize:
+              MediaQuery.of(context).orientation == Orientation.portrait
+                  ? 24
+                  : 15,
           fontWeight: FontWeight.bold,
           color: Color(0xff204F38),
         ),
       ),
       body: SingleChildScrollView(
-        child: MediaQuery.of(context).orientation == Orientation.portrait?const OrderTrackingPortraitView():const OrderTrackingLandScapeView(),
+        child:
+            MediaQuery.of(context).orientation == Orientation.portrait
+                ? const OrderTrackingPortraitView()
+                : const OrderTrackingLandScapeView(),
       ),
     );
   }

@@ -29,22 +29,24 @@ class ProfileView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const CustomTextWidget(
+        title: CustomTextWidget(
           text: "Fruit Market",
-          fontSize: 24,
+          fontSize:
+              MediaQuery.of(context).orientation == Orientation.portrait
+                  ? 24
+                  : 15,
           fontWeight: FontWeight.bold,
           color: Color(0xff204F38),
         ),
         leading: IconButton(
-          onPressed: () {
-           
-          },
+          onPressed: () {},
           icon: const Icon(Icons.arrow_back_ios_new),
         ),
       ),
-      body: SingleChildScrollView(
-        child: MediaQuery.of(context).orientation == Orientation.portrait?PortreitView(titles: titles, icons: icons):LandScapeView(titles: titles, icons: icons,),
-      )
+      body:
+          MediaQuery.of(context).orientation == Orientation.portrait
+              ? PortreitView(titles: titles, icons: icons)
+              : LandScapeView(titles: titles, icons: icons),
     );
   }
 }

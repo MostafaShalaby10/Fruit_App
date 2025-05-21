@@ -17,16 +17,16 @@ class CheckoutView extends StatelessWidget {
           icon: const Icon(Icons.arrow_back_ios_new_outlined),
         ),
         centerTitle: true,
-        title: const CustomTextWidget(
+        title:  CustomTextWidget(
           text: "Checkout",
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
+ fontSize:
+              MediaQuery.of(context).orientation == Orientation.portrait
+                  ? 24
+                  : 15,          fontWeight: FontWeight.bold,
           color: Color(0xff204F38),
         ),
       ),
-      body: SingleChildScrollView(
-        child: MediaQuery.of(context).orientation == Orientation.portrait?const PortreitView():const LandScapeView(),
-      ),
+      body: MediaQuery.of(context).orientation == Orientation.portrait?const PortreitView():const LandScapeView(),
     );
   }
 }

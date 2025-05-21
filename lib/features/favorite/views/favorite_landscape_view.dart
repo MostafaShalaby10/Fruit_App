@@ -26,8 +26,7 @@ class ProductsItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(right: 12.w, left: 10.w),
-      width: 401.w,
-      height: 250.h,
+      height: 180.h,
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -39,76 +38,67 @@ class ProductsItem extends StatelessWidget {
         ],
         borderRadius: BorderRadius.circular(20.r),
       ),
-      child: Stack(
-        alignment: Alignment.topRight,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(100.r),
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 4,
-                      spreadRadius: 0,
-                      color: Colors.black.withOpacity(0.25),
+          Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(100.r),
+              boxShadow: [
+                BoxShadow(
+                  blurRadius: 4,
+                  spreadRadius: 0,
+                  color: Colors.black.withOpacity(0.25),
+                ),
+              ],
+            ),
+            child: Image.asset("assets/vegetables.png", width: 45.w),
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 22.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 20.h),
+
+                const CustomTextWidget(
+                  text: "Product name",
+                  fontSize: 11,
+                  fontWeight: FontWeight.bold,
+                ),
+                SizedBox(height: 4.h),
+                Row(
+                  children: [
+                    const CustomTextWidget(
+                      text: "12.00 KD",
+                      fontSize: 9,
+                      fontWeight: FontWeight.w400,
+                      color: Color(0xff656565),
+                    ),
+                    SizedBox(width: 12.w),
+                    const CustomTextWidget(
+                      text: "14.00 KD",
+                      fontSize: 9,
+                      fontWeight: FontWeight.w400,
+                      color: Color(0xffD1D1D1),
                     ),
                   ],
                 ),
-                child: Image.asset(
-                  "assets/vegetables.png",
-                  width: 57.w,
-                  height: 59.h,
+
+                SizedBox(height: 10.h),
+
+                const CustomTextWidget(
+                  text: "Store Name : Store 1",
+                  fontSize: 11,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xff292727),
                 ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsets.only(left: 22.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height: 20.h),
-
-                      const CustomTextWidget(
-                        text: "Product name",
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      SizedBox(height: 4.h),
-                      Row(
-                        children: [
-                          const CustomTextWidget(
-                            text: "12.00 KD",
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: Color(0xff656565),
-                          ),
-                          SizedBox(width: 12.w),
-                          const CustomTextWidget(
-                            text: "14.00 KD",
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: Color(0xffD1D1D1),
-                          ),
-                        ],
-                      ),
-
-                      SizedBox(height: 10.h),
-
-                      const CustomTextWidget(
-                        text: "Store Name : Store 1",
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xff292727),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
+          const Spacer(),
           Padding(
             padding: EdgeInsets.only(top: 10.h, left: 9.w),
             child: Container(

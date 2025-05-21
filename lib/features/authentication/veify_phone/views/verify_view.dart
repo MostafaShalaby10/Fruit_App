@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task_one/core/widgets/phone_field.dart';
 import 'package:task_one/features/OTP/views/verification.dart';
 
-import '../../../../core/colors/colors.dart';
+import '../../../../core/services/colors/colors.dart';
 import '../../../../core/widgets/custom_button_widget.dart';
 import '../../../../core/widgets/custom_text_widget.dart';
 
@@ -12,11 +12,15 @@ class VerifyView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   return Scaffold(
-    resizeToAvoidBottomInset: false,
-    body: SingleChildScrollView(
-      child: MediaQuery.of(context).orientation == Orientation.portrait?const PortreitView():const LandScapeView(),
-   ));
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: SingleChildScrollView(
+        child:
+            MediaQuery.of(context).orientation == Orientation.portrait
+                ? const PortreitView()
+                : const LandScapeView(),
+      ),
+    );
   }
 }
 
@@ -128,7 +132,7 @@ class LandScapeView extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.only(top: 86.h, left: 49.w),
+          padding: EdgeInsets.only(top: 50.h, left: 20.w),
           child: Align(
             alignment: Alignment.centerLeft,
             child: IconButton(
@@ -141,13 +145,14 @@ class LandScapeView extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 15.w),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
                 children: [
                   const CustomTextWidget(
                     textAlign: TextAlign.center,
                     text: "Fruit Market",
-                    fontSize: 20,
+                    fontSize: 17,
                     fontWeight: FontWeight.bold,
                     color: primaryColor,
                   ),
@@ -156,14 +161,15 @@ class LandScapeView extends StatelessWidget {
                     child: const CustomTextWidget(
                       textAlign: TextAlign.center,
                       text: "Enter your Number",
-                      fontSize: 17,
+                      fontSize: 9,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                     ),
                   ),
                 ],
               ),
-              Expanded(
+              SizedBox(
+                width: MediaQuery.of(context).size.width / 2,
                 child: Column(
                   spacing: 20.h,
 
@@ -172,13 +178,13 @@ class LandScapeView extends StatelessWidget {
                       children: [
                         CustomTextWidget(
                           text: "Phone Number",
-                          fontSize: 11,
+                          fontSize: 8,
                           color: Color(0xff858D9A),
                           fontWeight: FontWeight.normal,
                         ),
                         CustomTextWidget(
                           text: " *",
-                          fontSize: 11,
+                          fontSize: 8,
                           color: Color(0xffED692E),
                           fontWeight: FontWeight.normal,
                         ),
@@ -198,12 +204,12 @@ class LandScapeView extends StatelessWidget {
                       ),
                       child: PhoneField(
                         hintText: "Mobile Number",
-                        fontSize: 11.sp,
+                        fontSize: 9.sp,
                       ),
                     ),
                     SizedBox(
                       width: 347.w,
-                      height: 80.h,
+                      height: 60.h,
                       child: CustomButtonWidget(
                         function: () {
                           Navigator.pushAndRemoveUntil(
@@ -215,6 +221,7 @@ class LandScapeView extends StatelessWidget {
                           );
                         },
                         text: "Submit",
+                        fontSize: 9,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

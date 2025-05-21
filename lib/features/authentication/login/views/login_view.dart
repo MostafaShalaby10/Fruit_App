@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task_one/features/authentication/signup/views/signup_view.dart';
 
-import '../../../../core/colors/colors.dart';
+import '../../../../core/services/colors/colors.dart';
 import '../../../../core/widgets/custom_button_widget.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../core/widgets/custom_text_widget.dart';
@@ -15,14 +15,15 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: false,
 
-        body: SingleChildScrollView(
-          child:     MediaQuery.of(context).orientation == Orientation.portrait?const PortreitView():const LandScapeView(),
-        )
-     
+      body: SingleChildScrollView(
+        child:
+            MediaQuery.of(context).orientation == Orientation.portrait
+                ? const PortreitView()
+                : const LandScapeView(),
+      ),
     );
-    
   }
 }
 
@@ -213,11 +214,11 @@ class LandScapeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 49.w),
+      padding: EdgeInsets.only(left: 30.w),
       child: Column(
         children: [
           Padding(
-            padding: EdgeInsets.only(top: 86.h, bottom: 20.h),
+            padding: EdgeInsets.only(top: 40.h),
             child: Align(
               alignment: Alignment.centerLeft,
               child: IconButton(
@@ -235,11 +236,11 @@ class LandScapeView extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(right: 10.w),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const CustomTextWidget(
                         textAlign: TextAlign.center,
-                        text: "Fruit Market",
+                        text: "\nFruit Market",
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: primaryColor,
@@ -249,7 +250,7 @@ class LandScapeView extends StatelessWidget {
                         child: const CustomTextWidget(
                           textAlign: TextAlign.center,
                           text: "Login to Wikala",
-                          fontSize: 17,
+                          fontSize: 12,
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
                         ),
@@ -268,13 +269,13 @@ class LandScapeView extends StatelessWidget {
                           CustomTextWidget(
                             textAlign: TextAlign.start,
                             text: "Phone Number",
-                            fontSize: 10,
+                            fontSize: 8,
                             color: Color(0xff858D9A),
                             fontWeight: FontWeight.normal,
                           ),
                           CustomTextWidget(
                             text: "*",
-                            fontSize: 10,
+                            fontSize: 8,
                             color: Color(0xffED692E),
                             fontWeight: FontWeight.normal,
                           ),
@@ -293,7 +294,7 @@ class LandScapeView extends StatelessWidget {
                         ),
                         child: PhoneField(
                           hintText: "Mobile Number",
-                          fontSize: 11.sp,
+                          fontSize: 9.sp,
                         ),
                       ),
 
@@ -301,13 +302,13 @@ class LandScapeView extends StatelessWidget {
                         children: [
                           CustomTextWidget(
                             text: "Password",
-                            fontSize: 10,
+                            fontSize: 8,
                             color: Color(0xff858D9A),
                             fontWeight: FontWeight.normal,
                           ),
                           CustomTextWidget(
                             text: " *",
-                            fontSize: 10,
+                            fontSize: 8,
                             color: Color(0xffED692E),
                             fontWeight: FontWeight.normal,
                           ),
@@ -326,31 +327,27 @@ class LandScapeView extends StatelessWidget {
                         ),
                         child: CustomTextFormField(
                           hintText: "Password",
-                          fontSize: 11.sp,
+                          fontSize: 9.sp,
                         ),
                       ),
 
-                      Padding(
-                        padding: EdgeInsets.only(right: 38.w),
-                        child: Align(
-                          alignment: Alignment.centerRight,
-                          child: TextButton(
-                            onPressed: () {},
-                            child: const CustomTextWidget(
-                              textDecoration: TextDecoration.underline,
-                              text: "Forget Password?",
-                              fontSize: 13,
-                              fontWeight: FontWeight.normal,
-                              color: Color(0xff004D8E),
-                            ),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: TextButton(
+                          onPressed: () {},
+                          child: const CustomTextWidget(
+                            textDecoration: TextDecoration.underline,
+                            text: "Forget Password?",
+                            fontSize: 9,
+                            fontWeight: FontWeight.normal,
+                            color: Color(0xff004D8E),
                           ),
                         ),
                       ),
-                      SizedBox(
-                        width: 347.w,
-                        height: 60.h,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 15.w),
+                      Center(
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.4,
+                          height: 60.h,
                           child: CustomButtonWidget(
                             function: () {
                               Navigator.pushAndRemoveUntil(
@@ -363,7 +360,7 @@ class LandScapeView extends StatelessWidget {
                             },
                             text: "Login",
                             fontWeight: FontWeight.bold,
-                            fontSize: 12,
+                            fontSize: 9,
                           ),
                         ),
                       ),
@@ -376,9 +373,10 @@ class LandScapeView extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              SizedBox(width: 100.w),
               const CustomTextWidget(
                 text: "Don’t have an account?",
-                fontSize: 11,
+                fontSize: 9,
                 fontWeight: FontWeight.w400,
               ),
               TextButton(
@@ -390,7 +388,7 @@ class LandScapeView extends StatelessWidget {
                 },
                 child: const CustomTextWidget(
                   text: "|Sign up",
-                  fontSize: 11,
+                  fontSize: 9,
                   fontWeight: FontWeight.w400,
                   color: Color(0xff004D8E),
                 ),

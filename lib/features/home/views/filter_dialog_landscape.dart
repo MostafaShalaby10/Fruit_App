@@ -10,12 +10,12 @@ Future filterDialogLandScape(context) async => showDialog(
       (context) => StatefulBuilder(
         builder:
             (context, setState) => SizedBox(
-              height: 600.h,
+              height: 400.h,
               child: AlertDialog(
                 backgroundColor: Colors.white,
                 title: const CustomTextWidget(
                   text: "Filter by",
-                  fontSize: 18,
+                  fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
 
@@ -27,22 +27,26 @@ Future filterDialogLandScape(context) async => showDialog(
                         children: [
                           const CustomTextWidget(
                             text: "Delivered To",
-                            fontSize: 14,
+                            fontSize: 9,
                             fontWeight: FontWeight.normal,
                             color: Color(0xff858D9A),
                           ),
-                          SizedBox(width: 13.w),
+                          SizedBox(width: 5.w),
                           Image.asset("assets/fesba.png"),
                         ],
                       ),
+                      Row(
+                        children: [
+                          const DropMenu(),
+                          Expanded(child: const RadioButton()),
+                        ],
+                      ),
 
-                      const DropMenu(),
-                      const RadioButton(),
                       SizedBox(
-                        width: 244.w,
+                        width: MediaQuery.of(context).size.width * .5,
                         child: CustomButtonWidget(
                           text: "Apply Filter",
-                          fontSize: 16,
+                          fontSize: 9,
                           fontWeight: FontWeight.bold,
                           function: () {},
                         ),
@@ -62,7 +66,7 @@ Future filterDialogLandScape(context) async => showDialog(
                   TextButton(
                     child: const CustomTextWidget(
                       text: "Close",
-                      fontSize: 16,
+                      fontSize: 9,
                       fontWeight: FontWeight.w400,
                       textAlign: TextAlign.center,
                       color: Color(0xff656565),
@@ -109,8 +113,8 @@ class _DropMenuState extends State<DropMenu> {
             ),
           ],
         ),
-        height: 80.h,
-        width: 315.w,
+        // height: 60.h,
+        width: MediaQuery.of(context).size.width * .35,
         child: DropdownButton<String>(
           dropdownColor: Colors.white,
           underline: const SizedBox(),
@@ -122,7 +126,7 @@ class _DropMenuState extends State<DropMenu> {
                   value: value,
                   child: CustomTextWidget(
                     text: value,
-                    fontSize: 14,
+                    fontSize: 11,
                     fontWeight: FontWeight.w400,
                   ),
                 );
@@ -160,7 +164,7 @@ class _RadioButtonState extends State<RadioButton> {
           title: const CustomTextWidget(
             textAlign: TextAlign.start,
             text: "Offers",
-            fontSize: 16,
+            fontSize: 11,
             fontWeight: FontWeight.w400,
           ),
           leading: Radio<String>(
@@ -181,7 +185,7 @@ class _RadioButtonState extends State<RadioButton> {
             textAlign: TextAlign.start,
 
             text: "Free Delivery",
-            fontSize: 16,
+            fontSize: 11,
             fontWeight: FontWeight.w400,
           ),
           leading: Radio<String>(
