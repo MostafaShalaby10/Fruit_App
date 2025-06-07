@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:task_one/core/networking/api_service.dart';
 import 'package:task_one/features/authentication/login/model/login_repo_imp.dart';
 import 'package:task_one/features/authentication/signup/model/signup_repo_imp.dart';
+import 'package:task_one/features/contact_us/model/repos/contact_repo_imp.dart';
 import 'package:task_one/features/favorite/model/repos/fav_repo_imp.dart';
 import 'package:task_one/features/home/model/repos/home_repo_imp.dart';
 import 'package:task_one/features/orders/model/repos/order_repo_imp.dart';
@@ -29,5 +30,8 @@ void setupServiceLocator() {
   );
     getIt.registerLazySingleton<OrderRepoImp>(
     () => OrderRepoImp(getIt<ApiService>()),
+  );
+   getIt.registerLazySingleton<ContactRepoImp>(
+    () => ContactRepoImp(getIt<ApiService>()),
   );
 }

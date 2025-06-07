@@ -1,10 +1,10 @@
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task_one/core/widgets/custom_button_widget.dart';
 import 'package:task_one/core/widgets/custom_text_widget.dart';
+import 'package:task_one/features/contact_us/view/terms_view.dart';
 import 'package:task_one/features/profile/view_model/cubit/profile_cubit.dart';
 import 'package:task_one/features/profile/views/edit_data.dart';
 import 'language_dialog.dart';
@@ -46,14 +46,15 @@ class PortreitView extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(100.r),
                         child: CachedNetworkImage(
+                          fit: BoxFit.cover,
                           imageUrl:
-                              "https://masool.net/fruits-app/public/uploads/${state.data.data?.profilePhotoPath}",
+                              "https://masool.net/fruits-app/public/uploads/${ProfileCubit.get(context).userData["profile_photo_path"]}",
                         ),
                       ),
                     ),
                   ),
                   CustomTextWidget(
-                    text: "Welcome, ${state.data.data?.name!.split(" ").first}",
+                    text: "Welcome, ${ProfileCubit.get(context).userData["name"].split(" ").first}",
                     fontSize: 24,
                     fontWeight: FontWeight.w400,
                   ),
@@ -89,6 +90,13 @@ class PortreitView extends StatelessWidget {
                               } else if (index == 3) {
                                 languageDialog(context);
                               }
+                              else if (index == 5) {
+  Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const TermsView(),
+                                  ),
+                                );                              }
                             },
                             child: Container(
                               width: 393.w,

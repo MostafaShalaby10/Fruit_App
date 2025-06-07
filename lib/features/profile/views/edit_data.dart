@@ -1,3 +1,4 @@
+import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -58,7 +59,7 @@ class PortreitView extends StatelessWidget {
         return Form(
           key: formKey,
           child:
-              state is! LoadingGetDataState && state is SuccessfullyGetDataState
+              state is! LoadingGetDataState
                   ? SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,10 +95,20 @@ class PortreitView extends StatelessWidget {
                                 ),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(100.r),
-                                  child: CachedNetworkImage(
-                                    imageUrl:
-                                        "https://masool.net/fruits-app/public/uploads/${state.data.data?.profilePhotoPath}",
-                                  ),
+                                  child:
+                                      ProfileCubit.get(context).file == null
+                                          ? CachedNetworkImage(
+                                            fit: BoxFit.cover,
+                                            imageUrl:
+                                                "https://masool.net/fruits-app/public/uploads/${ProfileCubit.get(context).userData["profile_photo_path"]}",
+                                          )
+                                          : Image.file(
+                                            File(
+                                              ProfileCubit.get(
+                                                context,
+                                              ).file!.path,
+                                            ),
+                                          ),
                                 ),
                               ),
                               Positioned(
@@ -106,7 +117,6 @@ class PortreitView extends StatelessWidget {
                                 child: IconButton(
                                   onPressed: () {
                                     ProfileCubit.get(context).pickImage();
- 
                                   },
                                   icon: const Icon(
                                     Icons.camera_alt_outlined,
@@ -122,7 +132,7 @@ class PortreitView extends StatelessWidget {
                           padding: EdgeInsets.only(left: 121.w, bottom: 34.h),
                           child: CustomTextWidget(
                             text:
-                                "Welcome, ${state.data.data?.name!.split(" ").first}",
+                                "Welcome, ${ProfileCubit.get(context).userData["name"].split(" ").first}",
                             fontSize: 24,
                             fontWeight: FontWeight.w400,
                           ),

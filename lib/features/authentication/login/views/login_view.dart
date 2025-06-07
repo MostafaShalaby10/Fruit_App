@@ -44,9 +44,6 @@ class PortreitView extends StatelessWidget {
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
         if (state is SuccessfullyLoginState) {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(state.message)));
           if (state.status) {
             Navigator.pushAndRemoveUntil(
               context,

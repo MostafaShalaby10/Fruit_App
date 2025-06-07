@@ -40,7 +40,9 @@ class ProfileCubit extends Cubit<ProfileState> {
         });
   }
 
+  Map userData = {};
   Future getProfile() async {
+    userData.clear();
     emit(LoadingGetDataState());
     return await _profileRepoInterface
         .getProfile()
@@ -48,8 +50,9 @@ class ProfileCubit extends Cubit<ProfileState> {
           nameController.text = value.data!["data"]["name"];
           emailController.text = value.data!["data"]["email"];
           phoneController.text = value.data!["data"]["mobile"];
+          userData = value.data["data"];
           emit(
-            SuccessfullyGetDataState(data: UserDateModel.fromJson(value.data)),
+            SuccessfullyGetDataState(),
           );
         })
         .catchError((error) {
@@ -67,7 +70,7 @@ class ProfileCubit extends Cubit<ProfileState> {
       // File selectedImage = File(image!.path);
       // print('Image selected: ${selectedImage.path}');
       file = image;
-      // emit(UploadPhoto());
+      emit(UploadPhoto());
     } else {
       print('No image selected');
       return null;

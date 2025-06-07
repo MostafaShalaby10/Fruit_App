@@ -21,9 +21,10 @@ final class ErrorUpdateDataState extends ProfileState {
 final class LoadingGetDataState extends ProfileState {}
 
 final class SuccessfullyGetDataState extends ProfileState {
-  final UserDateModel data;
+//   final UserDateModel data;
 
-  SuccessfullyGetDataState({required this.data});
+//   SuccessfullyGetDataState({required this.data});
+// }
 }
 
 final class ErrorGetDataState extends ProfileState {
