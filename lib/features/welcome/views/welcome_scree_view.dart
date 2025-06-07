@@ -280,7 +280,7 @@ class LandScapeView extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          CustomTextWidget(
+                          const CustomTextWidget(
                             text: "Already member?",
                             fontSize: 11,
                             fontWeight: FontWeight.normal,

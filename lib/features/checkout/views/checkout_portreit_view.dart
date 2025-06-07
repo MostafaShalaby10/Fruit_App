@@ -28,7 +28,7 @@ class _PortreitViewState extends State<PortreitView> {
               internalPadding: 80,
               borderThickness: 5,
               defaultStepBorderType: BorderType.normal,
-      
+
               activeStepIconColor: const Color(0xff204F38),
               stepRadius: 12,
               fitWidth: true,
@@ -44,12 +44,12 @@ class _PortreitViewState extends State<PortreitView> {
                   customTitle: CustomTextWidget(
                     text: "Delivery Time",
                     fontSize: 16,
-      
+
                     fontWeight: FontWeight.w400,
                     color: Color(0xff204F38),
                     textAlign: TextAlign.center,
                   ),
-      
+
                   customStep: Icon(Icons.circle, size: 6),
                   activeIcon: Icon(Icons.circle),
                 ),
@@ -61,9 +61,9 @@ class _PortreitViewState extends State<PortreitView> {
                     color: Color(0xff204F38),
                     textAlign: TextAlign.center,
                   ),
-      
+
                   customStep: Icon(Icons.circle, size: 6),
-      
+
                   activeIcon: Icon(Icons.circle),
                 ),
                 const EasyStep(
@@ -75,7 +75,7 @@ class _PortreitViewState extends State<PortreitView> {
                     textAlign: TextAlign.center,
                   ),
                   customStep: Icon(Icons.circle, size: 6),
-      
+
                   activeIcon: Icon(Icons.circle),
                 ),
               ],

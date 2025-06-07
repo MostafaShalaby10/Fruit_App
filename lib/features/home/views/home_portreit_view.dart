@@ -1,10 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:task_one/features/home/model_view/cubit/home_cubit.dart';
+import 'package:task_one/features/product/test_view/all_products.dart';
 
 import '../../../core/widgets/custom_text_widget.dart';
-import '../../product/view/product_view.dart';
 import '../../seller/views/seller_view.dart';
 import 'home_view.dart';
 
@@ -19,157 +22,190 @@ class _PortreitViewState extends State<PortreitView> {
   int _index = 0;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        if (searchClicked)
-          Padding(
-            padding: EdgeInsets.only(
-              left: 18.w,
-              right: 25.w,
-              top: 22.h,
-              bottom: 11.h,
-            ),
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: "What are you looking for?",
-                hintStyle: TextStyle(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w400,
-                ),
-                prefixIcon: const Icon(Icons.search),
+    return BlocConsumer<HomeCubit, HomeState>(
+      listener: (context, state) {
+        // TODO: implement listener
+      },
+      builder: (context, state) {
+        return state is! LoadingGetCategoriesState &&
+                state is SuccessfullyGetCategoriesState
+            ? Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (searchClicked)
+                  Padding(
+                    padding: EdgeInsets.only(
+                      left: 18.w,
+                      right: 25.w,
+                      top: 22.h,
+                      bottom: 11.h,
+                    ),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        hintText: "What are you looking for?",
+                        hintStyle: TextStyle(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w400,
+                        ),
+                        prefixIcon: const Icon(Icons.search),
 
-                border: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black),
-                ),
-              ),
-            ),
-          ),
-        CarouselSlider(
-          options: CarouselOptions(
-            height: 130.h,
-            autoPlay: true,
-            onPageChanged: (index, reason) {
-              setState(() {
-                _index = index;
-              });
-            },
-          ),
-          items:
-              [1, 2, 3, 4].map((i) {
-                return Builder(
-                  builder: (BuildContext context) {
-                    return Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Image.asset(
-                        fit: BoxFit.fill,
-                        width: 400.w,
-                        "assets/home.png",
+                        border: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black),
+                        ),
                       ),
-                    );
-                  },
-                );
-              }).toList(),
-        ),
-        Center(
-          child: SmoothIndicator(
-            offset: _index.toDouble(),
-            count: 4,
-            size: const Size(49, 7),
-            effect: WormEffect(
-              activeDotColor: const Color(0xff707070),
-              dotColor: Colors.black12,
-              dotWidth: 10.w,
-              dotHeight: 10.h,
-            ),
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.only(
-            left: 27.w,
-            right: 26.w,
-            bottom: 11.h,
-            top: 15.h,
-          ),
-          child: SizedBox(
-            height: 80.h,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: widget.cards.length,
-              itemBuilder:
-                  (context, index) => InkWell(
-                    onTap: () {
-
-Navigator.of(context).push(
-  MaterialPageRoute(
-    builder: (context) => const ProductView(),
-  ),
-);
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (context) => const ProductView(),
-                      //   ),
-                      // );
-                    },
-                    child: Container(
-                      width: 80.w,
-                      height: 80.h,
-                      padding: const EdgeInsets.all(10),
-                      margin: EdgeInsets.only(
-                        right: index == 3 ? 0.w : 10.w,
-                        left: index == 0 ? 0.w : 10.w,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25.r),
-                        border: Border.all(color: Colors.black12),
-                      ),
-                      child: Image.asset(widget.cards[index], fit: BoxFit.fill),
                     ),
                   ),
-            ),
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.only(left: 13.w, right: 9.w, bottom: 10.h),
-          child: const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              CustomTextWidget(
-                text: "Sellers",
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-              CustomTextWidget(
-                text: "Show all",
-                fontSize: 18,
-                fontWeight: FontWeight.normal,
-                color: Color(0xff235C95),
-              ),
-            ],
-          ),
-        ),
-        ListView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: 3,
-          itemBuilder:
-              (context, index) => Padding(
-                padding: EdgeInsets.only(bottom: 8.h),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const SellerView(),
-                      ),
-                    );
-                  },
-                  child: const SellersItem(),
+                CarouselSlider(
+                  options: CarouselOptions(
+                    height: 130.h,
+                    autoPlay: true,
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        _index = index;
+                      });
+                    },
+                  ),
+                  items:
+                      [1, 2, 3, 4].map((i) {
+                        return Builder(
+                          builder: (BuildContext context) {
+                            return Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Image.asset(
+                                fit: BoxFit.fill,
+                                width: 400.w,
+                                "assets/home.png",
+                              ),
+                            );
+                          },
+                        );
+                      }).toList(),
                 ),
-              ),
-        ),
-      ],
+                Center(
+                  child: SmoothIndicator(
+                    offset: _index.toDouble(),
+                    count: 4,
+                    size: const Size(49, 7),
+                    effect: WormEffect(
+                      activeDotColor: const Color(0xff707070),
+                      dotColor: Colors.black12,
+                      dotWidth: 10.w,
+                      dotHeight: 10.h,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: 27.w,
+                    right: 26.w,
+                    bottom: 11.h,
+                    top: 15.h,
+                  ),
+                  child: SizedBox(
+                    height: 120.h,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: HomeCubit.get(context).categoriesData.length,
+                      itemBuilder:
+                          (context, index) => InkWell(
+                            onTap: () {
+                              // Navigator.of(context).push(
+                              //   MaterialPageRoute(
+                              //     builder: (context) => const ProductView(),
+                              //   ),
+                              // );
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (c) =>  AllProducts(items: HomeCubit.get(context).categoriesData[index]["sub_cat"],),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              alignment: Alignment.center,
+
+                              width: 100.w,
+                              height: 120.h,
+                              padding: const EdgeInsets.all(10),
+                              margin: EdgeInsets.only(
+                                right: index == 3 ? 0.w : 10.w,
+                                left: index == 0 ? 0.w : 10.w,
+                              ),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(25.r),
+                                border: Border.all(color: Colors.black12),
+                              ),
+                              child: Column(
+                                spacing: 10.h,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Expanded(
+                                    child: CachedNetworkImage(
+                                      // fit: BoxFit.cover,
+
+                                      // width: 40.w,
+                                      imageUrl:
+                                          "https://masool.net/fruits-app/public/uploads/${HomeCubit.get(context).categoriesData[index]["img"]}",
+                                    ),
+                                  ),
+                                  CustomTextWidget(
+                                    text: HomeCubit.get(context).categoriesData[index]["name"],
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: 13.w,
+                    right: 9.w,
+                    bottom: 10.h,
+                  ),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomTextWidget(
+                        text: "Sellers",
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      CustomTextWidget(
+                        text: "Show all",
+                        fontSize: 18,
+                        fontWeight: FontWeight.normal,
+                        color: Color(0xff235C95),
+                      ),
+                    ],
+                  ),
+                ),
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: 3,
+                  itemBuilder:
+                      (context, index) => Padding(
+                        padding: EdgeInsets.only(bottom: 8.h),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const SellerView(),
+                              ),
+                            );
+                          },
+                          child: const SellersItem(),
+                        ),
+                      ),
+                ),
+              ],
+            )
+            : const Center(child: CircularProgressIndicator());
+      },
     );
   }
 }

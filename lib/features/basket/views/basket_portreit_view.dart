@@ -26,7 +26,7 @@ class PortreitView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Divider(),
-        
+
               Padding(
                 padding: EdgeInsets.only(top: 20.h, bottom: 10.h),
                 child: const Row(
@@ -57,7 +57,7 @@ class PortreitView extends StatelessWidget {
                   ],
                 ),
               ),
-        
+
               Padding(
                 padding: EdgeInsets.only(bottom: 10.h),
                 child: const Row(
@@ -88,7 +88,7 @@ class PortreitView extends StatelessWidget {
                   ],
                 ),
               ),
-        
+
               Padding(
                 padding: EdgeInsets.only(bottom: 43.h),
                 child: const Row(

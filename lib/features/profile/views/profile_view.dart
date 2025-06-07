@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:task_one/core/utils/service_locator.dart';
+import 'package:task_one/features/profile/model/repos/profile_repo_imp.dart';
+import 'package:task_one/features/profile/view_model/cubit/profile_cubit.dart';
 import '../../../core/widgets/custom_text_widget.dart';
 import 'profile_landscape_view.dart';
 import 'profile_portreit_view.dart';
@@ -26,27 +30,30 @@ class ProfileView extends StatelessWidget {
       "assets/money.png",
       "assets/info.png",
     ];
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: CustomTextWidget(
-          text: "Fruit Market",
-          fontSize:
-              MediaQuery.of(context).orientation == Orientation.portrait
-                  ? 24
-                  : 15,
-          fontWeight: FontWeight.bold,
-          color: Color(0xff204F38),
+    return BlocProvider(
+      create: (context) => ProfileCubit(getIt<ProfileRepoImp>())..getProfile(),
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: CustomTextWidget(
+            text: "Fruit Market",
+            fontSize:
+                MediaQuery.of(context).orientation == Orientation.portrait
+                    ? 24
+                    : 15,
+            fontWeight: FontWeight.bold,
+            color: const Color(0xff204F38),
+          ),
+          leading: IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.arrow_back_ios_new),
+          ),
         ),
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.arrow_back_ios_new),
-        ),
+        body:
+            MediaQuery.of(context).orientation == Orientation.portrait
+                ? PortreitView(titles: titles, icons: icons)
+                : LandScapeView(titles: titles, icons: icons),
       ),
-      body:
-          MediaQuery.of(context).orientation == Orientation.portrait
-              ? PortreitView(titles: titles, icons: icons)
-              : LandScapeView(titles: titles, icons: icons),
     );
   }
 }

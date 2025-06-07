@@ -175,6 +175,7 @@ class _LandScapeViewState extends State<LandScapeView> {
                 ],
               ),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset("assets/cart_icon.png"),
                   const CustomTextWidget(

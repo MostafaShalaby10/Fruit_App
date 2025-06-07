@@ -10,13 +10,10 @@ class NotificationServices {
     await Firebase.initializeApp();
     await messaging.requestPermission();
     var token = await messaging.getToken();
-    log(token!);
     FirebaseMessaging.onBackgroundMessage(handleBackgroundMessage);
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       LocalNotificationService.showNotification(message);
     });
-
-    
   }
 
   static Future handleBackgroundMessage(RemoteMessage message) async {

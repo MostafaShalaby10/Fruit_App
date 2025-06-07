@@ -16,24 +16,25 @@ class NavigationBarWidget extends StatefulWidget {
 
 class _NavigationBarWidgetState extends State<NavigationBarWidget> {
   int index = 0;
-  List<Widget> pages = [
-    const HomeView(),
-    const OrdersView(),
-    const BasketView(),
-    const FavoriteView(),
-    const ProfileView(),
+  final List<Widget Function()> pageBuilders = [
+    () => const HomeView(),
+    () => const OrdersView(),
+    () => const BasketView(),
+    () => const FavoriteView(),
+    () => const ProfileView(),
   ];
-   void _navigateToNextPage() {
+  void _navigateToNextPage() {
     setState(() {
-      if (index < pages.length - 1) {
+      if (index < pageBuilders.length - 1) {
         index++;
       }
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar:GNav(
+      bottomNavigationBar: GNav(
         selectedIndex: index,
         onTabChange: (value) {
           setState(() {
@@ -99,10 +100,7 @@ class _NavigationBarWidgetState extends State<NavigationBarWidget> {
           ),
         ],
       ),
-      body: IndexedStack(
-        index: index, // Keeps all pages alive
-        children: pages,
-      ),
+      body: pageBuilders[index](),
     );
   }
 }

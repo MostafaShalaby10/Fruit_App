@@ -109,7 +109,7 @@ class _LandScapeViewState extends State<LandScapeView> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const ProductView(),
+                          builder: (context) => const ProductView(data: {},),
                         ),
                       );
                     },

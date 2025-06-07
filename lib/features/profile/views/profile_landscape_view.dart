@@ -106,6 +106,7 @@ class LandScapeView extends StatelessWidget {
     );
   }
 }
+
 /*
   
 */

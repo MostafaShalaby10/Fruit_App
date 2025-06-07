@@ -22,7 +22,7 @@ class BasketView extends StatelessWidget {
                   ? 24
                   : 15,
           fontWeight: FontWeight.bold,
-          color: Color(0xff204F38),
+          color: const Color(0xff204F38),
         ),
       ),
 

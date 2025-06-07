@@ -35,10 +35,10 @@ Future filterDialogLandScape(context) async => showDialog(
                           Image.asset("assets/fesba.png"),
                         ],
                       ),
-                      Row(
+                      const Row(
                         children: [
-                          const DropMenu(),
-                          Expanded(child: const RadioButton()),
+                          DropMenu(),
+                          Expanded(child: RadioButton()),
                         ],
                       ),
 

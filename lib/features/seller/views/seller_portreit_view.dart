@@ -16,7 +16,7 @@ class _PortreitViewState extends State<PortreitView> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (widget. searchClicked)
+        if (widget.searchClicked)
           Padding(
             padding: EdgeInsets.only(
               left: 18.w,
@@ -77,7 +77,7 @@ class _PortreitViewState extends State<PortreitView> {
               ),
         ),
       ],
-    ); 
+    );
   }
 }
 

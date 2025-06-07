@@ -9,7 +9,7 @@ class CustomTextWidget extends StatelessWidget {
     required this.fontWeight,
     this.color,
     this.textAlign,
-    this.textDecoration,
+    this.textDecoration, this.overflow,
   });
 
   final String text;
@@ -18,6 +18,8 @@ class CustomTextWidget extends StatelessWidget {
   final Color? color;
   final TextAlign? textAlign;
   final TextDecoration? textDecoration;
+  final TextOverflow? overflow;
+
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class CustomTextWidget extends StatelessWidget {
       textAlign: textAlign ?? TextAlign.center,
       text,
       // maxLines: 2,
-      // overflow: TextOverflow.ellipsis,
+      overflow: overflow,
       style: TextStyle(
         decoration: textDecoration ?? TextDecoration.none,
         fontSize: fontSize.sp,
