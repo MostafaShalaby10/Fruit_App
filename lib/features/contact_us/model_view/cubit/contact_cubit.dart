@@ -33,11 +33,11 @@ class ContactCubit extends Cubit<ContactState> {
   Future getTerms() async {
     data.clear();
     emit(LoadingGetAboutAndTermsState());
-    return _contactRepoInterface
+    return await _contactRepoInterface
         .getTerms()
         .then((value) {
           data = value.data["data"];
-
+          log(data["details"]);
           emit(SuccessfullyGetAboutAndTermsState());
         })
         .catchError((error) {

@@ -173,7 +173,7 @@ class PortraitView extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const TermsView()),
+                  MaterialPageRoute(builder: (context) => const TermsView(terms: true,)),
                 );
               },
               child: const CustomTextWidget(
@@ -323,7 +323,7 @@ class LandScapeView extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const TermsView()),
+                  MaterialPageRoute(builder: (context) => const TermsView(terms: true,)),
                 );
               },
               child: const CustomTextWidget(

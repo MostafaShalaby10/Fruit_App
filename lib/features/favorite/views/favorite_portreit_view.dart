@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task_one/features/favorite/model_view/cubit/favorite_cubit.dart';
 
 import '../../../core/widgets/custom_text_widget.dart';
+import '../../product/view/product_view.dart';
 
 class PortreitView extends StatelessWidget {
   const PortreitView({super.key});
@@ -37,27 +38,40 @@ class PortreitView extends StatelessWidget {
                           itemBuilder:
                               (context, index) => Padding(
                                 padding: EdgeInsets.only(bottom: 16.h),
-                                child: ProductsItem(
-                                  function: () {
-                                    FavoriteCubit.get(context).addFavorite(
-                                      id:
-                                          FavoriteCubit.get(
-                                            context,
-                                          ).favorites[index]["product"]["id"],
-                                    );
-                                  },
-                                  productName:
-                                      FavoriteCubit.get(
+                                child: InkWell(
+                                  onTap:
+                                      () => Navigator.push(
                                         context,
-                                      ).favorites[index]["product"]["name"],
-                                  image:
-                                      FavoriteCubit.get(
-                                        context,
-                                      ).favorites[index]["product"]["img"],
-                                  price:
-                                      FavoriteCubit.get(
-                                        context,
-                                      ).favorites[index]["product"]["price"],
+                                        MaterialPageRoute(
+                                          builder:
+                                              (c) =>
+                                                  ProductView(data:   FavoriteCubit.get(
+                                          context,
+                                        ).favorites[index]["product"]),
+                                        ),
+                                      ),
+                                  child: ProductsItem(
+                                    function: () {
+                                      FavoriteCubit.get(context).addFavorite(
+                                        id:
+                                            FavoriteCubit.get(
+                                              context,
+                                            ).favorites[index]["product"]["id"],
+                                      );
+                                    },
+                                    productName:
+                                        FavoriteCubit.get(
+                                          context,
+                                        ).favorites[index]["product"]["name"],
+                                    image:
+                                        FavoriteCubit.get(
+                                          context,
+                                        ).favorites[index]["product"]["img"],
+                                    price:
+                                        FavoriteCubit.get(
+                                          context,
+                                        ).favorites[index]["product"]["price"],
+                                  ),
                                 ),
                               ),
                         ),
