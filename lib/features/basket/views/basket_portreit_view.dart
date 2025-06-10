@@ -1,157 +1,187 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task_one/core/widgets/custom_text_widget.dart';
+import 'package:task_one/features/basket/model_view/cubit/cart_cubit.dart';
 
 class PortreitView extends StatelessWidget {
   const PortreitView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Expanded(
-          child: ListView.builder(
-            itemCount: 6,
-            itemBuilder:
-                (context, index) => Padding(
-                  padding: EdgeInsets.only(bottom: 15.h),
-                  child: const ProductsItem(),
+    return BlocBuilder<CartCubit, CartState>(
+      builder: (context, state) {
+        return state is LoadingGetCartState
+            ? const Center(child: CircularProgressIndicator())
+            : Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: CartCubit.get(context).cart.length,
+                    itemBuilder:
+                        (context, index) => Padding(
+                          padding: EdgeInsets.only(bottom: 15.h),
+                          child: ProductsItem(
+                            count:
+                                CartCubit.get(context).cart[index]['quantity'],
+                            image:
+                                "https://masool.net/fruits-app/public/uploads/${CartCubit.get(context).cart[index]["img"]}",
+                            name: CartCubit.get(context).cart[index]['name'],
+                            price: CartCubit.get(context).cart[index]['price'],
+                            discount:
+                                CartCubit.get(context).cart[index]['discount'],
+                          ),
+                        ),
+                  ),
                 ),
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.only(left: 19.w, right: 21.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Divider(),
-
-              Padding(
-                padding: EdgeInsets.only(top: 20.h, bottom: 10.h),
-                child: const Row(
-                  children: [
-                    CustomTextWidget(
-                      text: "Subtotal",
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
-                      color: Color(0xff656565),
-                    ),
-                    Spacer(),
-                    Row(
-                      children: [
-                        CustomTextWidget(
-                          text: "36.00 ",
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          color: Color(0xff656565),
-                        ),
-                        CustomTextWidget(
-                          text: "KD",
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          color: Color(0xffBEBEBE),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-
-              Padding(
-                padding: EdgeInsets.only(bottom: 10.h),
-                child: const Row(
-                  children: [
-                    CustomTextWidget(
-                      text: "Shipping Charges",
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
-                      color: Color(0xff656565),
-                    ),
-                    Spacer(),
-                    Row(
-                      children: [
-                        CustomTextWidget(
-                          text: "1.50 ",
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          color: Color(0xff656565),
-                        ),
-                        CustomTextWidget(
-                          text: "KD",
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          color: Color(0xffBEBEBE),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-
-              Padding(
-                padding: EdgeInsets.only(bottom: 43.h),
-                child: const Row(
-                  children: [
-                    CustomTextWidget(
-                      text: "Bag Total",
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xff204F38),
-                    ),
-                    Spacer(),
-                    Row(
-                      children: [
-                        CustomTextWidget(
-                          text: "37.50 ",
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xff204F38),
-                        ),
-                        CustomTextWidget(
-                          text: "KD",
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xff204F38),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              const Row(
-                children: [
-                  Column(
+                Padding(
+                  padding: EdgeInsets.only(left: 19.w, right: 21.w),
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CustomTextWidget(
-                        text: "4 items in cart",
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xff656565),
+                      const Divider(),
+
+                      Padding(
+                        padding: EdgeInsets.only(top: 20.h, bottom: 10.h),
+                        child: const Row(
+                          children: [
+                            CustomTextWidget(
+                              text: "Subtotal",
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                              color: Color(0xff656565),
+                            ),
+                            Spacer(),
+                            Row(
+                              children: [
+                                CustomTextWidget(
+                                  text: "36.00 ",
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color(0xff656565),
+                                ),
+                                CustomTextWidget(
+                                  text: "KD",
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color(0xffBEBEBE),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                      CustomTextWidget(
-                        text: "37.50 KD",
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xff656565),
+
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 10.h),
+                        child: const Row(
+                          children: [
+                            CustomTextWidget(
+                              text: "Shipping Charges",
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                              color: Color(0xff656565),
+                            ),
+                            Spacer(),
+                            Row(
+                              children: [
+                                CustomTextWidget(
+                                  text: "1.50 ",
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color(0xff656565),
+                                ),
+                                CustomTextWidget(
+                                  text: "KD",
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color(0xffBEBEBE),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 43.h),
+                        child: const Row(
+                          children: [
+                            CustomTextWidget(
+                              text: "Bag Total",
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xff204F38),
+                            ),
+                            Spacer(),
+                            Row(
+                              children: [
+                                CustomTextWidget(
+                                  text: "37.50 ",
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xff204F38),
+                                ),
+                                CustomTextWidget(
+                                  text: "KD",
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xff204F38),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Row(
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              CustomTextWidget(
+                                text: "4 items in cart",
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                                color: Color(0xff656565),
+                              ),
+                              CustomTextWidget(
+                                text: "37.50 KD",
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xff656565),
+                              ),
+                            ],
+                          ),
+                          Spacer(),
+                          CustomContainer(),
+                        ],
                       ),
                     ],
                   ),
-                  Spacer(),
-                  CustomContainer(),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ],
+                ),
+              ],
+            );
+      },
     );
   }
 }
 
 class ProductsItem extends StatefulWidget {
-  const ProductsItem({super.key});
+  const ProductsItem({
+    super.key,
+    required this.image,
+    required this.name,
+    required this.price,
+    required this.discount,
+    required this.count,
+  });
+  final String image;
+  final String name;
+  final dynamic price;
+  final dynamic discount;
+  final dynamic count;
 
   @override
   State<ProductsItem> createState() => _ProductsItemState();
@@ -159,6 +189,13 @@ class ProductsItem extends StatefulWidget {
 
 class _ProductsItemState extends State<ProductsItem> {
   int count = 1;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    count = widget.count;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -196,8 +233,8 @@ class _ProductsItemState extends State<ProductsItem> {
                       ),
                     ],
                   ),
-                  child: Image.asset(
-                    "assets/vegetables.png",
+                  child: CachedNetworkImage(
+                    imageUrl: widget.image,
                     width: 57.w,
                     height: 59.h,
                   ),
@@ -210,23 +247,23 @@ class _ProductsItemState extends State<ProductsItem> {
                       children: [
                         SizedBox(height: 20.h),
 
-                        const CustomTextWidget(
-                          text: "Product name",
+                        CustomTextWidget(
+                          text: widget.name,
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
                         SizedBox(height: 4.h),
                         Row(
                           children: [
-                            const CustomTextWidget(
-                              text: "12.00 KD",
+                            CustomTextWidget(
+                              text: "${widget.price} KD",
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
                               color: Color(0xff656565),
                             ),
                             SizedBox(width: 12.w),
-                            const CustomTextWidget(
-                              text: "14.00 KD",
+                            CustomTextWidget(
+                              text: "${widget.discount} KD",
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
                               color: Color(0xffD1D1D1),
@@ -275,28 +312,32 @@ class _ProductsItemState extends State<ProductsItem> {
                               ),
                               child: Row(
                                 children: [
-                                  IconButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        if (count > 1) {
-                                          count--;
-                                        }
-                                      });
-                                    },
-                                    icon: const Icon(Icons.remove, size: 15),
+                                  Flexible(
+                                    child: IconButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          if (count > 1) {
+                                            count--;
+                                          }
+                                        });
+                                      },
+                                      icon: const Icon(Icons.remove, size: 15),
+                                    ),
                                   ),
                                   CustomTextWidget(
                                     text: "$count",
                                     fontSize: 17,
                                     fontWeight: FontWeight.w400,
                                   ),
-                                  IconButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        count++;
-                                      });
-                                    },
-                                    icon: const Icon(Icons.add, size: 15),
+                                  Flexible(
+                                    child: IconButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          count++;
+                                        });
+                                      },
+                                      icon: const Icon(Icons.add, size: 15),
+                                    ),
                                   ),
                                 ],
                               ),

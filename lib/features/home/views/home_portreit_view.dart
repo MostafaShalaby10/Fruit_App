@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:task_one/features/home/model_view/cubit/home_cubit.dart';
-import 'package:task_one/features/product/test_view/all_products.dart';
+import 'package:task_one/features/product/view/all_products.dart';
 
 import '../../../core/widgets/custom_text_widget.dart';
 import '../../seller/views/seller_view.dart';

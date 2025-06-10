@@ -94,7 +94,14 @@ class PortreitView extends StatelessWidget {
   Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => const TermsView(),
+                                    builder: (context) => const TermsView(terms: true,),
+                                  ),
+                                );                              }
+                                 else if (index == 6) {
+  Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const TermsView(terms: false,),
                                   ),
                                 );                              }
                             },

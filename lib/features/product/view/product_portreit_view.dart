@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task_one/core/widgets/custom_text_widget.dart';
+import 'package:task_one/features/basket/model_view/cubit/cart_cubit.dart';
 import 'package:task_one/features/favorite/model_view/cubit/favorite_cubit.dart';
 
 class PortreitView extends StatefulWidget {
@@ -19,9 +20,7 @@ class _PortreitViewState extends State<PortreitView> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FavoriteCubit, FavoriteState>(
-      listener: (context, state) {
-     
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -169,35 +168,40 @@ class _PortreitViewState extends State<PortreitView> {
               padding: EdgeInsets.only(left: 21.w, top: 25.h, bottom: 25.h),
               child: Align(
                 alignment: Alignment.centerRight,
-                child: Container(
-                  width: 144.w,
-                  height: 37.h,
-                  padding: EdgeInsets.only(
-                    bottom: 2.h,
-                    left: 10.w,
-                    right: 10.w,
-                  ),
-                  decoration: BoxDecoration(
-                    color: const Color(0xff204F38),
-                    borderRadius: BorderRadius.circular(15.r),
-                    boxShadow: [
-                      BoxShadow(
-                        color: const Color(0xff656565).withOpacity(0.5),
-                        spreadRadius: 0,
-                        blurRadius: 4,
-                      ),
-                    ],
-                  ),
-                  child: Row(
-                    children: [
-                      Image.asset("assets/cart_icon.png"),
-                      const CustomTextWidget(
-                        text: "Add to Cart",
-                        fontSize: 16,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ],
+                child: InkWell(
+                  onTap: () {
+                      FavoriteCubit.get(context).addToCart(productData: widget.data);
+                  },
+                  child: Container(
+                    width: 144.w,
+                    height: 37.h,
+                    padding: EdgeInsets.only(
+                      bottom: 2.h,
+                      left: 10.w,
+                      right: 10.w,
+                    ),
+                    decoration: BoxDecoration(
+                      color: const Color(0xff204F38),
+                      borderRadius: BorderRadius.circular(15.r),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(0xff656565).withOpacity(0.5),
+                          spreadRadius: 0,
+                          blurRadius: 4,
+                        ),
+                      ],
+                    ),
+                    child: Row(
+                      children: [
+                        Image.asset("assets/cart_icon.png"),
+                        const CustomTextWidget(
+                          text: "Add to Cart",
+                          fontSize: 16,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

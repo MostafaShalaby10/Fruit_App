@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:task_one/features/basket/model_view/cubit/cart_cubit.dart';
 import '../../../core/widgets/custom_text_widget.dart';
 import 'basket_landscape_view.dart';
 import 'basket_portreit_view.dart';
@@ -8,29 +10,32 @@ class BasketView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.arrow_back_ios_new_outlined),
+    return BlocProvider(
+      create: (context) => CartCubit()..getCart(),
+      child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.arrow_back_ios_new_outlined),
+          ),
+          centerTitle: true,
+          title: CustomTextWidget(
+            text: "Basket",
+            fontSize:
+                MediaQuery.of(context).orientation == Orientation.portrait
+                    ? 24
+                    : 15,
+            fontWeight: FontWeight.bold,
+            color: const Color(0xff204F38),
+          ),
         ),
-        centerTitle: true,
-        title: CustomTextWidget(
-          text: "Basket",
-          fontSize:
-              MediaQuery.of(context).orientation == Orientation.portrait
-                  ? 24
-                  : 15,
-          fontWeight: FontWeight.bold,
-          color: const Color(0xff204F38),
-        ),
-      ),
 
-      resizeToAvoidBottomInset: false,
-      body:
-          MediaQuery.of(context).orientation == Orientation.portrait
-              ? const PortreitView()
-              : const LandScapeView(),
+        resizeToAvoidBottomInset: false,
+        body:
+            MediaQuery.of(context).orientation == Orientation.portrait
+                ? const PortreitView()
+                : const LandScapeView(),
+      ),
     );
   }
 }
