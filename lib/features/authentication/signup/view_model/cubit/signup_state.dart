@@ -9,7 +9,8 @@ final class LoadingCreateAnAccountState extends SignupState {}
 
 final class SuccessfullyCreateAnAccountState extends SignupState {
   final String message;
-  SuccessfullyCreateAnAccountState(this.message);
+  final bool status;
+  SuccessfullyCreateAnAccountState(this.message, this.status);
 }
 
 final class ErrorCreateAnAccountState extends SignupState {

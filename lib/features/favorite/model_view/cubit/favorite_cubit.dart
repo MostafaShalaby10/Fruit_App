@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:task_one/core/utils/shared_prefrences.dart';
+import 'package:task_one/features/basket/model/basket_model.dart';
 import 'package:task_one/features/basket/model_view/cubit/cart_cubit.dart';
 import 'package:task_one/features/favorite/model/repos/fav_repo_interface.dart';
 
@@ -44,8 +45,15 @@ class FavoriteCubit extends Cubit<FavoriteState> {
           emit(ErrorGetFavoriteState(error.toString()));
         });
   }
-
+ late BasketModel basketModel;
   Future addToCart({required Map productData}) async {
-    _cartCubit.addToCart(productData: productData);
+    basketModel = BasketModel(
+      productId: productData["id"],
+      productName: productData["name"],
+      quantity: 1,
+      itemPrice: productData["price"],
+      image: productData["img"],
+    );
+    _cartCubit.addToCart(productData: basketModel.toMap());
   }
 }

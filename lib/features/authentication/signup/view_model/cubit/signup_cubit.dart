@@ -32,15 +32,25 @@ class SignupCubit extends Cubit<SignupState> {
     _signupRepoInterface
         .signupRequest(data: signupRequestModel.toJson())
         .then((value) {
-          nameController.clear();
-          mobileController.clear();
-          emailController.clear();
-          passwordController.clear();
-          emit(SuccessfullyCreateAnAccountState(value.message));
+          if (value.data["status"]) {
+            nameController.clear();
+            mobileController.clear();
+            emailController.clear();
+            passwordController.clear();
+          }
+          log(value.data["error_message"]);
+          emit(
+            SuccessfullyCreateAnAccountState(
+              value.data["error_message"],
+              value.data["status"],
+            ),
+          );
         })
         .catchError((error) {
           log(error.toString());
           emit(ErrorCreateAnAccountState(error.toString()));
         });
   }
+
+
 }

@@ -24,12 +24,19 @@ class PortreitView extends StatelessWidget {
                         (context, index) => Padding(
                           padding: EdgeInsets.only(bottom: 15.h),
                           child: ProductsItem(
+                            index: index,
                             count:
                                 CartCubit.get(context).cart[index]['quantity'],
                             image:
-                                "https://masool.net/fruits-app/public/uploads/${CartCubit.get(context).cart[index]["img"]}",
-                            name: CartCubit.get(context).cart[index]['name'],
-                            price: CartCubit.get(context).cart[index]['price'],
+                                "https://masool.net/fruits-app/public/uploads/${CartCubit.get(context).cart[index]["image"]}",
+                            name:
+                                CartCubit.get(
+                                  context,
+                                ).cart[index]['product_name'],
+                            price:
+                                CartCubit.get(
+                                  context,
+                                ).cart[index]['item_price'],
                             discount:
                                 CartCubit.get(context).cart[index]['discount'],
                           ),
@@ -45,7 +52,7 @@ class PortreitView extends StatelessWidget {
 
                       Padding(
                         padding: EdgeInsets.only(top: 20.h, bottom: 10.h),
-                        child: const Row(
+                        child: Row(
                           children: [
                             CustomTextWidget(
                               text: "Subtotal",
@@ -57,13 +64,16 @@ class PortreitView extends StatelessWidget {
                             Row(
                               children: [
                                 CustomTextWidget(
-                                  text: "36.00 ",
+                                  text:
+                                      CartCubit.get(
+                                        context,
+                                      ).totalPrice.toString(),
                                   fontSize: 16,
                                   fontWeight: FontWeight.w400,
                                   color: Color(0xff656565),
                                 ),
                                 CustomTextWidget(
-                                  text: "KD",
+                                  text: " KD",
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
                                   color: Color(0xffBEBEBE),
@@ -76,7 +86,7 @@ class PortreitView extends StatelessWidget {
 
                       Padding(
                         padding: EdgeInsets.only(bottom: 10.h),
-                        child: const Row(
+                        child: Row(
                           children: [
                             CustomTextWidget(
                               text: "Shipping Charges",
@@ -88,13 +98,16 @@ class PortreitView extends StatelessWidget {
                             Row(
                               children: [
                                 CustomTextWidget(
-                                  text: "1.50 ",
+                                  text:
+                                      CartCubit.get(
+                                        context,
+                                      ).shippingCharges.toString(),
                                   fontSize: 16,
                                   fontWeight: FontWeight.w400,
                                   color: Color(0xff656565),
                                 ),
                                 CustomTextWidget(
-                                  text: "KD",
+                                  text: " KD",
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
                                   color: Color(0xffBEBEBE),
@@ -107,7 +120,7 @@ class PortreitView extends StatelessWidget {
 
                       Padding(
                         padding: EdgeInsets.only(bottom: 43.h),
-                        child: const Row(
+                        child: Row(
                           children: [
                             CustomTextWidget(
                               text: "Bag Total",
@@ -119,13 +132,18 @@ class PortreitView extends StatelessWidget {
                             Row(
                               children: [
                                 CustomTextWidget(
-                                  text: "37.50 ",
+                                  text:
+                                      (CartCubit.get(context).totalPrice +
+                                              CartCubit.get(
+                                                context,
+                                              ).shippingCharges)
+                                          .toString(),
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                   color: Color(0xff204F38),
                                 ),
                                 CustomTextWidget(
-                                  text: "KD",
+                                  text: " KD",
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,
                                   color: Color(0xff204F38),
@@ -135,19 +153,21 @@ class PortreitView extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const Row(
+                      Row(
                         children: [
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               CustomTextWidget(
-                                text: "4 items in cart",
+                                text:
+                                    "${CartCubit.get(context).cart.length} items in cart",
                                 fontSize: 16,
                                 fontWeight: FontWeight.w400,
                                 color: Color(0xff656565),
                               ),
                               CustomTextWidget(
-                                text: "37.50 KD",
+                                text:
+                                    "${(CartCubit.get(context).totalPrice + CartCubit.get(context).shippingCharges).toString()} KD",
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                                 color: Color(0xff656565),
@@ -176,11 +196,14 @@ class ProductsItem extends StatefulWidget {
     required this.price,
     required this.discount,
     required this.count,
+    required this.index,
   });
+
   final String image;
   final String name;
   final dynamic price;
   final dynamic discount;
+  final int index;
   final dynamic count;
 
   @override
@@ -189,6 +212,7 @@ class ProductsItem extends StatefulWidget {
 
 class _ProductsItemState extends State<ProductsItem> {
   int count = 1;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -315,11 +339,10 @@ class _ProductsItemState extends State<ProductsItem> {
                                   Flexible(
                                     child: IconButton(
                                       onPressed: () {
-                                        setState(() {
-                                          if (count > 1) {
-                                            count--;
-                                          }
-                                        });
+                                        if(count>1){
+                                          count--;
+                                        }
+                                        CartCubit.get(context).decreaseCount(widget.index);
                                       },
                                       icon: const Icon(Icons.remove, size: 15),
                                     ),
@@ -332,9 +355,9 @@ class _ProductsItemState extends State<ProductsItem> {
                                   Flexible(
                                     child: IconButton(
                                       onPressed: () {
-                                        setState(() {
-                                          count++;
-                                        });
+                                        count++ ;
+                                        CartCubit.get(context).increaseCount(widget.index);
+
                                       },
                                       icon: const Icon(Icons.add, size: 15),
                                     ),
@@ -350,7 +373,9 @@ class _ProductsItemState extends State<ProductsItem> {
                 ),
               ],
             ),
-            IconButton(onPressed: () {}, icon: const Icon(Icons.delete)),
+            IconButton(onPressed: () {
+              CartCubit.get(context).deleteItem(widget.index);
+            }, icon: const Icon(Icons.delete)),
           ],
         ),
       ),

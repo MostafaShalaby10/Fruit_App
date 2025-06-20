@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:task_one/core/utils/service_locator.dart';
+import 'package:task_one/features/basket/model/repos/bassket_repo_imp.dart';
 import 'package:task_one/features/basket/model_view/cubit/cart_cubit.dart';
 import '../../../core/widgets/custom_text_widget.dart';
 import 'basket_landscape_view.dart';
@@ -11,7 +13,7 @@ class BasketView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CartCubit()..getCart(),
+      create: (context) => CartCubit(getIt<BassketRepoImp>())..getCart(),
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(

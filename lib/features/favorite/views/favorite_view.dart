@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task_one/core/utils/service_locator.dart';
+import 'package:task_one/features/basket/model/repos/bassket_repo_imp.dart';
 import 'package:task_one/features/basket/model_view/cubit/cart_cubit.dart';
 import 'package:task_one/features/favorite/model_view/cubit/favorite_cubit.dart';
 import '../../../core/widgets/custom_text_widget.dart';
@@ -17,7 +18,7 @@ class FavoriteView extends StatelessWidget {
     bool isLandscape =
         MediaQuery.of(context).orientation == Orientation.landscape;
     return BlocProvider(
-      create: (context) => FavoriteCubit(getIt<FavRepoImp>() , CartCubit())..getFavorite(),
+      create: (context) => FavoriteCubit(getIt<FavRepoImp>() , CartCubit(getIt<BassketRepoImp>()))..getFavorite(),
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(

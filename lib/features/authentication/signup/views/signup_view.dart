@@ -20,8 +20,6 @@ class SignupView extends StatelessWidget {
     return BlocProvider(
       create: (context) => SignupCubit(getIt<SignupRepoImp>()),
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
-
         body: SingleChildScrollView(
           child:
               MediaQuery.of(context).orientation == Orientation.portrait
@@ -42,14 +40,36 @@ class PortreitView extends StatelessWidget {
     return BlocConsumer<SignupCubit, SignupState>(
       listener: (context, state) {
         if (state is SuccessfullyCreateAnAccountState) {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(state.message)));
-          Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => const LoginView()),
-            (route) => false,
-          );
+          if (state.status) {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => const LoginView()),
+              (route) => false,
+            );
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                
+                content: CustomTextWidget(
+                  color: Colors.white,
+
+                  text: "تم انشاء حساب",
+                  fontSize: 17,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            );
+          } else if (!state.status) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: CustomTextWidget(
+                  color: Colors.white,
+                  text: state.message,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            );
+          }
         } else if (state is ErrorCreateAnAccountState) {
           ScaffoldMessenger.of(
             context,

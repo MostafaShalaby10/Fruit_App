@@ -8,11 +8,11 @@ class AddOrderRequestModel {
   List<Product>? products;
 
   AddOrderRequestModel({
-    this.orderTotalPrice,
-    this.paymentType,
-    this.address,
-    this.deliveryTime,
-    this.products,
+ required   this.orderTotalPrice,
+    this.paymentType = "cash_on_delivery",
+    this.address = "fffff",
+    this.deliveryTime = "fdljoi5j4jforoi5",
+ required   this.products,
   });
 
   factory AddOrderRequestModel.fromJson(
